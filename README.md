@@ -38,3 +38,12 @@ I, and maybe a few friends will be using this application
 ## Why is this project of interest to you?
 
 I spend a lot of my time watching TV shows and movies. I also like to be organized, so it would be nice to have something that could combine these two aspects together. I like how Netflix does their "list", but I don't just watch shows on Netflix, so it would be helpful if I could keep track of movies/shows on various different platforms
+
+## User Stories
+
+- As a user, I want to create a movie/show and add it to the to-watch list of movies/shows
+- As a user, I want to view all movies/shows on the to-watch list
+- As a user, I want to add the name, genre, link for the show/movie, and any notes/reviews I have 
+- As a user, I want to change the details of movies/shows, such as the notes, watch time, and episode/timestamp that I am at
+- As a user, I want to categorize my movies/shows as watched, currently watching, or to-watch
+- As a user, I want my movie/show to be automatically moved to the finished list when I finish watching it
