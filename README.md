@@ -1,4 +1,4 @@
-# Netflix to-watch application
+# To-watch application
 
 ## What will the application do?
 
