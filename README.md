@@ -27,6 +27,9 @@ General features:
 - Searching and filtering
 - Stats and insights (total watch time, number of shows completed)
 - Displaying lists of shows based on genres or whether the show is in the to-watch, currently watching, or finished list
+- Removing from each category 
+- Changing show/movie details
+- Adding shows/movies
 
 ## Who will use it?
 
