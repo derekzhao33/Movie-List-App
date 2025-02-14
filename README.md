@@ -6,25 +6,10 @@ This project will keep track of shows/movies that I have watched, am watching, a
 
 There are **3** distinct parts of this project: shows/movies that I have finished watching, ones that I am watching, and ones that I want to watch (to-watch list).
 
-For shows/movies that I have finished watching, features will include:
-- Writing down a review/rating for the show
-- Whether I want to rewatch
-  - If so, then the show will be re-added to the to-watch list
-- Keep track of the date finished/started
-- Favorite episode
-
-For shows/movies that I am currently watching:
-- Keeping track of what episode and timestamp I am at
-- Taking notes
-- Streaming platform links
-- Auto moving to finished when done the show
-
-For the to-watch list:
-- Priority rankings
-- Where to watch
-
 General features:
-- Searching and filtering
+- Classifying a movie as watched, currently watching, or to-watch
+- Writing down notes/reviews
+- Searching and filtering by genre
 - Stats and insights (total watch time, number of shows completed)
 - Displaying lists of shows based on genres or whether the show is in the to-watch, currently watching, or finished list
 - Removing from each category 
@@ -41,9 +26,8 @@ I spend a lot of my time watching TV shows and movies. I also like to be organiz
 
 ## User Stories
 
-- As a user, I want to create a movie/show and add it to the to-watch list of movies/shows
-- As a user, I want to view all movies/shows on the to-watch list
-- As a user, I want to add the name, genre, link for the show/movie, and any notes/reviews I have 
-- As a user, I want to change the details of movies/shows, such as the notes, watch time, and episode/timestamp that I am at
-- As a user, I want to categorize my movies/shows as watched, currently watching, or to-watch
-- As a user, I want my movie/show to be automatically moved to the finished list when I finish watching it
+- As a user, I want to create a movie/show with a status, name, and genre, and add it to the list of media items
+- As a user, I want to view all movie/show on the list, and view by genre, their media type, or their classification (watched, currently watching, to-watch)
+- As a user, I want to add notes, ratings, and watch time for the movie/show
+- As a user, I want to change any details about the movie (status, name, genre, notes, ratings, watch time, episode, season)
+- As a user, I want to categorize my movie/show as watched, currently watching, or to-watch
