@@ -52,45 +52,45 @@ public class MediaList {
         return new Movie("Watched", "test", "test"); // stub
     }
 
-    // REQUIRES: movie must be in mediaList
+    // REQUIRES: movie must be in mediaList AND newStatus must be one of "Watched", "Currently Watching", "To-watch"
     // MODIFIES: this
     // EFFECTS: changes the status of the specified movie in the lit
-    public void changeStatus(Movie movie) {
+    public void changeStatus(Movie movie, String newStatus) {
 
     }
 
-    // REQUIRES: movie must be in mediaList
+    // REQUIRES: movie must be in mediaList AND newName length > 0
     // MODIFIES: this
     // EFFECTS: changes the name of the specified movie in the lit
-    public void changeName(Movie movie) {
+    public void changeName(Movie movie, String newName) {
 
     }
 
-    // REQUIRES: movie must be in mediaList
+    // REQUIRES: movie must be in mediaList AND newGenre length > 0
     // MODIFIES: this
     // EFFECTS: changes the genre of the specified movie in the lit
-    public void changeGenre(Movie movie) {
+    public void changeGenre(Movie movie, String newGenre) {
 
     }
 
-    // REQUIRES: movie must be in mediaList
+    // REQUIRES: movie must be in mediaList AND newRating >- 1 AND newRating <= 5
     // MODIFIES: this
     // EFFECTS: changes the rating of the specified movie in the list
-    public void changeRating(Movie movie) {
+    public void changeRating(Movie movie, int newRating) {
 
     }
 
-    // REQUIRES: movie must be in mediaList
+    // REQUIRES: movie must be in mediaList AND watchTime > 0
     // MODIFIES: this
     // EFFECTS: adds watch time to the specified movie in the list
-    public void addWatchTime(Movie movie) {
+    public void addWatchTime(Movie movie, int watchTime) {
 
     }
 
-    // REQUIRES: movie must be in mediaList
+    // REQUIRES: movie must be in mediaList AND newNote length > 0
     // MODIFIES: this
     // EFFECTS: adds a note to the specified movie in the lit
-    public void addNote(Movie movie) {
+    public void addNote(Movie movie, String newNote) {
 
     }
 
@@ -99,5 +99,19 @@ public class MediaList {
     // EFFECTS: removes the note that matches the given number for the specified movie in the list
     public void removeNote(Movie movie, int noteNum) {
 
+    }
+
+    // REQUIRES: show must be in mediaList AND newEpisode > 0
+    // MODIFIES: this
+    // EFFECTS: changes the episode for the given show in mediaList
+    public void changeEpisode(Show show, int newEpisode) {
+
+    }
+
+    // REQUIRES: show must be in mediaList AND newSeason > 0
+    // MODIFIES: this
+    // EFFECTS: changes the season for the given show in mediaList
+    public void changeSeason(Show show, int newEpisode) {
+        
     }
 }
