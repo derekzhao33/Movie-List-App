@@ -56,13 +56,14 @@ public class MediaList {
     // EFFECTS: gets the names of all media on the list filered by status
     public String getAllNamesByStatus(String status) {
         String result = "";
+        int i = 1;
 
         for (Map.Entry<Integer, Movie> mapEntry : this.mediaList.entrySet()) {
-            Integer k = mapEntry.getKey();
             Movie v = mapEntry.getValue();
 
             if (v.getStatus().equals(status)) {
-                result = result + k + ": " + v.getName() + "\n"; 
+                result = result + i + ": " + v.getName() + "\n"; 
+                i++;
             }
         }
 
@@ -72,13 +73,14 @@ public class MediaList {
     // EFFECTS: gets the names of all media on the list filtered by genre
     public String getAllNamesByGenre(String genre) {
         String result = "";
+        int i = 1;
 
         for (Map.Entry<Integer, Movie> mapEntry : this.mediaList.entrySet()) {
-            Integer k = mapEntry.getKey();
             Movie v = mapEntry.getValue();
 
             if (v.getGenre().equals(genre)) {
-                result = result + k + ": " + v.getName() + "\n"; 
+                result = result + i + ": " + v.getName() + "\n"; 
+                i++;
             }
         }
 
@@ -89,20 +91,25 @@ public class MediaList {
     // EFFECTS: gets the names of all media on the list filtered by genre
     public String getAllNamesByType(String type) {
         String result = "";
+        int i = 1;
 
-
-
-        for (Map.Entry<Integer, Movie> mapEntry : this.mediaList.entrySet()) {
-            Integer k = mapEntry.getKey();
-            Movie v = mapEntry.getValue();
-
-            if (type.equals("s")) {
+        if (type.equals("s")) {
+            for (Map.Entry<Integer, Movie> mapEntry : this.mediaList.entrySet()) {
+                Movie v = mapEntry.getValue();
+                
                 if (isShow(v)) {
-                    result = result + k + ": " + v.getName() + "\n";
+                    result = result + i + ": " + v.getName() + "\n";
+                    i++;
                 }
-            } else if (type.equals("m")) {
+            }
+
+        } else if (type.equals("m")) {
+            for (Map.Entry<Integer, Movie> mapEntry : this.mediaList.entrySet()) {
+                Movie v = mapEntry.getValue();
+                
                 if (isMovie(v)) {
-                    result = result + k + ": " + v.getName() + "\n";
+                    result = result + i + ": " + v.getName() + "\n";
+                    i++;
                 }
             }
         }

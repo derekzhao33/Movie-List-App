@@ -64,7 +64,7 @@ public class TestMediaList {
     }
 
     @Test
-    public void testToString() {
+    public void testGetAllNames() {
         testList.addMedia(testMovieOne);
         testList.addMedia(testMovieTwo);
         testList.addMedia(testShowOne);
@@ -72,7 +72,7 @@ public class TestMediaList {
     }
 
     @Test
-    public void testToStringByStatus() {
+    public void testGetAllNamesByStatus() {
         testList.addMedia(testMovieOne);
         testList.addMedia(testMovieTwo);
         testList.addMedia(testShowOne);
@@ -81,7 +81,7 @@ public class TestMediaList {
     }
 
     @Test
-    public void testToStringByGenre() {
+    public void testGetAllNamesByGenre() {
         testList.addMedia(testMovieThree);
         testList.addMedia(testMovieTwo);
         testList.addMedia(testShowThree);
@@ -91,7 +91,7 @@ public class TestMediaList {
     }
 
     @Test
-    public void testToStringByType() {
+    public void testGetAllNamesByType() {
         testList.addMedia(testMovieTwo);
         testList.addMedia(testShowOne);
         testList.addMedia(testMovieOne);
