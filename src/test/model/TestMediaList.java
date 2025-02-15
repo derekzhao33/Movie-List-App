@@ -32,28 +32,24 @@ public class TestMediaList {
 
     @Test
     public void testConstructor() {
-        assertEquals(List.of(), testList.getMediaList());
+        assertEquals("", testList.getAllNames());
     }
 
     @Test
-    public void testAddMediaOnce() {
+    public void testAddMedia() {
         testList.addMedia(testMovieOne);
-        assertEquals(List.of(testMovieOne), testList.getMediaList());
-    }
-
-    @Test
-    public void testAddMediaTwice() {
-        testList.addMedia(testMovieOne);
-        assertEquals(List.of(testMovieOne), testList.getMediaList());
+        assertEquals("1: One\n", testList.getAllNames());
+        testList.addMedia(testMovieTwo);
+        assertEquals("1: One\n2: Two\n", testList.getAllNames());
         testList.addMedia(testShowOne);
-        assertEquals(List.of(testMovieOne, testShowOne), testList.getMediaList());
+        assertEquals("1: One\n2: Two\n3: A\n", testList.getAllNames());
     }
 
     @Test
     public void testRemoveMedia() {
         testList.addMedia(testMovieOne);
         testList.removeMedia(1);
-        assertEquals(List.of(), testList.getMediaList());
+        assertEquals("", testList.getAllNames());
     }
 
     @Test
@@ -62,9 +58,9 @@ public class TestMediaList {
         testList.addMedia(testMovieTwo);
         testList.addMedia(testShowOne);
         testList.removeMedia(2);
-        assertEquals(List.of(testMovieOne, testShowOne), testList.getMediaList());
+        assertEquals("1: One\n2: A\n", testList.getAllNames());
         testList.removeMedia(1);
-        assertEquals(List.of(testMovieOne), testList.getMediaList());
+        assertEquals("1: A\n", testList.getAllNames());
     }
 
     @Test
