@@ -114,8 +114,4 @@ public class MediaList {
     public void changeSeason(Show show, int season) {
         // TODO
     }
-
-    public ArrayList<Movie> getMediaList() {
-        return new ArrayList<>();
-    }
 }
