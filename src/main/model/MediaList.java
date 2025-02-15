@@ -97,9 +97,13 @@ public class MediaList {
             Movie v = mapEntry.getValue();
 
             if (type.equals("s")) {
-
+                if (isShow(v)) {
+                    result = result + k + ": " + v.getName() + "\n";
+                }
             } else if (type.equals("m")) {
-
+                if (isMovie(v)) {
+                    result = result + k + ": " + v.getName() + "\n";
+                }
             }
         }
 
@@ -176,11 +180,11 @@ public class MediaList {
 
     // EFFECTS: checks if the given object is a Show
     public boolean isShow(Movie media) {
-
+        return false; // stub
     }
 
     // EFFECTS: checks if the given object is a Movie
     public boolean isMovie(Movie media) {
-
+        return false; // stub
     }
 }
