@@ -103,7 +103,7 @@ public class MediaList {
                 }
             }
 
-        } else if (type.equals("m")) {
+        } else {
             for (Map.Entry<Integer, Movie> mapEntry : this.mediaList.entrySet()) {
                 Movie v = mapEntry.getValue();
                 
