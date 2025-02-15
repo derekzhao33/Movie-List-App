@@ -16,16 +16,16 @@ public class TestMovie {
     
     @BeforeEach
     public void setup() {
-        testMovieWatched = new Movie("Watched", "testOne", "genreOne");
-        testMovieCurrent = new Movie("Currently Watching", "testTwo", "genreTwo");
-        testMovieToWatch = new Movie("To-watch", "testThree", "genreThree");
+        testMovieWatched = new Movie("w", "testOne", "genreOne");
+        testMovieCurrent = new Movie("c", "testTwo", "genreTwo");
+        testMovieToWatch = new Movie("t", "testThree", "genreThree");
     }
 
     @Test
     public void testConstructor() {
-        assertEquals("Watched", testMovieWatched.getStatus());
-        assertEquals("Currently Watching", testMovieCurrent.getStatus());
-        assertEquals("To-watch", testMovieToWatch.getStatus());
+        assertEquals("w", testMovieWatched.getStatus());
+        assertEquals("c", testMovieCurrent.getStatus());
+        assertEquals("t", testMovieToWatch.getStatus());
         assertEquals("testOne", testMovieWatched.getName());
         assertEquals("testTwo", testMovieCurrent.getName());
         assertEquals("genreOne", testMovieWatched.getGenre());
@@ -74,14 +74,14 @@ public class TestMovie {
 
     @Test
     public void testSetStatus() {
-        testMovieCurrent.setStatus("Watching");
-        assertEquals("Watching", testMovieCurrent.getStatus());
-        testMovieCurrent.setStatus("Watching");
-        assertEquals("Watching", testMovieCurrent.getStatus());
-        testMovieCurrent.setStatus("To-watch");
-        assertEquals("To-watch", testMovieCurrent.getStatus());
-        testMovieCurrent.setStatus("Currently Watching");
-        assertEquals("Currently Watching", testMovieCurrent.getStatus());
+        testMovieCurrent.setStatus("w");
+        assertEquals("w", testMovieCurrent.getStatus());
+        testMovieCurrent.setStatus("w");
+        assertEquals("w", testMovieCurrent.getStatus());
+        testMovieCurrent.setStatus("t");
+        assertEquals("t", testMovieCurrent.getStatus());
+        testMovieCurrent.setStatus("c");
+        assertEquals("c", testMovieCurrent.getStatus());
 
     }
 

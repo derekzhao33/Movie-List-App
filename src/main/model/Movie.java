@@ -4,7 +4,7 @@ import java.util.*;
 
 import javax.naming.LinkException;
 
-// Represents a movie. Each movie's status is: "Watched", "Currently Watching", or "To-watch".
+// Represents a movie. Each movie's status is: Watched (w), Currently Watching (c), or To-watch (t).
 // Each movie has a genre, a total watch time in minutes, notes, and a review. 
 public class Movie {
 
@@ -15,7 +15,7 @@ public class Movie {
     private int rating;
     private int watchTime;
 
-    // REQUIRES: length of name and genre > 0 AND status must be one of: "Watched", "Currently Watching", or "To-watch"
+    // REQUIRES: length of name and genre > 0 AND status must be one of: "w", "c", or "t"
     // EFFECTS: creates a MediaItem with status, name, genre, empty notes, no rating, and zero minutes watchTime
     public Movie(String status, String name, String genre) {
         this.status = status;
@@ -94,7 +94,7 @@ public class Movie {
         return this.watchTime; // stub
     }
 
-    // REQUIRES: status must be one of: "Watched", "Currently Watching", or "To-watch"
+    // REQUIRES: status must be one of: "w", "c", or "t"
     public void setStatus(String status) {
         this.status = status;
     }
