@@ -177,4 +177,24 @@ public class TestMediaList {
         testList.changeSeason(testShowOne, 2);
         assertEquals(2, testShowOne.getSeason());
     }
+
+    @Test
+    public void testIsShowTrue() {
+        assertTrue(testList.isShow(testShowOne));
+    }
+
+    @Test
+    public void testIsShowFalse() {
+        assertFalse(testList.isShow(testMovieOne));
+    }
+
+    @Test
+    public void testIsMovieTrue() {
+        assertTrue(testList.isMovie(testMovieOne));
+    }
+
+    @Test
+    public void testIsMovieFalse() {
+        assertFalse(testList.isMovie(testShowOne));
+    }
 }
