@@ -55,28 +55,28 @@ public class MediaList {
     // REQUIRES: movie must be in mediaList AND newStatus must be one of "Watched", "Currently Watching", "To-watch"
     // MODIFIES: this
     // EFFECTS: changes the status of the specified movie in the lit
-    public void changeStatus(Movie movie, String newStatus) {
+    public void changeStatus(Movie movie, String status) {
 
     }
 
     // REQUIRES: movie must be in mediaList AND newName length > 0
     // MODIFIES: this
     // EFFECTS: changes the name of the specified movie in the lit
-    public void changeName(Movie movie, String newName) {
+    public void changeName(Movie movie, String name) {
 
     }
 
     // REQUIRES: movie must be in mediaList AND newGenre length > 0
     // MODIFIES: this
     // EFFECTS: changes the genre of the specified movie in the lit
-    public void changeGenre(Movie movie, String newGenre) {
+    public void changeGenre(Movie movie, String genre) {
 
     }
 
     // REQUIRES: movie must be in mediaList AND newRating >- 1 AND newRating <= 5
     // MODIFIES: this
     // EFFECTS: changes the rating of the specified movie in the list
-    public void changeRating(Movie movie, int newRating) {
+    public void changeRating(Movie movie, int rating) {
 
     }
 
@@ -90,7 +90,7 @@ public class MediaList {
     // REQUIRES: movie must be in mediaList AND newNote length > 0
     // MODIFIES: this
     // EFFECTS: adds a note to the specified movie in the lit
-    public void addNote(Movie movie, String newNote) {
+    public void addNote(Movie movie, String note) {
 
     }
 
@@ -104,14 +104,14 @@ public class MediaList {
     // REQUIRES: show must be in mediaList AND newEpisode > 0
     // MODIFIES: this
     // EFFECTS: changes the episode for the given show in mediaList
-    public void changeEpisode(Show show, int newEpisode) {
+    public void changeEpisode(Show show, int episode) {
 
     }
 
     // REQUIRES: show must be in mediaList AND newSeason > 0
     // MODIFIES: this
     // EFFECTS: changes the season for the given show in mediaList
-    public void changeSeason(Show show, int newEpisode) {
-        
+    public void changeSeason(Show show, int season) {
+
     }
 }
