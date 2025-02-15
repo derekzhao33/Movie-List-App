@@ -22,12 +22,12 @@ public class TestMediaList {
     @BeforeEach
     public void setup() {
         testList = new MediaList();
-        testMovieOne = new Movie("Watched", "One", "1");
-        testMovieTwo = new Movie("Currently Watching", "Two", "2");
-        testMovieThree = new Movie("To-watch", "Three", "3");
-        testShowOne = new Show("Watched", "A", "1");
-        testShowTwo = new Show("Currently Watching", "B", "2");
-        testShowThree = new Show("To-watch", "C", "3");
+        testMovieOne = new Movie("w", "One", "1");
+        testMovieTwo = new Movie("c", "Two", "2");
+        testMovieThree = new Movie("t", "Three", "3");
+        testShowOne = new Show("w", "A", "1");
+        testShowTwo = new Show("c", "B", "2");
+        testShowThree = new Show("t", "C", "3");
     }
 
     @Test
@@ -112,7 +112,7 @@ public class TestMediaList {
     public void testChangeStatus() {
         testList.addMedia(testMovieOne);
         testList.changeStatus(testMovieOne, "t");
-        assertEquals("To-watch", testMovieOne.getStatus());
+        assertEquals("t", testMovieOne.getStatus());
     }
 
     @Test
