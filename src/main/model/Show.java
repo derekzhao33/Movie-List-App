@@ -22,13 +22,13 @@ public class Show extends Movie {
         return -1; // stub
     }
 
-    // REQUIRES: season > 0;
-    public void setSeason(int season) {
+    // REQUIRES: newSeason > 0;
+    public void setSeason(int newSeason) {
         // TODO
     }
     
-    // REQUIRES: episode > 0;
-    public void setEpisode(int episode) {
+    // REQUIRES: newEpisode > 0;
+    public void setEpisode(int newEpisode) {
         // TODO
     }
 
