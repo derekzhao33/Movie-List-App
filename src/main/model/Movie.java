@@ -52,8 +52,8 @@ public class Movie {
         return ""; // stub
     }
 
-    public ArrayList<String> getNotes() {
-        return new ArrayList<String>(); // stub 
+    public String getNotes() {
+        return ""; // stub 
     }
 
     public int getRating() {
