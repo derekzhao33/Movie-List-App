@@ -30,7 +30,7 @@ public class MediaList {
         for (Map.Entry<Integer, Movie> mapEntry : this.mediaList.entrySet()) {
             Movie v = mapEntry.getValue();
 
-            lhmNew.put(1, v);
+            lhmNew.put(i, v);
 
             i++;
         }
@@ -112,79 +112,93 @@ public class MediaList {
     
     // EFFECTS: gets the movie with the given name, if none is found, then null
     public Movie searchName(String name) {
-        return new Movie("Watched", "test", "test"); // stub
+        Movie searchResult = null;
+
+        for (Map.Entry<Integer, Movie> mapEntry : this.mediaList.entrySet()) {
+            Movie v = mapEntry.getValue();
+
+            if (v.getName().equals(name)) {
+                searchResult = v;
+            }
+        }
+
+        return searchResult;
     }
 
     // REQUIRES: movie must be in mediaList AND status must be one of "w", "c", "t"
     // MODIFIES: this
-    // EFFECTS: changes the status of the specified movie in the lit
+    // EFFECTS: changes the status of the specified movie in the list
     public void changeStatus(Movie movie, String status) {
-        // TODO
+        movie.setStatus(status);
     }
 
     // REQUIRES: movie must be in mediaList AND newName length > 0
     // MODIFIES: this
-    // EFFECTS: changes the name of the specified movie in the lit
+    // EFFECTS: changes the name of the specified movie in the list
     public void changeName(Movie movie, String name) {
-        // TODO
+        movie.setName(name);
     }
 
     // REQUIRES: movie must be in mediaList AND newGenre length > 0
     // MODIFIES: this
-    // EFFECTS: changes the genre of the specified movie in the lit
+    // EFFECTS: changes the genre of the specified movie in the list
     public void changeGenre(Movie movie, String genre) {
-        // TODO
+        movie.setGenre(genre);
     }
 
     // REQUIRES: movie must be in mediaList AND newRating >- 1 AND newRating <= 5
     // MODIFIES: this
     // EFFECTS: changes the rating of the specified movie in the list
     public void changeRating(Movie movie, int rating) {
-        // TODO
+        movie.setRating(rating);
     }
 
     // REQUIRES: movie must be in mediaList AND watchTime > 0
     // MODIFIES: this
     // EFFECTS: adds watch time to the specified movie in the list
     public void addWatchTime(Movie movie, int watchTime) {
-        // TODO
+        movie.addWatchTime(watchTime);
     }
 
     // REQUIRES: movie must be in mediaList AND newNote length > 0
     // MODIFIES: this
     // EFFECTS: adds a note to the specified movie in the lit
     public void addNote(Movie movie, String note) {
-        // TODO
+        movie.addNote(note);
     }
 
     // REQUIRES: movie must be in mediaList
     // MODIFIES: this
     // EFFECTS: removes the note that matches the given number for the specified movie in the list
     public void removeNote(Movie movie, int noteNum) {
-        // TODO
+        movie.removeNote(noteNum);
     }
 
     // REQUIRES: show must be in mediaList AND newEpisode > 0
     // MODIFIES: this
     // EFFECTS: changes the episode for the given show in mediaList
     public void changeEpisode(Show show, int episode) {
-        // TODO
+        show.setEpisode(episode);
     }
 
     // REQUIRES: show must be in mediaList AND newSeason > 0
     // MODIFIES: this
     // EFFECTS: changes the season for the given show in mediaList
     public void changeSeason(Show show, int season) {
-        // TODO
+        show.setSeason(season);
     }
 
     // EFFECTS: checks if the given object is a Show
     public boolean isShow(Movie media) {
-        return false; // stub
+        Show compared = new Show("w", "placeholder", "placeholder");
+
+        return media.getClass().equals(compared.getClass());
     }
 
     // EFFECTS: checks if the given object is a Movie
     public boolean isMovie(Movie media) {
-        return false; // stub
+        Movie compared = new Movie("w", "placeholder", "placeholder");
+
+        return media.getClass().equals(compared.getClass());
     }
 }
