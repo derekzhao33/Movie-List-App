@@ -22,7 +22,7 @@ public class TestShow {
         assertEquals("Watched", testShow.getStatus());
         assertEquals("test", testShow.getName());
         assertEquals("genre", testShow.getGenre());
-        assertEquals(List.of(), testShow.getNotes());
+        assertEquals("", testShow.getNotes());
         assertEquals(0, testShow.getRating());
         assertEquals(0, testShow.getWatchTime());
         assertEquals(0, testShow.getEpisode());
