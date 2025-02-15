@@ -36,15 +36,9 @@ public class TestMovie {
     }
 
     @Test
-    public void testAddNoteOnce() {
-        testMovieWatched.addNote("1");
-        assertEquals("1: 1\n", testMovieCurrent.getNotes());
-    }
-
-    @Test
     public void testAddNoteMultipleTimes() {
         testMovieCurrent.addNote("1");
-        assertEquals(List.of("1"), testMovieCurrent.getNotes());
+        assertEquals("1: 1\n", testMovieCurrent.getNotes());
         testMovieCurrent.addNote("2");
         assertEquals(List.of("1", "2"), testMovieCurrent.getNotes());
         testMovieCurrent.addNote("3");
