@@ -2,6 +2,8 @@ package model;
 
 import java.util.*;
 
+import javax.naming.LinkException;
+
 // Represents a movie. Each movie's status is: "Watched", "Currently Watching", or "To-watch".
 // Each movie has a genre, a total watch time in minutes, notes, and a review. 
 public class Movie {
@@ -9,7 +11,7 @@ public class Movie {
     private String status;
     private String name;
     private String genre;
-    private ArrayList<String> notes;
+    private LinkedHashMap<Integer, String> notes;
     private int rating;
     private int watchTime;
 
@@ -19,7 +21,7 @@ public class Movie {
         this.status = status;
         this.name = name;
         this.genre = genre;
-        this.notes = new ArrayList<>();
+        this.notes = new LinkedHashMap<>();
         this.rating = 0;
         this.watchTime = 0;
     }
@@ -28,14 +30,27 @@ public class Movie {
     // MODIFIES: this
     // EFFECTS: adds a new note to the list of notes
     public void addNote(String newNote) {
-        this.notes.add(newNote);
+        this.notes.put(this.notes.size() + 1, newNote);
     }
 
     // REQUIRES: noteNum >= 1 AND noteNum <= notes.size() AND notes.size() > 0
     // MODIFIES: this
-    // EFFECTS: removes the note that matches the given number
+    // EFFECTS: removes the note that matches the given number and reasigns the keys to match the new list
     public void removeNote(int noteNum) {
-        this.notes.remove(noteNum - 1);
+        this.notes.remove(noteNum);
+
+        LinkedHashMap<Integer, String> lhmNew = new LinkedHashMap<>();
+        int i = 1;
+
+        for (Map.Entry<Integer, String> mapElement : this.notes.entrySet()) {
+            String v = mapElement.getValue();
+
+            lhmNew.put(i, v);
+
+            i++;
+        }
+
+        this.notes = lhmNew;
     }
 
     // REQUIRES: toAdd > 0
@@ -59,10 +74,13 @@ public class Movie {
 
     public String getNotes() {
         String result = "";
-        int count = 
 
-        for (String s : this.notes) {
-            result = result + s + "\n";
+        for (Map.Entry<Integer, String> mapElement : this.notes.entrySet()) {
+            Integer k = mapElement.getKey();
+
+            String v = mapElement.getValue();
+
+            result = result + k + ": " + v + "\n";
         }
 
         return result;
