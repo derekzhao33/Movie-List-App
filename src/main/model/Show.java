@@ -31,11 +31,4 @@ public class Show extends Movie {
     public void setEpisode(int episode) {
         this.episode = episode;
     }
-
-    // REQUIRES: compared is Movie or Show
-    // EFFECTS: compares the type of compared to this
-    @Override
-    public boolean equals(Object compared) {
-        return this.getClass().equals(compared.getClass());
-    }
 }

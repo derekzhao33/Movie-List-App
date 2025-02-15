@@ -11,15 +11,17 @@ import java.util.List;
 public class TestShow {
 
     private Show testShow;
+    private Movie testMovie;
 
     @BeforeEach
     public void setup() {
-        testShow = new Show("Watched", "test", "genre");
+        testShow = new Show("w", "test", "genre");
+        testMovie = new Movie("w", "one", "1");
     }
 
     @Test
     public void testConstructor() {
-        assertEquals("Watched", testShow.getStatus());
+        assertEquals("w", testShow.getStatus());
         assertEquals("test", testShow.getName());
         assertEquals("genre", testShow.getGenre());
         assertEquals("", testShow.getNotes());
@@ -55,20 +57,5 @@ public class TestShow {
         assertEquals(2, testShow.getEpisode());
         testShow.setEpisode(3);
         assertEquals(3, testShow.getEpisode());
-    }
-
-    @Test
-    public void testEqualsSameFields() {
-        assertTrue(testShow.equals(new Show("Watched", "test", "genre")));
-    }
-
-    @Test
-    public void testEqualsSameType() {
-        assertTrue(testShow.equals(new Show("To-watch", "Spiderman", "Action")));
-    }
-
-    @Test
-    public void testEqualsNotSameType() {
-        assertFalse(testShow.equals(new Movie("Watched", "test", "genre")));
     }
 }
