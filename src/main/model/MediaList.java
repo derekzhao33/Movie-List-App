@@ -5,11 +5,11 @@ import java.util.*;
 // Represents a list of media (movies/shows)
 public class MediaList {
     
-    private ArrayList<Movie> mediaList;
+    private LinkedHashMap<Integer, Movie> mediaList;
 
     // EFFECTS: creates a a new MediaList with no media
     public MediaList() {
-        mediaList = new ArrayList<>();
+        mediaList = new LinkedHashMap<>();
     }
 
     // MODIFIES: this
