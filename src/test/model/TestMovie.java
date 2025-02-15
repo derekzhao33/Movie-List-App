@@ -40,9 +40,9 @@ public class TestMovie {
         testMovieCurrent.addNote("1");
         assertEquals("1: 1\n", testMovieCurrent.getNotes());
         testMovieCurrent.addNote("2");
-        assertEquals(List.of("1", "2"), testMovieCurrent.getNotes());
+        assertEquals("1: 1\n2: 2\n", testMovieCurrent.getNotes());
         testMovieCurrent.addNote("3");
-        assertEquals(List.of("1", "2", "3"), testMovieCurrent.getNotes());
+        assertEquals("1: 1\n2: 2\n3: 3\n", testMovieCurrent.getNotes());
     }
 
     @Test
@@ -51,11 +51,11 @@ public class TestMovie {
         testMovieCurrent.addNote("2");
         testMovieCurrent.addNote("3");
         testMovieCurrent.removeNote(1);
-        assertEquals(List.of("2","3"), testMovieCurrent.getNotes());
+        assertEquals("1: 2\n2: 3\n", testMovieCurrent.getNotes());
         testMovieCurrent.removeNote(1);
-        assertEquals(List.of("3"), testMovieCurrent.getNotes());
+        assertEquals("1: 3\n", testMovieCurrent.getNotes());
         testMovieCurrent.removeNote(1);
-        assertEquals(List.of(), testMovieCurrent.getNotes());
+        assertEquals("", testMovieCurrent.getNotes());
     }
 
     @Test 
