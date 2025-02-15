@@ -15,14 +15,14 @@ public class MediaList {
     // MODIFIES: this
     // EFFECTS: adds media to the media list
     public void addMedia(Movie media) {
-
+        // TODO
     }
 
     // REQUIRES: mediaNum >= 1 AND mediaNum <= mediaList.size() AND mediaList.size() > 0
     // MODIFIES: this
     // EFFECTS: removes the media that matches the given number
     public void removeMedia(int mediaNum) {
-        
+        // TODO       
     }
 
     // EFFECTS: gets the names of all media on the list
@@ -56,62 +56,62 @@ public class MediaList {
     // MODIFIES: this
     // EFFECTS: changes the status of the specified movie in the lit
     public void changeStatus(Movie movie, String status) {
-
+        // TODO
     }
 
     // REQUIRES: movie must be in mediaList AND newName length > 0
     // MODIFIES: this
     // EFFECTS: changes the name of the specified movie in the lit
     public void changeName(Movie movie, String name) {
-
+        // TODO
     }
 
     // REQUIRES: movie must be in mediaList AND newGenre length > 0
     // MODIFIES: this
     // EFFECTS: changes the genre of the specified movie in the lit
     public void changeGenre(Movie movie, String genre) {
-
+        // TODO
     }
 
     // REQUIRES: movie must be in mediaList AND newRating >- 1 AND newRating <= 5
     // MODIFIES: this
     // EFFECTS: changes the rating of the specified movie in the list
     public void changeRating(Movie movie, int rating) {
-
+        // TODO
     }
 
     // REQUIRES: movie must be in mediaList AND watchTime > 0
     // MODIFIES: this
     // EFFECTS: adds watch time to the specified movie in the list
     public void addWatchTime(Movie movie, int watchTime) {
-
+        // TODO
     }
 
     // REQUIRES: movie must be in mediaList AND newNote length > 0
     // MODIFIES: this
     // EFFECTS: adds a note to the specified movie in the lit
     public void addNote(Movie movie, String note) {
-
+        // TODO
     }
 
     // REQUIRES: movie must be in mediaList
     // MODIFIES: this
     // EFFECTS: removes the note that matches the given number for the specified movie in the list
     public void removeNote(Movie movie, int noteNum) {
-
+        // TODO
     }
 
     // REQUIRES: show must be in mediaList AND newEpisode > 0
     // MODIFIES: this
     // EFFECTS: changes the episode for the given show in mediaList
     public void changeEpisode(Show show, int episode) {
-
+        // TODO
     }
 
     // REQUIRES: show must be in mediaList AND newSeason > 0
     // MODIFIES: this
     // EFFECTS: changes the season for the given show in mediaList
     public void changeSeason(Show show, int season) {
-
+        // TODO
     }
 }
