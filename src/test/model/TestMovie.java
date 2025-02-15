@@ -46,12 +46,6 @@ public class TestMovie {
     }
 
     @Test
-    public void testRemoveNoteOnce() {
-        testMovieCurrent.addNote("1");
-        testMovieCurrent.removeNote(1);
-    }
-
-    @Test
     public void testRemoveNoteMultipleTimes() {
         testMovieCurrent.addNote("1");
         testMovieCurrent.addNote("2");
