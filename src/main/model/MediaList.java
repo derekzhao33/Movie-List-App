@@ -26,24 +26,24 @@ public class MediaList {
     }
 
     // EFFECTS: gets the names of all media on the list
-    @Override
-    public String toString() {
+    public String getAllNames() {
         return ""; // stub
     }
 
+    // REQUIRES: status is one of: "w", "c", "t"
     // EFFECTS: gets the names of all media on the list filered by status
-    public String toStringByStatus(String status) {
+    public String getAllNamesByStatus(String status) {
         return ""; // stub
     }
 
     // EFFECTS: gets the names of all media on the list filtered by genre
-    public String toStringByGenre(String genre) {
+    public String getAllNamesByGenre(String genre) {
         return ""; // stub
     }
 
-    // REQUIRES: type is one of: "Movie" or "Show"
+    // REQUIRES: type is one of: "m" or "s"
     // EFFECTS: gets the names of all media on the list filtered by genre
-    public String toStringByType(String type) {
+    public String getAllNamesByType(String type) {
         return ""; // stub
     }
     
@@ -52,7 +52,7 @@ public class MediaList {
         return new Movie("Watched", "test", "test"); // stub
     }
 
-    // REQUIRES: movie must be in mediaList AND newStatus must be one of "Watched", "Currently Watching", "To-watch"
+    // REQUIRES: movie must be in mediaList AND status must be one of "w", "c", "t"
     // MODIFIES: this
     // EFFECTS: changes the status of the specified movie in the lit
     public void changeStatus(Movie movie, String status) {
