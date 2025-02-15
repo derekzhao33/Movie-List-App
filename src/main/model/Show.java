@@ -15,27 +15,27 @@ public class Show extends Movie {
     }
 
     public int getSeason() {
-        return -1; // stub
+        return this.season; 
     }
 
     public int getEpisode() {
-        return -1; // stub
+        return this.episode;
     }
 
     // REQUIRES: season > 0;
     public void setSeason(int season) {
-        // TODO
+        this.season = season;
     }
     
     // REQUIRES: episode > 0;
     public void setEpisode(int episode) {
-        // TODO
+        this.episode = episode;
     }
 
     // REQUIRES: compared is Movie or Show
     // EFFECTS: compares the type of compared to this
     @Override
     public boolean equals(Object compared) {
-        return false; // stub
+        return this.getClass().equals(compared.getClass());
     }
 }
