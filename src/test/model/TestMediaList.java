@@ -1,0 +1,184 @@
+package model;
+
+import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class TestMediaList {
+
+    private MediaList testList;
+    private Movie testMovieOne;
+    private Movie testMovieTwo;
+    private Movie testMovieThree;
+    private Show testShowOne;
+    private Show testShowTwo;
+    private Show testShowThree;
+
+    @BeforeEach
+    public void setup() {
+        testList = new MediaList();
+        testMovieOne = new Movie("Watched", "One", "1");
+        testMovieTwo = new Movie("Currently Watching", "Two", "2");
+        testMovieThree = new Movie("To-watch", "Three", "3");
+        testShowOne = new Show("Watched", "A", "1");
+        testShowTwo = new Show("Currently Watching", "B", "2");
+        testShowThree = new Show("To-watch", "C", "3");
+    }
+
+    @Test
+    public void testConstructor() {
+        assertEquals(List.of(), testList.getMediaList());
+    }
+
+    @Test
+    public void testAddMediaOnce() {
+        testList.addMedia(testMovieOne);
+        assertEquals(List.of(testMovieOne), testList.getMediaList());
+    }
+
+    @Test
+    public void testAddMediaTwice() {
+        testList.addMedia(testMovieOne);
+        assertEquals(List.of(testMovieOne), testList.getMediaList());
+        testList.addMedia(testShowOne);
+        assertEquals(List.of(testMovieOne, testShowOne), testList.getMediaList());
+    }
+
+    @Test
+    public void testRemoveMedia() {
+        testList.addMedia(testMovieOne);
+        testList.removeMedia(1);
+        assertEquals(List.of(), testList.getMediaList());
+    }
+
+    @Test
+    public void testRemoveMultipleMedia() {
+        testList.addMedia(testMovieOne);
+        testList.addMedia(testMovieTwo);
+        testList.addMedia(testShowOne);
+        testList.removeMedia(2);
+        assertEquals(List.of(testMovieOne, testShowOne), testList.getMediaList());
+        testList.removeMedia(1);
+        assertEquals(List.of(testMovieOne), testList.getMediaList());
+    }
+
+    @Test
+    public void testToString() {
+        testList.addMedia(testMovieOne);
+        testList.addMedia(testMovieTwo);
+        testList.addMedia(testShowOne);
+        assertEquals("1: One\n2: Two\n3: A\n", testList.getAllNames());
+    }
+
+    @Test
+    public void testToStringByStatus() {
+        testList.addMedia(testMovieOne);
+        testList.addMedia(testMovieTwo);
+        testList.addMedia(testShowOne);
+        assertEquals("1: One\n2: A\n", testList.getAllNamesByStatus("w"));
+        assertEquals("1: Two\n", testList.getAllNamesByStatus("c"));
+    }
+
+    @Test
+    public void testToStringByGenre() {
+        testList.addMedia(testMovieThree);
+        testList.addMedia(testMovieTwo);
+        testList.addMedia(testShowThree);
+        testList.addMedia(testShowTwo);
+        assertEquals("1: Three\n2: C\n", testList.getAllNamesByGenre("3"));
+        assertEquals("1: Two\n2: B\n", testList.getAllNamesByGenre("2"));
+    }
+
+    @Test
+    public void testToStringByType() {
+        testList.addMedia(testMovieTwo);
+        testList.addMedia(testShowOne);
+        testList.addMedia(testMovieOne);
+        testList.addMedia(testShowThree);
+        assertEquals("1: Two\n2: One\n", testList.getAllNamesByType("m"));
+        assertEquals("1: A\n2: C\n", testList.getAllNamesByType("s"));
+    }
+
+    @Test 
+    public void testSearchName() {
+        testList.addMedia(testMovieTwo);
+        testList.addMedia(testShowOne);
+        testList.addMedia(testMovieOne);
+        assertEquals(testShowOne, testList.searchName("A"));
+    }
+
+    @Test
+    public void testChangeStatus() {
+        testList.addMedia(testMovieOne);
+        testList.changeStatus(testMovieOne, "t");
+        assertEquals("To-watch", testMovieOne.getStatus());
+    }
+
+    @Test
+    public void testChangeName() {
+        testList.addMedia(testMovieOne);
+        testList.changeName(testMovieOne, "Batman");
+        assertEquals("Batman", testMovieOne.getName());
+    }
+
+    @Test
+    public void testChangeGenre() {
+        testList.addMedia(testMovieOne);
+        testList.changeGenre(testMovieOne, "sci-fi");
+        assertEquals("sci-fi", testMovieOne.getGenre());
+    }
+
+    @Test
+    public void testChangeRating() {
+        testList.addMedia(testMovieOne);
+        testList.changeRating(testMovieOne, 5);
+        assertEquals(5, testMovieOne.getRating());
+    }
+
+    @Test
+    public void testAddWatchTime() {
+        testList.addMedia(testMovieOne);
+        testList.addWatchTime(testMovieOne, 3);
+        assertEquals(3, testMovieOne.getWatchTime());
+        testList.addMedia(testMovieOne);
+        testList.addWatchTime(testMovieOne, 7);
+        assertEquals(10, testMovieOne.getWatchTime());
+    }
+
+    @Test
+    public void testAddNote() {
+        testList.addMedia(testMovieOne);
+        testList.addNote(testMovieOne, "note");
+        assertEquals("1: note\n", testMovieOne.getNotes());
+        testList.addNote(testMovieOne, "other note");
+        assertEquals("1: note\n2: other note\n", testMovieOne.getNotes());
+    }
+
+    @Test
+    public void testRemoveNote() {
+        testList.addMedia(testMovieOne);
+        testList.addNote(testMovieOne, "note");
+        testList.addNote(testMovieOne, "other note");
+        testList.removeNote(testMovieOne, 2);
+        assertEquals("1: note\n", testMovieOne.getNotes());
+    }
+
+    @Test
+    public void testChangeEpisode() {
+        testList.addMedia(testShowOne);
+        testList.changeEpisode(testShowOne, 2);
+        assertEquals(2, testShowOne.getEpisode());
+    }
+
+    @Test
+    public void testChangeSeason() {
+        testList.addMedia(testShowOne);
+        testList.changeSeason(testShowOne, 2);
+        assertEquals(2, testShowOne.getSeason());
+    }
+}
