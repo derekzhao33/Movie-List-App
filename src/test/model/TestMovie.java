@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
 
 public class TestMovie {
@@ -25,12 +25,12 @@ public class TestMovie {
     public void testConstructor() {
         assertEquals("Watched", testMovieWatched.getStatus());
         assertEquals("Currently Watching", testMovieCurrent.getStatus());
-        assertEquals("To-watch", testMovieToWatch.getClass());
+        assertEquals("To-watch", testMovieToWatch.getStatus());
         assertEquals("testOne", testMovieWatched.getName());
         assertEquals("testTwo", testMovieCurrent.getName());
         assertEquals("genreOne", testMovieWatched.getGenre());
         assertEquals("genreTwo", testMovieCurrent.getGenre());
-        assertEquals(List.of(), testMovieCurrent.getNotes());
+        assertEquals("", testMovieCurrent.getNotes());
         assertEquals(0, testMovieCurrent.getRating());
         assertEquals(0, testMovieCurrent.getWatchTime());
     }
@@ -38,7 +38,7 @@ public class TestMovie {
     @Test
     public void testAddNoteOnce() {
         testMovieWatched.addNote("1");
-        assertEquals(List.of("1"), testMovieCurrent.getNotes());
+        assertEquals("1: 1\n", testMovieCurrent.getNotes());
     }
 
     @Test
@@ -81,19 +81,19 @@ public class TestMovie {
         testMovieCurrent.addWatchTime(2);
         assertEquals(2, testMovieCurrent.getWatchTime());
         testMovieCurrent.addWatchTime(3);
-        assertEquals(3, testMovieCurrent.getWatchTime());
+        assertEquals(5, testMovieCurrent.getWatchTime());
     }
 
     @Test
     public void testSetStatus() {
         testMovieCurrent.setStatus("Watching");
-        assertEquals("Watching", testMovieCurrent.getClass());
+        assertEquals("Watching", testMovieCurrent.getStatus());
         testMovieCurrent.setStatus("Watching");
-        assertEquals("Watching", testMovieCurrent.getClass());
+        assertEquals("Watching", testMovieCurrent.getStatus());
         testMovieCurrent.setStatus("To-watch");
-        assertEquals("To-watch", testMovieCurrent.getClass());
+        assertEquals("To-watch", testMovieCurrent.getStatus());
         testMovieCurrent.setStatus("Currently Watching");
-        assertEquals("Currently Watching", testMovieCurrent.getClass());
+        assertEquals("Currently Watching", testMovieCurrent.getStatus());
 
     }
 

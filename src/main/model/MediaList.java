@@ -1,6 +1,6 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.*;
 
 // Represents a list of media (movies/shows)
 public class MediaList {
