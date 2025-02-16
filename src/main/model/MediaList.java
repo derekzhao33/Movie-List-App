@@ -123,69 +123,6 @@ public class MediaList {
         return mediaList.get(num);
     }
 
-    // REQUIRES: movie must be in mediaList AND status must be one of "w", "c", "t"
-    // MODIFIES: this
-    // EFFECTS: changes the status of the specified movie in the list
-    public void changeStatus(Movie movie, String status) {
-        movie.setStatus(status);
-    }
-
-    // REQUIRES: movie must be in mediaList AND newName length > 0
-    // MODIFIES: this
-    // EFFECTS: changes the name of the specified movie in the list
-    public void changeName(Movie movie, String name) {
-        movie.setName(name);
-    }
-
-    // REQUIRES: movie must be in mediaList AND newGenre length > 0
-    // MODIFIES: this
-    // EFFECTS: changes the genre of the specified movie in the list
-    public void changeGenre(Movie movie, String genre) {
-        movie.setGenre(genre);
-    }
-
-    // REQUIRES: movie must be in mediaList AND newRating >- 1 AND newRating <= 5
-    // MODIFIES: this
-    // EFFECTS: changes the rating of the specified movie in the list
-    public void changeRating(Movie movie, int rating) {
-        movie.setRating(rating);
-    }
-
-    // REQUIRES: movie must be in mediaList AND watchTime > 0
-    // MODIFIES: this
-    // EFFECTS: adds watch time to the specified movie in the list
-    public void addWatchTime(Movie movie, int watchTime) {
-        movie.addWatchTime(watchTime);
-    }
-
-    // REQUIRES: movie must be in mediaList AND newNote length > 0
-    // MODIFIES: this
-    // EFFECTS: adds a note to the specified movie in the lit
-    public void addNote(Movie movie, String note) {
-        movie.addNote(note);
-    }
-
-    // REQUIRES: movie must be in mediaList
-    // MODIFIES: this
-    // EFFECTS: removes the note that matches the given number for the specified movie in the list
-    public void removeNote(Movie movie, int noteNum) {
-        movie.removeNote(noteNum);
-    }
-
-    // REQUIRES: show must be in mediaList AND newEpisode > 0
-    // MODIFIES: this
-    // EFFECTS: changes the episode for the given show in mediaList
-    public void changeEpisode(Show show, int episode) {
-        show.setEpisode(episode);
-    }
-
-    // REQUIRES: show must be in mediaList AND newSeason > 0
-    // MODIFIES: this
-    // EFFECTS: changes the season for the given show in mediaList
-    public void changeSeason(Show show, int season) {
-        show.setSeason(season);
-    }
-
     // EFFECTS: checks if the given object is a Show
     public boolean isShow(Movie media) {
         Show compared = new Show("w", "placeholder", "placeholder");
