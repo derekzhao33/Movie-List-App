@@ -105,7 +105,7 @@ public class TestMediaList {
         testList.addMedia(testMovieTwo);
         testList.addMedia(testShowOne);
         testList.addMedia(testMovieOne);
-        assertEquals(testShowOne, testList.searchName("A"));
+        assertEquals(testShowOne, testList.searchName(2));
     }
 
     @Test
