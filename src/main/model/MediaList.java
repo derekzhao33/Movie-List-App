@@ -120,17 +120,7 @@ public class MediaList {
     
     // EFFECTS: gets the movie with the given name, if none is found, then null
     public Movie searchName(int num) {
-        Movie searchResult = null;
-
-        for (Map.Entry<Integer, Movie> mapEntry : this.mediaList.entrySet()) {
-            Movie v = mapEntry.getValue();
-
-            if (v.getName().equals(num)) {
-                searchResult = v;
-            }
-        }
-
-        return searchResult;
+        return mediaList.get(num);
     }
 
     // REQUIRES: movie must be in mediaList AND status must be one of "w", "c", "t"
