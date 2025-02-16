@@ -174,7 +174,9 @@ public class MediaList {
 
     // EFFECTS: gets all notes for the given media item
     public String getNotes(Movie movie) {
-        return "";
+        String result = "";
+
+        movie.getNotes();
     }
 
     // REQUIRES: show must be in mediaList AND newEpisode > 0
