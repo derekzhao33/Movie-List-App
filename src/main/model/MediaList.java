@@ -208,4 +208,8 @@ public class MediaList {
 
         return media.getClass().equals(compared.getClass());
     }
+
+    public LinkedHashMap<Integer, Movie> getMediaList() {
+        
+    }
 }
