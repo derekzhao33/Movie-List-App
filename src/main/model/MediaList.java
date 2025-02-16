@@ -172,6 +172,11 @@ public class MediaList {
         movie.removeNote(noteNum);
     }
 
+    // EFFECTS: gets all notes for the given media item
+    public String getNotes(Movie movie) {
+        return "";
+    }
+
     // REQUIRES: show must be in mediaList AND newEpisode > 0
     // MODIFIES: this
     // EFFECTS: changes the episode for the given show in mediaList
