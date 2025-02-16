@@ -176,7 +176,7 @@ public class MediaList {
     public String getNotes(Movie movie) {
         String result = "";
 
-        movie.getNotes();
+        return movie.getNotes();
     }
 
     // REQUIRES: show must be in mediaList AND newEpisode > 0

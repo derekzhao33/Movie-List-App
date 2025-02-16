@@ -215,7 +215,7 @@ public class TestMediaList {
         testMovieOne.addNote("1");
         testMovieOne.addNote("2");
         testMovieOne.addNote("3");
-        testList.addMedia(testMovieOne)
+        testList.addMedia(testMovieOne);
         assertEquals("1: 1\n2: 2\n3: 3\n", testList.getNotes(testMovieOne));
     }
 }
