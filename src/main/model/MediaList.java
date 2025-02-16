@@ -12,6 +12,7 @@ public class MediaList {
         mediaList = new LinkedHashMap<>();
     }
 
+    // REQUIRES: every media item must have a different name
     // MODIFIES: this
     // EFFECTS: adds media to the media list
     public void addMedia(Movie media) {
@@ -37,7 +38,7 @@ public class MediaList {
 
         mediaList = lhmNew;
     }
-
+    
     // EFFECTS: gets the names of all media on the list
     public String getAllNames() {
         String result = "";
