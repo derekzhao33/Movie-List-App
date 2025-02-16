@@ -7,13 +7,16 @@ public class MediaListApp {
     
     private MediaList mediaList;
     private Scanner scanner;
-
+    
+    // EFFECTS: creates a new media list application
     public MediaListApp() {
         this.mediaList = new MediaList();
         this.scanner = new Scanner(System.in);
         start();
     }
 
+    // MODIFIES: this
+    // EFFECTS: starts the application
     public void start() {
         printCommands();
 
@@ -29,6 +32,7 @@ public class MediaListApp {
         }
     }
 
+    // EFFECTS: prints the commands for the app
     public void printCommands() {
         System.out.println("Commands:");
         System.out.println("a - add media");
@@ -40,6 +44,7 @@ public class MediaListApp {
         System.out.println("q - quit app");
     }
 
+    // EFFECTS: processes the inputs from the app
     public void processCommand(String input) {
         switch(input) {
             case "a":
@@ -66,6 +71,8 @@ public class MediaListApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds a media item to the list
     public void addMedia() {
         while (true) {
             System.out.println("Enter the status of the new media item:");
@@ -113,6 +120,9 @@ public class MediaListApp {
         start();
     }
 
+    // MODIFIES: this
+    // REQUIRES: at least one media item is on the list
+    // EFFECTS: removes a media item from the list
     public void removeMedia() {
         while (true) {
             System.out.println("Enter the number of the media item to be removed:");
@@ -138,12 +148,14 @@ public class MediaListApp {
         start();
     }
 
+    // EFFECTS: prints the names of all media items
     public void printMedia() {
         System.out.println("Printing all media items:");
         System.out.println(mediaList.getAllNames());
         start();
     }
 
+    // EFFECTS: filters the media items by the input
     public void filterMedia() {
         while (true) {
             System.out.println("Enter an option to filter by:");
@@ -217,6 +229,8 @@ public class MediaListApp {
         start();
     }
 
+    // MODIFIES: this
+    // EFFECTS: changes a media item
     public void changeMedia() {
         while (true) {
             System.out.println("Enter the number of the media item to be changed:");
@@ -254,6 +268,8 @@ public class MediaListApp {
         start();
     }
 
+    // REQUIRES: selected is of type Movie
+    // EFFECTS: processes the media item change for movies only
     public void processChangeMovie(String command, Movie selected) {
         switch (command) {
             case "s":
@@ -276,7 +292,9 @@ public class MediaListApp {
                 break;
         }
     }
-    
+
+    // REQUIRES; selected is of type Show
+    // EFFECTS: proceses the media item change for shows only
     public void processChangeShow(String command, Show selected) {
         switch (command) {
             case "s":
@@ -306,6 +324,8 @@ public class MediaListApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: changes the status for given media item
     public void changeStatus(Movie media) {
         while (true) {
             System.out.println("Enter the new status:");
@@ -321,6 +341,8 @@ public class MediaListApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: changes the name for given media item
     public void changeName(Movie media) {
         System.out.println("Enter the new name:");
         String name = scanner.nextLine();
@@ -328,6 +350,8 @@ public class MediaListApp {
         media.setName(name);
     }
 
+    // MODIFIES: this
+    // EFFECTS: changes the genre for given media item
     public void changeGenre(Movie media) {
         System.out.println("Enter the new genre:");
         String genre = scanner.nextLine();
@@ -335,6 +359,8 @@ public class MediaListApp {
         media.setGenre(genre);
     }
 
+    // MODIFIES: this
+     // EFFECTS: changes the notes for given media item   
     public void changeNotes(Movie media) {
         while (true) {
             System.out.println("Enter an option: ");
@@ -353,6 +379,8 @@ public class MediaListApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds a note for given media item
     public void addNote(Movie media) {
         while (true) {
             System.out.println("Enter the note to be added:");
@@ -375,6 +403,9 @@ public class MediaListApp {
         }
     }
 
+    // REQUIRES: media has at least one note
+    // MODIFIES: this
+    // EFFECTS: removes a note for given media item
     public void removeNote(Movie media) {
         while (true) {
             System.out.println("Enter the number of the note to be removed:");
@@ -398,6 +429,8 @@ public class MediaListApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: changes the rating for given media item
     public void changeRating(Movie media) {
         System.out.println("Enter the new rating (1-5):");
         int rating = Integer.valueOf(scanner.nextLine());
@@ -405,6 +438,8 @@ public class MediaListApp {
         media.setRating(rating);
     }
 
+    // MODIFIES: this
+    // EFFECTS: changes the watch time for given media item
     public void changeWatchTime(Movie media) {
         System.out.println("Enter the watch time to be added:");
         int watchTime = Integer.valueOf(scanner.nextLine());
@@ -412,6 +447,8 @@ public class MediaListApp {
         media.addWatchTime(watchTime);
     }
 
+    // MODIFIES: this
+    // EFFECTS: changes the episode for given media item
     public void changeEpisode(Show show) {
         System.out.println("Enter the new episode:");
         int episode = Integer.valueOf(scanner.nextLine());
@@ -419,6 +456,8 @@ public class MediaListApp {
         show.setEpisode(episode);
     }
 
+    // MODIFIES: this
+    // EFFECTS: changes the season for given media item
     public void changeSeason(Show show) {
         System.out.println("Enter the new season:");
         int season = Integer.valueOf(scanner.nextLine());
@@ -426,6 +465,8 @@ public class MediaListApp {
         show.setSeason(season);
     }
 
+    // REQUIRES: media is of type Movie
+    // EFFECTS: prints all info for given movie
     public void printMediaInfoMovie(Movie media) {
         System.out.println("Status: " + media.getStatus());
         System.out.println("Name: " + media.getName());
@@ -436,6 +477,8 @@ public class MediaListApp {
         System.out.println(media.getNotes());
     }
 
+    // REQUIRES: show is of type show
+    // EFFECTS: prints all info for given show
     public void printMediaInfoShow(Show show) {
         System.out.println("Status: " + show.getStatus());
         System.out.println("Name: " + show.getName());
@@ -450,22 +493,26 @@ public class MediaListApp {
         System.out.println(show.getNotes());
     }
 
+    // EFFECTS: prints the status choices
     public void printStatusChoice() {
         System.out.println("w - watching");
         System.out.println("c - currently watching");
         System.out.println("t - to-watch");
     }
 
+    // EFFECTS: prints the type choices
     public void printTypeChoice() {
         System.out.println("s - show");
         System.out.println("m - movie");
     }
 
+    // EFFECTS: prints yes or no
     public void printYesNo() {
         System.out.println("y - yes");
         System.out.println("n - no");
     }
 
+    // EFFECTS: prints the change options for a movie
     public void printChangeOptionsMovie() {
         System.out.println("Enter the detail to be changed:");
         System.out.println("s - status");
@@ -476,6 +523,7 @@ public class MediaListApp {
         System.out.println("w - watch time");
     }
 
+    // EFFECTS: prints the change options for a show
     public void printChangeOptionsShow() {
         printChangeOptionsMovie();
         System.out.println("e - episode");
