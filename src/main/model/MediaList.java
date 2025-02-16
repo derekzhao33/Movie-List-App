@@ -123,13 +123,15 @@ public class MediaList {
         return mediaList.get(num);
     }
 
+    // REQUIRES: media is Movie or Show
     // EFFECTS: checks if the given object is a Show
     public boolean isShow(Movie media) {
         Show compared = new Show("w", "placeholder", "placeholder");
-
+        
         return media.getClass().equals(compared.getClass());
     }
 
+    // REQUIRES: media is Movie or show
     // EFFECTS: checks if the given object is a Movie
     public boolean isMovie(Movie media) {
         Movie compared = new Movie("w", "placeholder", "placeholder");
