@@ -210,6 +210,6 @@ public class MediaList {
     }
 
     public LinkedHashMap<Integer, Movie> getMediaList() {
-        
+        return mediaList;
     }
 }
