@@ -197,4 +197,16 @@ public class TestMediaList {
     public void testIsMovieFalse() {
         assertFalse(testList.isMovie(testShowOne));
     }
+
+    @Test 
+    public void testGetMediaList() {
+        LinkedHashMap<Integer, Movie> testMap = new LinkedHashMap<>();
+        testMap.put(1, testMovieOne);
+        testMap.put(2, testShowOne);
+        testMap.put(3, testMovieTwo);
+        testList.addMedia(testMovieOne);
+        testList.addMedia(testShowOne);
+        testList.addMedia(testMovieTwo);
+        assertEquals(testMap, testList.getMediaList());
+    }
 }
