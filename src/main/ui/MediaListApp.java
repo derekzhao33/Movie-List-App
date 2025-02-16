@@ -79,7 +79,7 @@ public class MediaListApp {
             printStatusChoice();
             String status = scanner.nextLine();
             
-            if (!status.equals("w") || !status.equals("c") || !status.equals("t")) {
+            if (!(status.equals("w") || status.equals("c") || status.equals("t"))) {
                 System.out.println("Invalid command, please try again.");
                 continue;
             }
@@ -173,7 +173,7 @@ public class MediaListApp {
                 printStatusChoice();
                 String status = scanner.nextLine();
                 
-                if (!status.equals("w") || !status.equals("c") || !status.equals("t")) {
+                if (!(status.equals("w") || status.equals("c") || status.equals("t"))) {
                     System.out.println("Invalid command, please try again.");
                     continue;
                 }
@@ -321,6 +321,8 @@ public class MediaListApp {
             case "se":
                 changeSeason(selected);
                 break;
+            default:
+                System.out.println("Invalid command, please try again.");
         }
     }
 
@@ -331,7 +333,7 @@ public class MediaListApp {
             System.out.println("Enter the new status:");
             printStatusChoice();
             String status = scanner.nextLine();
-            if (!status.equals("w") || !status.equals("c") || !status.equals("t")) {
+            if (!(status.equals("w") || status.equals("c") || status.equals("t"))) {
                 System.out.println("Invalid command, please try again.");
                 continue;
             }
@@ -341,6 +343,7 @@ public class MediaListApp {
         }
     }
 
+    // REQUIRES: name length > 0
     // MODIFIES: this
     // EFFECTS: changes the name for given media item
     public void changeName(Movie media) {
@@ -350,6 +353,7 @@ public class MediaListApp {
         media.setName(name);
     }
 
+    // REQUIRES: genre length > 0
     // MODIFIES: this
     // EFFECTS: changes the genre for given media item
     public void changeGenre(Movie media) {
@@ -429,6 +433,7 @@ public class MediaListApp {
         }
     }
 
+    // REQUIRES: rating >= 1 AND rating <= 5
     // MODIFIES: this
     // EFFECTS: changes the rating for given media item
     public void changeRating(Movie media) {
@@ -438,6 +443,7 @@ public class MediaListApp {
         media.setRating(rating);
     }
 
+    // REQUIRES: watchTime > 0
     // MODIFIES: this
     // EFFECTS: changes the watch time for given media item
     public void changeWatchTime(Movie media) {
@@ -447,6 +453,7 @@ public class MediaListApp {
         media.addWatchTime(watchTime);
     }
 
+    // REQUIRES: episode > 0
     // MODIFIES: this
     // EFFECTS: changes the episode for given media item
     public void changeEpisode(Show show) {
@@ -456,6 +463,7 @@ public class MediaListApp {
         show.setEpisode(episode);
     }
 
+    // REQUIRES: season > 0
     // MODIFIES: this
     // EFFECTS: changes the season for given media item
     public void changeSeason(Show show) {
@@ -483,7 +491,11 @@ public class MediaListApp {
         System.out.println("Status: " + show.getStatus());
         System.out.println("Name: " + show.getName());
         System.out.println("Genre: " + show.getGenre());
-        System.out.println("Rating: " + show.getRating() + "/5");
+        if (show.getRating() == 0) {
+            System.out.println("Rating: No rating");
+        } else {
+            System.out.println("Rating: " + show.getRating() + "/5");
+        }
         System.out.println("Watch time: " + show.getWatchTime());
         if (mediaList.isShow(show)) {
             System.out.println("Season: " + show.getSeason());
@@ -518,7 +530,7 @@ public class MediaListApp {
         System.out.println("s - status");
         System.out.println("nm - name");
         System.out.println("g - genre");
-        System.out.println("m - notes");
+        System.out.println("n - notes");
         System.out.println("r - rating");
         System.out.println("w - watch time");
     }
