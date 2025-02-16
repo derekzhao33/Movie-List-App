@@ -72,7 +72,7 @@ public class MediaListApp {
             printStatusChoice();
             String status = scanner.nextLine();
             
-            if (!status.equals("w") || status.equals("s") || status.equals("t")) {
+            if (!status.equals("w") || !status.equals("c") || !status.equals("t")) {
                 System.out.println("Invalid command, please try again.");
                 continue;
             }
@@ -160,6 +160,12 @@ public class MediaListApp {
                 System.out.println("Enter the status to filter by:");
                 printStatusChoice();
                 String status = scanner.nextLine();
+                
+                if (!status.equals("w") || !status.equals("c") || !status.equals("t")) {
+                    System.out.println("Invalid command, please try again.");
+                    continue;
+                }
+
                 System.out.println(mediaList.getAllNamesByStatus(status));
                 break;
             } else if (filterBy.equals("t")) {
@@ -301,11 +307,18 @@ public class MediaListApp {
     }
 
     public void changeStatus(Movie media) {
-        System.out.println("Enter the new status:");
-        printStatusChoice();
-        String status = scanner.nextLine();
+        while (true) {
+            System.out.println("Enter the new status:");
+            printStatusChoice();
+            String status = scanner.nextLine();
+            if (!status.equals("w") || !status.equals("c") || !status.equals("t")) {
+                System.out.println("Invalid command, please try again.");
+                continue;
+            }
 
-        media.setStatus(status);
+            media.setStatus(status);
+            break;
+        }
     }
 
     public void changeName(Movie media) {
