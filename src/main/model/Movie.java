@@ -113,4 +113,10 @@ public class Movie {
     public void setRating(int rating) {
         this.rating = rating;
     }
+
+    // EFFECTS: clones the movie
+    @Override
+    public Movie clone() {
+
+    }
 }
