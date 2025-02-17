@@ -117,6 +117,11 @@ public class Movie {
     // EFFECTS: clones the movie
     @Override
     public Movie clone() {
+        Movie cloned = new Movie(this.status, this.name, this.genre);
+        cloned.notes = this.notes;
+        cloned.rating = this.rating;
+        cloned.watchTime = this.watchTime;
 
+        return cloned;
     }
 }
