@@ -6,7 +6,7 @@ import javax.naming.LinkException;
 
 // Represents a movie. Each movie's status is: Watched (w), Currently Watching (c), or To-watch (t).
 // Each movie has a genre, a total watch time in minutes, notes, and a review. 
-public class Movie {
+public class Movie implements MediaItem {
 
     private String status;
     private String name;
@@ -112,16 +112,5 @@ public class Movie {
     // REQUIRES: rating >= 0 AND rating <= 5
     public void setRating(int rating) {
         this.rating = rating;
-    }
-
-    // EFFECTS: clones the movie
-    @Override
-    public Movie clone() {
-        Movie cloned = new Movie(this.status, this.name, this.genre);
-        cloned.notes = this.notes;
-        cloned.rating = this.rating;
-        cloned.watchTime = this.watchTime;
-
-        return cloned;
     }
 }
