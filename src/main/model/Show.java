@@ -2,7 +2,7 @@ package model;
 
 // Represents a show, which is a subclass of Movie
 // Apart from the information that Movie represents, Show keeps track of the current season and episode
-public class Show implements MediaItem {
+public class Show extends MediaItem {
 
     private int season;
     private int episode;
