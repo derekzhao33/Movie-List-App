@@ -108,4 +108,9 @@ public class TestMovie {
         testMovieCurrent.setRating(5);
         assertEquals(5, testMovieCurrent.getRating());
     }
+
+    @Test
+    public void testClone() {
+        assertEquals(testMovieWatched, testMovieWatched.clone());
+    }
 }
