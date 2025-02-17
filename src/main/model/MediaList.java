@@ -87,56 +87,10 @@ public class MediaList {
 
         return result;
     }
-
-    // REQUIRES: type is one of: "m" or "s"
-    // EFFECTS: gets the names of all media on the list filtered by genre
-    public String getAllNamesByType(String type) {
-        String result = "";
-        int i = 1;
-
-        if (type.equals("s")) {
-            for (Map.Entry<Integer, Movie> mapEntry : this.mediaList.entrySet()) {
-                Movie v = mapEntry.getValue();
-                
-                if (isShow(v)) {
-                    result = result + i + ": " + v.getName() + "\n";
-                    i++;
-                }
-            }
-
-        } else {
-            for (Map.Entry<Integer, Movie> mapEntry : this.mediaList.entrySet()) {
-                Movie v = mapEntry.getValue();
-                
-                if (isMovie(v)) {
-                    result = result + i + ": " + v.getName() + "\n";
-                    i++;
-                }
-            }
-        }
-
-        return result;
-    }
     
     // EFFECTS: gets the movie with the given name, if none is found, then null
     public Movie searchName(int num) {
         return mediaList.get(num);
-    }
-
-    // REQUIRES: media is Movie or Show
-    // EFFECTS: checks if the given object is a Show
-    public boolean isShow(Movie media) {
-        Show compared = new Show("w", "placeholder", "placeholder");
-        
-        return media.getClass().equals(compared.getClass());
-    }
-
-    // REQUIRES: media is Movie or show
-    // EFFECTS: checks if the given object is a Movie
-    public boolean isMovie(Movie media) {
-        Movie compared = new Movie("w", "placeholder", "placeholder");
-
-        return media.getClass().equals(compared.getClass());
     }
 
     public LinkedHashMap<Integer, Movie> getMediaList() {

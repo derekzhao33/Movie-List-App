@@ -89,19 +89,8 @@ public class MediaListApp {
 
             System.out.println("Enter the genre of the new media item:");
             String genre = scanner.nextLine();
-
-            System.out.println("Enter the type of the new media item");
-            printTypeChoice();
-            String type = scanner.nextLine();
         
-            if (type.equals("s")) {
-                mediaList.addMedia(new Show(status, name, genre));
-            } else if (type.equals("m")) {
-                mediaList.addMedia(new Movie(status, name, genre));
-            } else {
-                System.out.println("Invalid command, please try again.");
-                continue;
-            }
+            mediaList.addMedia(new Movie(status, name, genre));
 
             System.out.println("Add another media item?");
             printYesNo();
@@ -155,14 +144,13 @@ public class MediaListApp {
         start();
     }
 
-    // REQUIRES: a media item with the given genre/status/type must exist
+    // REQUIRES: a media item with the given genre/status must exist
     // EFFECTS: filters the media items by the input
     public void filterMedia() {
         while (true) {
             System.out.println("Enter an option to filter by:");
             System.out.println("g - genre");
             System.out.println("s - status");
-            System.out.println("t - type");
             String filterBy = scanner.nextLine();
 
             if (filterBy.equals("g")) {
@@ -180,11 +168,6 @@ public class MediaListApp {
                 }
 
                 System.out.println(mediaList.getAllNamesByStatus(status));
-            } else if (filterBy.equals("t")) {
-                System.out.println("Enter the type to filter by:");
-                printTypeChoice();
-                String type = scanner.nextLine();
-                System.out.println(mediaList.getAllNamesByType(type));
             } else {
                 System.out.println("Invalid command, please try again.");
                 continue;
@@ -217,9 +200,6 @@ public class MediaListApp {
             if (selected == null) {
                 System.out.println("Media item doesn't exist, please try again.");
                 continue;
-            } else if (mediaList.isShow(selected)) {
-                Show selectedShow = new Show(selected.getStatus(), selected.getName(), selected.getGenre());
-                printMediaInfoShow(selectedShow);
             } else {
                 printMediaInfoMovie(selected);
             } 
@@ -250,17 +230,10 @@ public class MediaListApp {
             int selNum = Integer.valueOf(scanner.nextLine());
             Movie selected = mediaList.searchName(selNum);
 
-            if (mediaList.isShow(selected)) {
-                printChangeOptionsShow();
-                String commandShow = scanner.nextLine();
+            printChangeOptionsMovie();
+            String commandMovie = scanner.nextLine();
 
-                processChangeShow(commandShow, selectedShow);
-            } else {
-                printChangeOptionsMovie();
-                String commandMovie = scanner.nextLine();
-
-                processChangeMovie(commandMovie, selected);
-            }
+            processChangeMovie(commandMovie, selected);
 
             System.out.println("Make another change?");
             printYesNo();
@@ -279,7 +252,6 @@ public class MediaListApp {
         start();
     }
 
-    // REQUIRES: selected is of type Movie
     // EFFECTS: processes the media item change for movies only
     public void processChangeMovie(String command, Movie selected) {
         switch (command) {
@@ -301,39 +273,6 @@ public class MediaListApp {
             case "w":
                 changeWatchTime(selected);
                 break;
-        }
-    }
-
-    // REQUIRES; selected is of type Show
-    // EFFECTS: proceses the media item change for shows only
-    public void processChangeShow(String command, Show selected) {
-        switch (command) {
-            case "s":
-                changeStatus(selected);
-                break;
-            case "nm":
-                changeName(selected);
-                break;
-            case "g":
-                changeGenre(selected);
-                break;
-            case "n":
-                changeNotes(selected);
-                break;
-            case "r":
-                changeRating(selected);
-                break;
-            case "w":
-                changeWatchTime(selected);
-                break;
-            case "e":
-                changeEpisode(selected);
-                break;
-            case "se":
-                changeSeason(selected);
-                break;
-            default:
-                System.out.println("Invalid command, please try again.");
         }
     }
 
@@ -478,27 +417,6 @@ public class MediaListApp {
         media.addWatchTime(watchTime);
     }
 
-    // REQUIRES: episode > 0
-    // MODIFIES: this
-    // EFFECTS: changes the episode for given media item
-    public void changeEpisode(Show show) {
-        System.out.println("Enter the new episode:");
-        int episode = Integer.valueOf(scanner.nextLine());
-
-        show.setEpisode(episode);
-    }
-
-    // REQUIRES: season > 0
-    // MODIFIES: this
-    // EFFECTS: changes the season for given media item
-    public void changeSeason(Show show) {
-        System.out.println("Enter the new season:");
-        int season = Integer.valueOf(scanner.nextLine());
-
-        show.setSeason(season);
-    }
-
-    // REQUIRES: media is of type Movie
     // EFFECTS: prints all info for given movie
     public void printMediaInfoMovie(Movie media) {
         System.out.println("Status: " + media.getStatus());
@@ -510,37 +428,11 @@ public class MediaListApp {
         System.out.println(media.getNotes());
     }
 
-    // REQUIRES: show is of type show
-    // EFFECTS: prints all info for given show
-    public void printMediaInfoShow(Show show) {
-        System.out.println("Status: " + show.getStatus());
-        System.out.println("Name: " + show.getName());
-        System.out.println("Genre: " + show.getGenre());
-        if (show.getRating() == 0) {
-            System.out.println("Rating: No rating");
-        } else {
-            System.out.println("Rating: " + show.getRating() + "/5");
-        }
-        System.out.println("Watch time: " + show.getWatchTime());
-        if (mediaList.isShow(show)) {
-            System.out.println("Season: " + show.getSeason());
-            System.out.println("Episode: " + show.getEpisode());
-        }
-        System.out.println("Notes:");
-        System.out.println(show.getNotes());
-    }
-
     // EFFECTS: prints the status choices
     public void printStatusChoice() {
         System.out.println("w - watching");
         System.out.println("c - currently watching");
         System.out.println("t - to-watch");
-    }
-
-    // EFFECTS: prints the type choices
-    public void printTypeChoice() {
-        System.out.println("s - show");
-        System.out.println("m - movie");
     }
 
     // EFFECTS: prints yes or no
@@ -558,12 +450,5 @@ public class MediaListApp {
         System.out.println("n - notes");
         System.out.println("r - rating");
         System.out.println("w - watch time");
-    }
-
-    // EFFECTS: prints the change options for a show
-    public void printChangeOptionsShow() {
-        printChangeOptionsMovie();
-        System.out.println("e - episode");
-        System.out.println("se - season");
     }
 }
