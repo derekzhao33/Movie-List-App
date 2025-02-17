@@ -155,6 +155,7 @@ public class MediaListApp {
         start();
     }
 
+    // REQUIRES: a media item with the given genre/status/type must exist
     // EFFECTS: filters the media items by the input
     public void filterMedia() {
         while (true) {
@@ -179,13 +180,24 @@ public class MediaListApp {
                 }
 
                 System.out.println(mediaList.getAllNamesByStatus(status));
-                break;
             } else if (filterBy.equals("t")) {
                 System.out.println("Enter the type to filter by:");
                 printTypeChoice();
                 String type = scanner.nextLine();
                 System.out.println(mediaList.getAllNamesByType(type));
+            } else {
+                System.out.println("Invalid command, please try again.");
+                continue;
+            }
+
+            System.out.println("Filter again?");
+            printYesNo();
+            String repeat = scanner.nextLine();
+
+            if (repeat.equals("n")) {
                 break;
+            } else if (repeat.equals("y")) {
+                continue;
             } else {
                 System.out.println("Invalid command, please try again.");
                 continue;
@@ -241,7 +253,6 @@ public class MediaListApp {
             if (mediaList.isShow(selected)) {
                 printChangeOptionsShow();
                 String commandShow = scanner.nextLine();
-                Show selectedShow = new Show(selected.getStatus(), selected.getName(), selected.getGenre());
 
                 processChangeShow(commandShow, selectedShow);
             } else {
@@ -367,7 +378,7 @@ public class MediaListApp {
      // EFFECTS: changes the notes for given media item   
     public void changeNotes(Movie media) {
         while (true) {
-            System.out.println("Enter an option: ");
+            System.out.println("Enter an option:");
             System.out.println("a - add note");
             System.out.println("r - remove note");
             String choice = scanner.nextLine();
@@ -376,6 +387,19 @@ public class MediaListApp {
                 addNote(media);
             } else if (choice.equals("r")) {
                 removeNote(media);
+            } else {
+                System.out.println("Invalid command, please try again.");
+                continue;
+            }
+
+            System.out.println("Change another note?");
+            printYesNo();
+            String repeat = scanner.nextLine();
+
+            if (repeat.equals("n")) {
+                break;
+            } else if (repeat.equals("y")) {
+                continue;
             } else {
                 System.out.println("Invalid command, please try again.");
                 continue;
@@ -407,16 +431,17 @@ public class MediaListApp {
         }
     }
 
-    // REQUIRES: media has at least one note
+    // REQUIRES: media has at least one note AND num <= note size for the media item
     // MODIFIES: this
     // EFFECTS: removes a note for given media item
     public void removeNote(Movie media) {
         while (true) {
             System.out.println("Enter the number of the note to be removed:");
-            media.getNotes();
+            System.out.println(media.getNotes());
             int num = Integer.valueOf(scanner.nextLine());
 
             media.removeNote(num);
+            System.out.println("Note " + num + " was removed.");
 
             System.out.println("Remove another note?");
             printYesNo();
