@@ -2,8 +2,6 @@ package model;
 
 import java.util.*;
 
-import javax.naming.LinkException;
-
 // Represents a movie. Each movie's status is: Watched (w), Currently Watching (c), or To-watch (t).
 // Each movie has a genre, a total watch time in minutes, notes, and a review. 
 public class Movie {
