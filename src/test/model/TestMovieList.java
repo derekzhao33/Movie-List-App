@@ -9,16 +9,16 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.*;
 import java.util.List;
 
-public class TestMediaList {
+public class TestMovieList {
 
-    private MediaList testList;
+    private MovieList testList;
     private Movie testMovieOne;
     private Movie testMovieTwo;
     private Movie testMovieThree;
 
     @BeforeEach
     public void setup() {
-        testList = new MediaList();
+        testList = new MovieList();
         testMovieOne = new Movie("w", "One", "1");
         testMovieTwo = new Movie("c", "Two", "2");
         testMovieThree = new Movie("t", "Three", "3");
@@ -30,74 +30,74 @@ public class TestMediaList {
     }
 
     @Test
-    public void testAddMedia() {
-        testList.addMedia(testMovieOne);
+    public void testAddMovie() {
+        testList.addMovie(testMovieOne);
         assertEquals("1: One\n", testList.getAllNames());
-        testList.addMedia(testMovieTwo);
+        testList.addMovie(testMovieTwo);
         assertEquals("1: One\n2: Two\n", testList.getAllNames());
-        testList.addMedia(testMovieThree);
+        testList.addMovie(testMovieThree);
         assertEquals("1: One\n2: Two\n3: Three\n", testList.getAllNames());
     }
 
     @Test
-    public void testRemoveMedia() {
-        testList.addMedia(testMovieOne);
-        testList.removeMedia(1);
+    public void testRemoveMovie() {
+        testList.addMovie(testMovieOne);
+        testList.removeMovie(1);
         assertEquals("", testList.getAllNames());
     }
 
     @Test
-    public void testRemoveMultipleMedia() {
-        testList.addMedia(testMovieOne);
-        testList.addMedia(testMovieTwo);
-        testList.addMedia(testMovieThree);
-        testList.removeMedia(2);
+    public void testRemoveMultipleMovies() {
+        testList.addMovie(testMovieOne);
+        testList.addMovie(testMovieTwo);
+        testList.addMovie(testMovieThree);
+        testList.removeMovie(2);
         assertEquals("1: One\n2: Three\n", testList.getAllNames());
-        testList.removeMedia(1);
+        testList.removeMovie(1);
         assertEquals("1: Three\n", testList.getAllNames());
     }
 
     @Test
     public void testGetAllNames() {
-        testList.addMedia(testMovieOne);
-        testList.addMedia(testMovieTwo);
-        testList.addMedia(testMovieThree);
+        testList.addMovie(testMovieOne);
+        testList.addMovie(testMovieTwo);
+        testList.addMovie(testMovieThree);
         assertEquals("1: One\n2: Two\n3: Three\n", testList.getAllNames());
     }
 
     @Test
     public void testGetAllNamesByStatus() {
-        testList.addMedia(testMovieOne);
-        testList.addMedia(testMovieTwo);
-        testList.addMedia(testMovieThree);
+        testList.addMovie(testMovieOne);
+        testList.addMovie(testMovieTwo);
+        testList.addMovie(testMovieThree);
         assertEquals("1: One\n", testList.getAllNamesByStatus("w"));
         assertEquals("1: Two\n", testList.getAllNamesByStatus("c"));
     }
 
     @Test
     public void testGetAllNamesByGenre() {
-        testList.addMedia(testMovieThree);
-        testList.addMedia(testMovieTwo);
+        testList.addMovie(testMovieThree);
+        testList.addMovie(testMovieTwo);
         assertEquals("1: Three\n", testList.getAllNamesByGenre("3"));
         assertEquals("1: Two\n", testList.getAllNamesByGenre("2"));
     }
 
     @Test 
     public void testSearchName() {
-        testList.addMedia(testMovieTwo);
-        testList.addMedia(testMovieOne);
+        testList.addMovie(testMovieTwo);
+        testList.addMovie(testMovieOne);
         assertEquals(testMovieOne, testList.searchName(2));
     }
 
     @Test 
-    public void testGetMediaList() {
+    public void testGetMovieList() {
         LinkedHashMap<Integer, Movie> testMap = new LinkedHashMap<>();
         testMap.put(1, testMovieOne);
         testMap.put(2, testMovieThree);
         testMap.put(3, testMovieTwo);
-        testList.addMedia(testMovieOne);
-        testList.addMedia(testMovieThree);
-        testList.addMedia(testMovieTwo);
-        assertEquals(testMap, testList.getMediaList());
+        testList.addMovie(testMovieOne);
+        testList.addMovie(testMovieThree);
+        testList.addMovie(testMovieTwo);
+        assertEquals(testMap, testList.getMovieList());
     }
 }

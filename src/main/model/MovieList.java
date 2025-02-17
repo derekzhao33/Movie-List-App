@@ -2,33 +2,33 @@ package model;
 
 import java.util.*;
 
-// Represents a list of media (movies/shows)
-public class MediaList {
+// Represents a list of movies
+public class MovieList {
     
-    private LinkedHashMap<Integer, Movie> mediaList;
+    private LinkedHashMap<Integer, Movie> movieList;
 
-    // EFFECTS: creates a a new MediaList with no media
-    public MediaList() {
-        mediaList = new LinkedHashMap<>();
+    // EFFECTS: creates a a new MovieList with no movies
+    public MovieList() {
+        movieList = new LinkedHashMap<>();
     }
 
-    // REQUIRES: every media item must have a different name
+    // REQUIRES: every movie must have a different name
     // MODIFIES: this
-    // EFFECTS: adds media to the media list
-    public void addMedia(Movie media) {
-        this.mediaList.put(mediaList.size() + 1, media);
+    // EFFECTS: adds movie to the movie list
+    public void addMovie(Movie movie) {
+        this.movieList.put(movieList.size() + 1, movie);
     }
 
-    // REQUIRES: mediaNum >= 1 AND mediaNum <= mediaList.size() AND mediaList.size() > 0
+    // REQUIRES: movieNum >= 1 AND movieNum <= movieList.size() AND movieList.size() > 0
     // MODIFIES: this
-    // EFFECTS: removes the media that matches the given number
-    public void removeMedia(int mediaNum) {
-        this.mediaList.remove(mediaNum);
+    // EFFECTS: removes the movie that matches the given number
+    public void removeMovie(int movieNum) {
+        this.movieList.remove(movieNum);
         
         LinkedHashMap<Integer, Movie> lhmNew = new LinkedHashMap<>();
         int i = 1;
 
-        for (Map.Entry<Integer, Movie> mapEntry : this.mediaList.entrySet()) {
+        for (Map.Entry<Integer, Movie> mapEntry : this.movieList.entrySet()) {
             Movie v = mapEntry.getValue();
 
             lhmNew.put(i, v);
@@ -36,14 +36,14 @@ public class MediaList {
             i++;
         }
 
-        mediaList = lhmNew;
+        movieList = lhmNew;
     }
     
-    // EFFECTS: gets the names of all media on the list
+    // EFFECTS: gets the names of all movies on the list
     public String getAllNames() {
         String result = "";
 
-        for (Map.Entry<Integer, Movie> mapEntry : this.mediaList.entrySet()) {
+        for (Map.Entry<Integer, Movie> mapEntry : this.movieList.entrySet()) {
             Integer k = mapEntry.getKey();
             Movie v = mapEntry.getValue();
 
@@ -54,12 +54,12 @@ public class MediaList {
     }
 
     // REQUIRES: status is one of: "w", "c", "t"
-    // EFFECTS: gets the names of all media on the list filered by status
+    // EFFECTS: gets the names of all movies on the list filered by status
     public String getAllNamesByStatus(String status) {
         String result = "";
         int i = 1;
 
-        for (Map.Entry<Integer, Movie> mapEntry : this.mediaList.entrySet()) {
+        for (Map.Entry<Integer, Movie> mapEntry : this.movieList.entrySet()) {
             Movie v = mapEntry.getValue();
 
             if (v.getStatus().equals(status)) {
@@ -71,12 +71,12 @@ public class MediaList {
         return result;
     }
 
-    // EFFECTS: gets the names of all media on the list filtered by genre
+    // EFFECTS: gets the names of all movies on the list filtered by genre
     public String getAllNamesByGenre(String genre) {
         String result = "";
         int i = 1;
 
-        for (Map.Entry<Integer, Movie> mapEntry : this.mediaList.entrySet()) {
+        for (Map.Entry<Integer, Movie> mapEntry : this.movieList.entrySet()) {
             Movie v = mapEntry.getValue();
 
             if (v.getGenre().equals(genre)) {
@@ -90,10 +90,10 @@ public class MediaList {
     
     // EFFECTS: gets the movie with the given name, if none is found, then null
     public Movie searchName(int num) {
-        return mediaList.get(num);
+        return movieList.get(num);
     }
 
-    public LinkedHashMap<Integer, Movie> getMediaList() {
-        return mediaList;
+    public LinkedHashMap<Integer, Movie> getMovieList() {
+        return movieList;
     }
 }

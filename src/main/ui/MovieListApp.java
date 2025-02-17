@@ -3,14 +3,14 @@ package ui;
 import java.util.*;
 import model.*;
 
-public class MediaListApp {
+public class MovieListApp {
     
-    private MediaList mediaList;
+    private MovieList movieList;
     private Scanner scanner;
     
-    // EFFECTS: creates a new media list application
-    public MediaListApp() {
-        this.mediaList = new MediaList();
+    // EFFECTS: creates a new movie list application
+    public MovieListApp() {
+        this.movieList = new MovieList();
         this.scanner = new Scanner(System.in);
         start();
     }
@@ -35,12 +35,12 @@ public class MediaListApp {
     // EFFECTS: prints the commands for the app
     public void printCommands() {
         System.out.println("Commands:");
-        System.out.println("a - add media");
-        System.out.println("r - remove media");
-        System.out.println("p - print all media");
-        System.out.println("f - filter media");
+        System.out.println("a - add movie");
+        System.out.println("r - remove movie");
+        System.out.println("p - print all movies");
+        System.out.println("f - filter movies");
         System.out.println("i - display information");
-        System.out.println("c - change existing media");
+        System.out.println("c - change existing movie");
         System.out.println("q - quit app");
     }
 
@@ -48,22 +48,22 @@ public class MediaListApp {
     public void processCommand(String input) {
         switch(input) {
             case "a":
-                addMedia();
+                addMovie();
                 break;
             case "r":
-                removeMedia();
+                removeMovie();
                 break;
             case "p":
-                printMedia();
+                printMovie();
                 break;
             case "f":
-                filterMedia();
+                filterMovie();
                 break;
             case "i":
-                displayMediaInfo();
+                displayMovieInfo();
                 break;
             case "c":
-                changeMedia();
+                changeMovie();
                 break;
             default:
                 System.out.println("Invalid command, please try again.");
@@ -72,10 +72,10 @@ public class MediaListApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds a media item to the list
-    public void addMedia() {
+    // EFFECTS: adds a movie to the list
+    public void addMovie() {
         while (true) {
-            System.out.println("Enter the status of the new media item:");
+            System.out.println("Enter the status of the new movie:");
             printStatusChoice();
             String status = scanner.nextLine();
             
@@ -84,15 +84,15 @@ public class MediaListApp {
                 continue;
             }
 
-            System.out.println("Enter the name of the new media item:");
+            System.out.println("Enter the name of the new movie:");
             String name = scanner.nextLine();
 
-            System.out.println("Enter the genre of the new media item:");
+            System.out.println("Enter the genre of the new movie:");
             String genre = scanner.nextLine();
         
-            mediaList.addMedia(new Movie(status, name, genre));
+            movieList.addMovie(new Movie(status, name, genre));
 
-            System.out.println("Add another media item?");
+            System.out.println("Add another movie?");
             printYesNo();
             String repeat = scanner.nextLine();
             
@@ -110,17 +110,17 @@ public class MediaListApp {
     }
 
     // MODIFIES: this
-    // REQUIRES: at least one media item is on the list
-    // EFFECTS: removes a media item from the list
-    public void removeMedia() {
+    // REQUIRES: at least one movie is on the list
+    // EFFECTS: removes a movie from the list
+    public void removeMovie() {
         while (true) {
-            System.out.println("Enter the number of the media item to be removed:");
-            System.out.print(mediaList.getAllNames());
+            System.out.println("Enter the number of the movie to be removed:");
+            System.out.print(movieList.getAllNames());
             int selectedNum = Integer.valueOf(scanner.nextLine());
 
-            mediaList.removeMedia(selectedNum);
+            movieList.removeMovie(selectedNum);
 
-            System.out.println("Remove another media item?");
+            System.out.println("Remove another movie?");
             printYesNo();
             String repeat = scanner.nextLine();
 
@@ -137,16 +137,16 @@ public class MediaListApp {
         start();
     }
 
-    // EFFECTS: prints the names of all media items
-    public void printMedia() {
-        System.out.println("Printing all media items:");
-        System.out.println(mediaList.getAllNames());
+    // EFFECTS: prints the names of all movie
+    public void printMovie() {
+        System.out.println("Printing all movie:");
+        System.out.println(movieList.getAllNames());
         start();
     }
 
-    // REQUIRES: a media item with the given genre/status must exist
-    // EFFECTS: filters the media items by the input
-    public void filterMedia() {
+    // REQUIRES: a movie with the given genre/status must exist
+    // EFFECTS: filters the movie by the input
+    public void filterMovie() {
         while (true) {
             System.out.println("Enter an option to filter by:");
             System.out.println("g - genre");
@@ -156,7 +156,7 @@ public class MediaListApp {
             if (filterBy.equals("g")) {
                 System.out.println("Enter the name of the genre to filter by:");
                 String genre = scanner.nextLine();
-                System.out.println(mediaList.getAllNamesByGenre(genre));
+                System.out.println(movieList.getAllNamesByGenre(genre));
             } else if (filterBy.equals("s")) {
                 System.out.println("Enter the status to filter by:");
                 printStatusChoice();
@@ -167,7 +167,7 @@ public class MediaListApp {
                     continue;
                 }
 
-                System.out.println(mediaList.getAllNamesByStatus(status));
+                System.out.println(movieList.getAllNamesByStatus(status));
             } else {
                 System.out.println("Invalid command, please try again.");
                 continue;
@@ -190,21 +190,21 @@ public class MediaListApp {
         start();
     }
 
-    public void displayMediaInfo() {
+    public void displayMovieInfo() {
         while (true) {
-            System.out.println("Enter the number of the media item to display info for:");
-            System.out.print(mediaList.getAllNames());
+            System.out.println("Enter the number of the movie to display info for:");
+            System.out.print(movieList.getAllNames());
             int selectedNum = Integer.valueOf(scanner.nextLine());
-            Movie selected = mediaList.searchName(selectedNum);
+            Movie selected = movieList.searchName(selectedNum);
             
             if (selected == null) {
-                System.out.println("Media item doesn't exist, please try again.");
+                System.out.println("Movie item doesn't exist, please try again.");
                 continue;
             } else {
-                printMediaInfoMovie(selected);
+                printMovieInfoMovie(selected);
             } 
 
-            System.out.println("Display info for another media item?");
+            System.out.println("Display info for another movie?");
             printYesNo();
             String repeat = scanner.nextLine();
 
@@ -222,13 +222,13 @@ public class MediaListApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: changes a media item
-    public void changeMedia() {
+    // EFFECTS: changes a movie
+    public void changeMovie() {
         while (true) {
-            System.out.println("Enter the number of the media item to be changed:");
-            System.out.print(mediaList.getAllNames());
+            System.out.println("Enter the number of the movie to be changed:");
+            System.out.print(movieList.getAllNames());
             int selNum = Integer.valueOf(scanner.nextLine());
-            Movie selected = mediaList.searchName(selNum);
+            Movie selected = movieList.searchName(selNum);
 
             printChangeOptionsMovie();
             String commandMovie = scanner.nextLine();
@@ -252,7 +252,7 @@ public class MediaListApp {
         start();
     }
 
-    // EFFECTS: processes the media item change for movies only
+    // EFFECTS: processes the movie change for movies only
     public void processChangeMovie(String command, Movie selected) {
         switch (command) {
             case "s":
@@ -277,8 +277,8 @@ public class MediaListApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: changes the status for given media item
-    public void changeStatus(Movie media) {
+    // EFFECTS: changes the status for given movie
+    public void changeStatus(Movie movie) {
         while (true) {
             System.out.println("Enter the new status:");
             printStatusChoice();
@@ -288,34 +288,34 @@ public class MediaListApp {
                 continue;
             }
 
-            media.setStatus(status);
+            movie.setStatus(status);
             break;
         }
     }
 
     // REQUIRES: name length > 0
     // MODIFIES: this
-    // EFFECTS: changes the name for given media item
-    public void changeName(Movie media) {
+    // EFFECTS: changes the name for given movie
+    public void changeName(Movie movie) {
         System.out.println("Enter the new name:");
         String name = scanner.nextLine();
 
-        media.setName(name);
+        movie.setName(name);
     }
 
     // REQUIRES: genre length > 0
     // MODIFIES: this
-    // EFFECTS: changes the genre for given media item
-    public void changeGenre(Movie media) {
+    // EFFECTS: changes the genre for given movie
+    public void changeGenre(Movie movie) {
         System.out.println("Enter the new genre:");
         String genre = scanner.nextLine();
 
-        media.setGenre(genre);
+        movie.setGenre(genre);
     }
 
     // MODIFIES: this
-     // EFFECTS: changes the notes for given media item   
-    public void changeNotes(Movie media) {
+     // EFFECTS: changes the notes for given movie   
+    public void changeNotes(Movie movie) {
         while (true) {
             System.out.println("Enter an option:");
             System.out.println("a - add note");
@@ -323,9 +323,9 @@ public class MediaListApp {
             String choice = scanner.nextLine();
 
             if (choice.equals("a")) {
-                addNote(media);
+                addNote(movie);
             } else if (choice.equals("r")) {
-                removeNote(media);
+                removeNote(movie);
             } else {
                 System.out.println("Invalid command, please try again.");
                 continue;
@@ -347,13 +347,13 @@ public class MediaListApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds a note for given media item
-    public void addNote(Movie media) {
+    // EFFECTS: adds a note for given movie
+    public void addNote(Movie movie) {
         while (true) {
             System.out.println("Enter the note to be added:");
             String note = scanner.nextLine();
 
-            media.addNote(note);
+            movie.addNote(note);
             
             System.out.println("Add another note?");
             printYesNo();
@@ -370,16 +370,16 @@ public class MediaListApp {
         }
     }
 
-    // REQUIRES: media has at least one note AND num <= note size for the media item
+    // REQUIRES: movie has at least one note AND num <= note size for the movie
     // MODIFIES: this
-    // EFFECTS: removes a note for given media item
-    public void removeNote(Movie media) {
+    // EFFECTS: removes a note for given movie
+    public void removeNote(Movie movie) {
         while (true) {
             System.out.println("Enter the number of the note to be removed:");
-            System.out.println(media.getNotes());
+            System.out.println(movie.getNotes());
             int num = Integer.valueOf(scanner.nextLine());
 
-            media.removeNote(num);
+            movie.removeNote(num);
             System.out.println("Note " + num + " was removed.");
 
             System.out.println("Remove another note?");
@@ -399,33 +399,33 @@ public class MediaListApp {
 
     // REQUIRES: rating >= 1 AND rating <= 5
     // MODIFIES: this
-    // EFFECTS: changes the rating for given media item
-    public void changeRating(Movie media) {
+    // EFFECTS: changes the rating for given movie
+    public void changeRating(Movie movie) {
         System.out.println("Enter the new rating (1-5):");
         int rating = Integer.valueOf(scanner.nextLine());
 
-        media.setRating(rating);
+        movie.setRating(rating);
     }
 
     // REQUIRES: watchTime > 0
     // MODIFIES: this
-    // EFFECTS: changes the watch time for given media item
-    public void changeWatchTime(Movie media) {
+    // EFFECTS: changes the watch time for given movie
+    public void changeWatchTime(Movie movie) {
         System.out.println("Enter the watch time to be added:");
         int watchTime = Integer.valueOf(scanner.nextLine());
 
-        media.addWatchTime(watchTime);
+        movie.addWatchTime(watchTime);
     }
 
     // EFFECTS: prints all info for given movie
-    public void printMediaInfoMovie(Movie media) {
-        System.out.println("Status: " + media.getStatus());
-        System.out.println("Name: " + media.getName());
-        System.out.println("Genre: " + media.getGenre());
-        System.out.println("Rating: " + media.getRating() + "/5");
-        System.out.println("Watch time: " + media.getWatchTime());
+    public void printMovieInfoMovie(Movie movie) {
+        System.out.println("Status: " + movie.getStatus());
+        System.out.println("Name: " + movie.getName());
+        System.out.println("Genre: " + movie.getGenre());
+        System.out.println("Rating: " + movie.getRating() + "/5");
+        System.out.println("Watch time: " + movie.getWatchTime());
         System.out.println("Notes:");
-        System.out.println(media.getNotes());
+        System.out.println(movie.getNotes());
     }
 
     // EFFECTS: prints the status choices

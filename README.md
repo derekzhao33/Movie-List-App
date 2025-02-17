@@ -26,7 +26,7 @@ I spend a lot of my time watching Movies. I also like to be organized, so it wou
 
 ## User Stories
 
-- As a user, I want to create movies with a status, name, and genre, and add it to the list of media items
+- As a user, I want to create movies with a status, name, and genre, and add it to the list of movies
 - As a user, I want to view all movies on the list, and filter by genre, or their status (watched, currently watching, to-watch)
 - As a user, I want to add notes, ratings, and watch time for the movies
 - As a user, I want to change any details about the movie (status, name, genre, notes, ratings, watch time, episode, season)

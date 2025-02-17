@@ -16,7 +16,7 @@ public class Movie {
     private int watchTime;
 
     // REQUIRES: length of name and genre > 0 AND status must be one of: "w", "c", or "t"
-    // EFFECTS: creates a MediaItem with status, name, genre, empty notes, no rating, and zero minutes watchTime
+    // EFFECTS: creates a Movie with status, name, genre, empty notes, no rating, and zero minutes watchTime
     public Movie(String status, String name, String genre) {
         this.status = status;
         this.name = name;
