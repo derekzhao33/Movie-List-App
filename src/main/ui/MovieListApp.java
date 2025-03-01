@@ -20,7 +20,7 @@ public class MovieListApp {
     public void start() {
         printCommands();
 
-        while(true) {
+        while (true) {
             System.out.println("Enter a command:");
             String input = scanner.nextLine();
 
@@ -46,7 +46,7 @@ public class MovieListApp {
 
     // EFFECTS: processes the inputs from the app
     public void processCommand(String input) {
-        switch(input) {
+        switch (input) {
             case "a":
                 addMovie();
                 break;
@@ -71,25 +71,41 @@ public class MovieListApp {
         }
     }
 
+    // EFFECTS: handles input for the status of a new movie 
+    public String addMovieHandleInputStatus() {
+        System.out.println("Enter the status of the new movie:");
+        printStatusChoice();
+        String status = scanner.nextLine();
+        return status;
+    }
+
+    // EFFECTS: handles input for the name of a new movie
+    public String addMovieHandleInputName() {
+        System.out.println("Enter the name of the new movie:");
+        String name = scanner.nextLine();
+        return name;
+    }
+
+    // EFFECTS: handles input for the genre of a new movie
+    public String addMovieHandleInputGenre() {
+        System.out.println("Enter the genre of the new movie:");
+        String genre = scanner.nextLine();
+        return genre;
+    }
+
     // MODIFIES: this
-    // EFFECTS: adds a movie to the list
+    // EFFECTS: controls adding a movie to the list
     public void addMovie() {
         while (true) {
-            System.out.println("Enter the status of the new movie:");
-            printStatusChoice();
-            String status = scanner.nextLine();
+            String status = addMovieHandleInputStatus();
             
             if (!(status.equals("w") || status.equals("c") || status.equals("t"))) {
                 System.out.println("Invalid command, please try again.");
                 continue;
             }
 
-            System.out.println("Enter the name of the new movie:");
-            String name = scanner.nextLine();
-
-            System.out.println("Enter the genre of the new movie:");
-            String genre = scanner.nextLine();
-        
+            String name = addMovieHandleInputName();
+            String genre = addMovieHandleInputGenre();       
             movieList.addMovie(new Movie(status, name, genre));
 
             System.out.println("Add another movie?");
@@ -139,28 +155,45 @@ public class MovieListApp {
 
     // EFFECTS: prints the names of all movie
     public void printMovie() {
-        System.out.println("Printing all movie:");
+        System.out.println("Printing all movies:");
         System.out.println(movieList.getAllNames());
         start();
     }
 
+    // EFFECTS: prints the prompt for filtering a movie
+    public void filterByPrint() {
+        System.out.println("Enter an option to filter by:");
+        System.out.println("g - genre");
+        System.out.println("s - status");
+    }
+    
+    // EFFECTS: prints the filtering by genre 
+    public void filterMovieInputIsGenre() {
+        System.out.println("Enter the name of the genre to filter by:");
+        String genre = scanner.nextLine();
+        System.out.println(movieList.getAllNamesByGenre(genre));
+    }
+
+    // EFFECTS: handles the input for status when filtering
+    public String filterMovieHandleInputStatus() {
+        System.out.println("Enter the status to filter by:");
+        printStatusChoice();
+        String status = scanner.nextLine();
+        return status;
+    }
+
     // REQUIRES: a movie with the given genre/status must exist
     // EFFECTS: filters the movie by the input
+    @SuppressWarnings("methodlength")
     public void filterMovie() {
         while (true) {
-            System.out.println("Enter an option to filter by:");
-            System.out.println("g - genre");
-            System.out.println("s - status");
+            filterByPrint();
             String filterBy = scanner.nextLine();
 
             if (filterBy.equals("g")) {
-                System.out.println("Enter the name of the genre to filter by:");
-                String genre = scanner.nextLine();
-                System.out.println(movieList.getAllNamesByGenre(genre));
+                filterMovieInputIsGenre();
             } else if (filterBy.equals("s")) {
-                System.out.println("Enter the status to filter by:");
-                printStatusChoice();
-                String status = scanner.nextLine();
+                String status = filterMovieHandleInputStatus();
                 
                 if (!(status.equals("w") || status.equals("c") || status.equals("t"))) {
                     System.out.println("Invalid command, please try again.");
@@ -190,11 +223,18 @@ public class MovieListApp {
         start();
     }
 
+    // EFFECTS: handles the input for number when displaying movies
+    public int displayMovieInfoHandleInputNumber() {
+        System.out.println("Enter the number of the movie to display info for:");
+        System.out.print(movieList.getAllNames());
+        int selectedNum = Integer.valueOf(scanner.nextLine());
+        return selectedNum;
+    }
+
+    // EFFECTS: displays movie information
     public void displayMovieInfo() {
         while (true) {
-            System.out.println("Enter the number of the movie to display info for:");
-            System.out.print(movieList.getAllNames());
-            int selectedNum = Integer.valueOf(scanner.nextLine());
+            int selectedNum = displayMovieInfoHandleInputNumber();
             Movie selected = movieList.searchName(selectedNum);
             
             if (selected == null) {
@@ -313,14 +353,20 @@ public class MovieListApp {
         movie.setGenre(genre);
     }
 
+    // EFFECTS: handles the input for removing/adding a note
+    public String changeNotesHandleInputChoice() {
+        System.out.println("Enter an option:");
+        System.out.println("a - add note");
+        System.out.println("r - remove note");
+        String choice = scanner.nextLine();
+        return choice;
+    }
+
     // MODIFIES: this
-     // EFFECTS: changes the notes for given movie   
+    // EFFECTS: changes the notes for given movie   
     public void changeNotes(Movie movie) {
         while (true) {
-            System.out.println("Enter an option:");
-            System.out.println("a - add note");
-            System.out.println("r - remove note");
-            String choice = scanner.nextLine();
+            String choice = changeNotesHandleInputChoice();
 
             if (choice.equals("a")) {
                 addNote(movie);
