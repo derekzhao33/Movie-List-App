@@ -14,6 +14,8 @@ import java.util.stream.Stream;
 import org.json.*;
 
 // Represents a reader that reads a movie list from JSON data stored in file
+// Code was partially based on the JsonSerializationDemo project
+// URL: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 public class JsonReader {
     private String source;
 

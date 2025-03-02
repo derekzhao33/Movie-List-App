@@ -8,6 +8,8 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Code was partially based on the JsonSerializationDemo project
+// URL: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 public class TestJsonWriter {
     @Test
     public void testWriterInvalidFile() {
