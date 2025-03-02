@@ -143,6 +143,13 @@ public class Movie implements Writable{
     // EFFECTS: returns this as a JSON object
     @Override
     public JSONObject toJson() {
-        return new JSONObject(); // stub
+        JSONObject json = new JSONObject();
+        json.put("status", this.status);
+        json.put("name", this.name);
+        json.put("genre", this.genre);
+        json.put("notes", this.getNotes());
+        json.put("rating", this.rating);
+        json.put("watchTime", this.watchTime);
+        return json;
     }
 }
