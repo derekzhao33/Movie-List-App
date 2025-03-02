@@ -1,7 +1,6 @@
 package persistence;
 
-import model.Movie;
-import model.MovieList;
+import model.*;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

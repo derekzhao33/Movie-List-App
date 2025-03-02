@@ -1,6 +1,5 @@
 package persistence;
-import model.MovieList;
-import model.Movie;
+import model.*;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -13,7 +12,7 @@ public class JsonWriter {
 
     // EFFECTS: constructs writer to write to destination file
     public JsonWriter(String destination) {
-        
+
     }
 
     // MODIFIES: this

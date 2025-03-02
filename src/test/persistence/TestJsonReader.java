@@ -1,7 +1,6 @@
 package persistence;
 
-import model.Movie;
-import model.MovieList;
+import model.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
