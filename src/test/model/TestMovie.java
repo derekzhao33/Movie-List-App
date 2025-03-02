@@ -171,4 +171,9 @@ public class TestMovie {
         Movie testMovieCurrentCopy = new Movie("c", "testThree", "genreTwo");
         assertFalse(testMovieCurrent.equals(testMovieCurrentCopy));
     }
+
+    @Test
+    public void testToJson() {
+        assertEquals("{\"status\":\"c\",\"name\":\"testTwo\",\"genre\":\"genreTwo\",\"notes\":\"\",\"rating\":0,\"watchTime\":0}", testMovieCurrent.toJson().toString());
+    }
 }
