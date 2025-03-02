@@ -134,9 +134,4 @@ public class MovieList implements Writable {
     public JSONObject toJson() {
         return new JSONObject();
     }
-
-    // EFFECTS: returns movies in this movie list as a JSON object
-    public JSONObject moviesToJson() {
-        return new JSONObject();
-    }
 }
