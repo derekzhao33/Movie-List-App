@@ -143,4 +143,9 @@ public class MovieList implements Writable {
 
         return json;
     }
+
+    // EFFECTS: returns the number of movies in the list
+    public int getSize() {
+        return 0;
+    }
 }
