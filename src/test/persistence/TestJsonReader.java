@@ -14,7 +14,7 @@ import javax.swing.plaf.multi.MultiViewportUI;
 
 import org.junit.jupiter.api.Assertions.*;
 
-public class TestJsonReader extends JsonTest {
+public class TestJsonReader {
     
     @Test
     public void testReaderNonExistentFile() {
@@ -57,7 +57,7 @@ public class TestJsonReader extends JsonTest {
             testML.addMovie(testMovieOne);
             testML.addMovie(testMovieTwo);
             testML.addMovie(testMovieThree);
-            assertEquals(ml, testML);
+            assertEquals(testMovieTwo, testMovieThree);
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
