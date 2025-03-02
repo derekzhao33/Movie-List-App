@@ -40,7 +40,7 @@ public class TestJsonReader {
 
     @Test
     public void testReaderGeneralWorkRoom() {
-        JsonReader reader = new JsonReader("./data/testReaderGeneralWorkRoom.json");
+        JsonReader reader = new JsonReader("./data/testReaderGeneralMovieList.json");
         try {
             MovieList ml = reader.read();
             MovieList testML = new MovieList();
@@ -57,7 +57,7 @@ public class TestJsonReader {
             testML.addMovie(testMovieOne);
             testML.addMovie(testMovieTwo);
             testML.addMovie(testMovieThree);
-            assertEquals(testMovieTwo, testMovieThree);
+            assertEquals(testML, ml);
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
