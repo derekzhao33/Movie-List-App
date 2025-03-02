@@ -151,4 +151,17 @@ public class TestMovieList {
         JSONObject testJson = new JSONObject();
         assertEquals(testJson.toString(), testList.toJson().toString());
     }
+
+    @Test
+    public void testGetSizeEmpty() {
+        assertEquals(0, testList.getSize());
+    }
+
+    @Test
+    public void testGetSizeNotEmpty() {
+        testList.addMovie(testMovieOne);
+        testList.addMovie(testMovieTwo);
+        testList.addMovie(testMovieThree);
+        assertEquals(3, testList.getSize());
+    }
 }
