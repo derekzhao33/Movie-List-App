@@ -146,6 +146,6 @@ public class MovieList implements Writable {
 
     // EFFECTS: returns the number of movies in the list
     public int getSize() {
-        return 0;
+        return this.movieList.size();
     }
 }
