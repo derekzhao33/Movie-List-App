@@ -96,4 +96,33 @@ public class MovieList {
     public LinkedHashMap<Integer, Movie> getMovieList() {
         return movieList;
     }
+
+    @Override
+    // EFFECTS: returns true if the given object is a MovieList with the same movies
+    public boolean equals(Object compared) {
+        if (this == compared) {
+            return true;
+        }
+
+        if (!(compared instanceof MovieList)) {
+            return false;
+        }
+
+        MovieList comparedMovieList = (MovieList) compared;
+
+        if (this.movieList.size() != comparedMovieList.getMovieList().size()) {
+            return false;
+        }
+
+        for (Map.Entry<Integer, Movie> mapElement : this.movieList.entrySet()) {
+            Integer k = mapElement.getKey();
+            Movie v = mapElement.getValue();
+
+            if (!v.equals(comparedMovieList.searchName(k))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

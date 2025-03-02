@@ -10,6 +10,7 @@ import java.util.*;
 public class TestMovieList {
 
     private MovieList testList;
+    private MovieList testListTwo;
     private Movie testMovieOne;
     private Movie testMovieTwo;
     private Movie testMovieThree;
@@ -17,6 +18,7 @@ public class TestMovieList {
     @BeforeEach
     public void setup() {
         testList = new MovieList();
+        testListTwo = new MovieList();
         testMovieOne = new Movie("w", "One", "1");
         testMovieTwo = new Movie("c", "Two", "2");
         testMovieThree = new Movie("t", "Three", "3");
@@ -97,5 +99,37 @@ public class TestMovieList {
         testList.addMovie(testMovieThree);
         testList.addMovie(testMovieTwo);
         assertEquals(testMap, testList.getMovieList());
+    }
+
+    @Test
+    public void testEqualsSameObject() {
+        assertTrue(testList.equals(testList));
+    }
+
+    @Test
+    public void testEqualsDifferenType() {
+        assertFalse(testList.equals(testMovieOne));
+    }
+
+    @Test
+    public void testEqualsDifferentMovies() {
+        testList.addMovie(testMovieOne);
+        testListTwo.addMovie(testMovieTwo);
+        assertFalse(testList.equals(testListTwo));
+    }
+
+    @Test
+    public void testEqualsSameMovies() {
+        testList.addMovie(testMovieOne);
+        testListTwo.addMovie(testMovieOne);
+        assertTrue(testList.equals(testListTwo));
+    }
+
+    @Test
+    public void testEqualsDifferentSize() {
+        testList.addMovie(testMovieOne);
+        testList.addMovie(testMovieTwo);
+        testListTwo.addMovie(testMovieOne);
+        assertFalse(testList.equals(testListTwo));
     }
 }
