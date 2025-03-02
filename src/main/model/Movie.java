@@ -1,10 +1,13 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.*;
 
 // Represents a movie. Each movie's status is: Watched (w), Currently Watching (c), or To-watch (t).
 // Each movie has a genre, a total watch time in minutes, notes, and a review. 
-public class Movie {
+public class Movie implements Writable{
 
     private String status;
     private String name;
@@ -135,5 +138,16 @@ public class Movie {
         }
 
         return false;
+    }
+
+    // EFFECTS: returns this as a JSON object
+    @Override
+    public JSONObject toJson() {
+        return new JSONObject(); // stub
+    }
+
+    // EFFECTS: returs movies in this movieList as a JSON object
+    public JSONObject moviesToJson() {
+        return new JSONObject(); // stub
     }
 }
