@@ -1,0 +1,7 @@
+{
+    "movieList": {
+        "1": {"status": "w", "name": "testOne", "genre": "genreOne", "notes": {}, "rating": 0, "watchTime": 0},
+        "2": {"status": "c", "name": "testTwo", "genre": "genreTwo", "notes": {"1": "one"}, "rating": 1, "watchTime": 5},
+        "3": {"status": "t", "name": "testThree", "genre": "genreThree", "notes": {"1": "one", "2": "two"}, "rating": 2, "watchTime": 10}
+    }
+}
