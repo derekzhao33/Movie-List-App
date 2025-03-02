@@ -164,4 +164,16 @@ public class TestMovieList {
         testList.addMovie(testMovieThree);
         assertEquals(3, testList.getSize());
     }
+
+    @Test
+    public void testGetMovies() {
+        LinkedHashMap<Integer, Movie> testMap = new LinkedHashMap<>();
+        testMap.put(1, testMovieOne);
+        testMap.put(2, testMovieThree);
+        testMap.put(3, testMovieTwo);
+        testList.addMovie(testMovieOne);
+        testList.addMovie(testMovieThree);
+        testList.addMovie(testMovieTwo);
+        assertEquals(testMap, testList.getMovies());
+    }
 }
