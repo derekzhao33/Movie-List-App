@@ -11,49 +11,66 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestJsonReader {
     
     @Test
-    public void testReaderNonExistentFile() {
-        JsonReader reader = new JsonReader("./data/noSuchFile.json");
+    public void testWriterInvalidFile() {
         try {
-            MovieList ml = reader.read();
-            fail("IOException expected");
+            MovieList ml = new MovieList();
+            JsonWriter writer = new JsonWriter("./data/my\0illegal:fileName.json");
+            writer.open();
+            fail("IOException was expected");
         } catch (IOException e) {
-            // pass
+            // expected
         }
     }
 
     @Test
-    public void testReaderEmptyWorkRoom() {
-        JsonReader reader = new JsonReader("./data/testReaderEmptyMovieList.json");
+    public void testWriterEmptyMovieList() {
         try {
-            MovieList ml = reader.read();
-            assertEquals(new LinkedHashMap<Integer, Movie>(), ml.getMovieList());
+            MovieList ml = new MovieList();
+            JsonWriter writer = new JsonWriter("./data/testWriterEmptyMovieList.json");
+            writer.open();
+            writer.write(ml);
+            writer.close();
+
+            JsonReader reader = new JsonReader("./data/testWriterEmptyMovieList.json");
+            ml = reader.read();
+            assertEquals(0, ml.getMovies().size());
         } catch (IOException e) {
-            fail("Couldn't read from file");
+            fail("Exception should not have been thrown");
         }
     }
 
     @Test
-    public void testReaderGeneralWorkRoom() {
-        JsonReader reader = new JsonReader("./data/testReaderGeneralMovieList.json");
+    public void testWriterGeneralMovieList() {
         try {
-            MovieList ml = reader.read();
-            MovieList testML = new MovieList();
-            Movie testMovieOne = new Movie("w", "testOne", "genreOne");
-            Movie testMovieTwo = new Movie("c", "testTwo", "genreTwo");
-            testMovieTwo.addNote("one");
-            testMovieTwo.setRating(1);
-            testMovieTwo.addWatchTime(5);
-            Movie testMovieThree = new Movie("t", "testThree", "genreThree");
-            testMovieThree.addNote("one");
-            testMovieThree.addNote("two");
-            testMovieThree.setRating(2);
-            testMovieThree.addWatchTime(10);
-            testML.addMovie(testMovieOne);
-            testML.addMovie(testMovieTwo);
-            testML.addMovie(testMovieThree);
-            assertEquals(testML, ml);
+            MovieList ml = new MovieList();
+            Movie testMovieOne = new Movie("t", "Star Wars", "sci-fi");
+            Movie testMovieTwo = new Movie("c", "Batman", "action");
+            testMovieTwo.addNote("yes");
+            testMovieTwo.setRating(5);
+            testMovieTwo.addWatchTime(3);
+            Movie testMovieThree = new Movie("w", "Scream", "horror");
+            testMovieThree.addNote("yes");
+            testMovieThree.addNote("no");
+            testMovieThree.setRating(4);
+            testMovieThree.addWatchTime(2);
+            ml.addMovie(testMovieOne);
+            ml.addMovie(testMovieTwo);
+            ml.addMovie(testMovieThree);
+
+            JsonWriter writer = new JsonWriter("./data/testWriterGeneralMovieList.json");
+            writer.open();
+            writer.write(ml);
+            writer.close();
+
+            JsonReader reader = new JsonReader("./data/testWriterGeneralMovieList.json");
+            ml = reader.read();
+            LinkedHashMap<Integer, Movie> movies = ml.getMovies();
+            assertEquals(3, movies.size());
+            assertEquals(testMovieOne, movies.get(1));
+            assertEquals(testMovieTwo, movies.get(2));
+            assertEquals(testMovieThree, movies.get(3));
         } catch (IOException e) {
-            fail("Couldn't read from file");
+            fail("Exception should not have been thrown");
         }
     }
 }

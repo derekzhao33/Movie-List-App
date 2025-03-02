@@ -1,7 +1,7 @@
-{
+{     
     "movieList": {
         "1": {"status": "t", "name": "Star Wars", "genre": "sci-fi", "notes": {}, "rating": 0, "watchTime": 0},
-        "2": {"status": "c", "name": "Batman", "genre": "action", "notes": {"1": "yes"}, "rating": 5, "watchTime": 3},
-        "3": {"status": "w", "name": "Scream", "genre": "horror", "notes": {"1": "yes", "2": "no"}, "rating": 4, "watchTime": 2}
+        "2": {"status": "c", "name": "Batman", "genre": "action", "notes": {"1": "yes"}, "rating": 5, "watchTime": 33},
+        "3": {"status": "w", "name": "Scream", "genre": "horror", "notes": {"1": "yes", "2": "no"}, "rating": 4, "watchTime": 22}
     }
 }

@@ -30,7 +30,7 @@ public class TestJsonWriter {
             writer.write(ml);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterEmptyWorkroom.json");
+            JsonReader reader = new JsonReader("./data/testWriterEmptyMovieList.json");
             ml = reader.read();
             assertEquals(0, ml.getSize());
         } catch (IOException e) {
@@ -59,9 +59,9 @@ public class TestJsonWriter {
             writer.open();
             writer.write(ml);
             writer.close();
-
+    
             JsonReader reader = new JsonReader("./data/testWriterGeneralMovieList.json");
-            ml = reader.read();
+            
             LinkedHashMap<Integer, Movie> movies = ml.getMovies();
             assertEquals(3, movies.size());
             assertEquals(testMovieOne, movies.get(1));

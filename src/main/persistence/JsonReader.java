@@ -30,16 +30,16 @@ public class JsonReader {
         return parseMovieList(jsonObject);
     }
 
-    // EFFECTS: reads source file as string and returns it
+   // EFFECTS: reads source file as string and returns it
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
 
         try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
             stream.forEach(s -> contentBuilder.append(s));
-        }
+        }   
 
         return contentBuilder.toString();
-     }
+    }
 
     // EFFECTS: parses movielist from JSON object and returns it
     private MovieList parseMovieList(JSONObject jsonObject) {
@@ -72,7 +72,7 @@ public class JsonReader {
         }
         int rating = jsonObject.getInt("rating");
         int watchTime = jsonObject.getInt("watchTime");
-        
+
         Movie movie = new Movie(status, name, genre);
         movie.setRating(rating);
         movie.addWatchTime(watchTime);
@@ -80,6 +80,5 @@ public class JsonReader {
             movie.addNote(entry.getValue());
         }
         ml.addMovie(movie);
-
     }
 }

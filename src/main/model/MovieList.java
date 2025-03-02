@@ -133,14 +133,13 @@ public class MovieList implements Writable {
     // EFFECTS: returns the movie list as a JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
+        JSONObject moviesJson = new JSONObject();
 
-        for (Map.Entry<Integer, Movie> mapElement : this.movieList.entrySet()) {
-            Integer k = mapElement.getKey();
-            Movie v = mapElement.getValue();
-
-            json.put(k.toString(), v.toJson());
+        for (Map.Entry<Integer, Movie> entry : movieList.entrySet()) {
+            moviesJson.put(entry.getKey().toString(), entry.getValue().toJson());
         }
 
+        json.put("movieList", moviesJson);
         return json;
     }
 
