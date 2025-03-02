@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 
 import org.json.*;
 
-
+// Represents a reader that reads a movie list from JSON data stored in file
 public class JsonReader {
     private String source;
 
