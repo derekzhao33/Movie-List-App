@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.json.JSONObject;
+
 public class TestMovie {
 
     private Movie testMovieWatched;
@@ -174,6 +176,16 @@ public class TestMovie {
 
     @Test
     public void testToJson() {
-        assertEquals("{\"status\":\"c\",\"name\":\"testTwo\",\"genre\":\"genreTwo\",\"notes\":\"\",\"rating\":0,\"watchTime\":0}", testMovieCurrent.toJson().toString());
+        testMovieCurrent.addNote("1");
+        testMovieCurrent.setRating(1);
+        testMovieCurrent.addWatchTime(5);
+        JSONObject testJson = new JSONObject();
+        testJson.put("status", "c");
+        testJson.put("name", "testTwo");
+        testJson.put("genre", "genreTwo");
+        testJson.put("notes", "1: 1\n");
+        testJson.put("rating", 1);
+        testJson.put("watchTime", 5);
+        assertEquals(testJson.toString(), testMovieCurrent.toJson().toString());
     }
 }
