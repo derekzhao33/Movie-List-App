@@ -31,5 +31,5 @@ I spend a lot of my time watching Movies. I also like to be organized, so it wou
 - As a user, I want to add notes, ratings, and watch time for the movies
 - As a user, I want to change any details about the movie (status, name, genre, notes, ratings, watch time, episode, season)
 - As a user, I want to categorize my movie as watched, currently watching, or to-watch
-- As a user, when I quit the app, I want the option to be able to save or not save my current movie list and be able to do so
-- As a user, when I start the app, I want the option to load or not load the previous saved movie list and be able to do so
+- As a user, I want the option to be able to save or not save my current movie list and be able to do so
+- As a user,  want the option to load or not load the previous saved movie list and be able to do so
