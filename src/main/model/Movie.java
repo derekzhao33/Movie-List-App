@@ -145,9 +145,4 @@ public class Movie implements Writable{
     public JSONObject toJson() {
         return new JSONObject(); // stub
     }
-
-    // EFFECTS: returs movies in this movieList as a JSON object
-    public JSONObject moviesToJson() {
-        return new JSONObject(); // stub
-    }
 }
