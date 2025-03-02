@@ -132,6 +132,15 @@ public class MovieList implements Writable {
     @Override
     // EFFECTS: returns the movie list as a JSON object
     public JSONObject toJson() {
-        return new JSONObject();
+        JSONObject json = new JSONObject();
+
+        for (Map.Entry<Integer, Movie> mapElement : this.movieList.entrySet()) {
+            Integer k = mapElement.getKey();
+            Movie v = mapElement.getValue();
+
+            json.put(k.toString(), v.toJson());
+        }
+
+        return json;
     }
 }
