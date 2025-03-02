@@ -1,5 +1,6 @@
 package model;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -131,5 +132,23 @@ public class TestMovieList {
         testList.addMovie(testMovieTwo);
         testListTwo.addMovie(testMovieOne);
         assertFalse(testList.equals(testListTwo));
+    }
+
+    @Test
+    public void testToJson() {
+        testList.addMovie(testMovieOne);
+        testList.addMovie(testMovieTwo);
+        testList.addMovie(testMovieThree);
+        JSONObject testJson = new JSONObject();
+        testJson.put("1", testMovieOne.toJson());
+        testJson.put("2", testMovieTwo.toJson());
+        testJson.put("3", testMovieThree.toJson());
+        assertEquals(testJson.toString(), testList.toJson().toString());
+    }
+
+    @Test
+    public void testToJsonEmpty() {
+        JSONObject testJson = new JSONObject();
+        assertEquals(testJson.toString(), testList.toJson().toString());
     }
 }
