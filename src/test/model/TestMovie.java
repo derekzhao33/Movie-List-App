@@ -105,4 +105,70 @@ public class TestMovie {
         testMovieCurrent.setRating(5);
         assertEquals(5, testMovieCurrent.getRating());
     }
+
+    @Test
+    public void testEqualsSameObject() {
+        assertTrue(testMovieCurrent.equals(testMovieCurrent));
+    }
+
+    @Test
+    public void testEqualsDifferentObject() {
+        assertFalse(testMovieCurrent.equals(testMovieWatched));
+    }
+
+    @Test
+    public void testEqualsSlightlyDifferent() {
+        Movie testMovieCurrentCopy = new Movie("c", "testTwo", "genreTwo");
+        assertTrue(testMovieCurrent.equals(testMovieCurrentCopy));
+    }
+
+    @Test
+    public void testEqualsDifferenType() {
+        assertFalse(testMovieCurrent.equals("test"));
+    }
+
+    @Test
+    public void testEqualsDifferentObjectSameInfo() {
+        Movie testMovieCurrentCopy = new Movie("c", "testTwo", "genreTwo");
+        assertTrue(testMovieCurrent.equals(testMovieCurrentCopy));
+    }
+
+    @Test
+    public void testEqualsDifferentRating() {
+        Movie testMovieCurrentCopy = new Movie("c", "testTwo", "genreTwo");
+        testMovieCurrentCopy.setRating(2);
+        assertFalse(testMovieCurrent.equals(testMovieCurrentCopy));
+    }
+
+    @Test
+    public void testEqualsDifferentWatchTime() {
+        Movie testMovieCurrentCopy = new Movie("c", "testTwo", "genreTwo");
+        testMovieCurrentCopy.addWatchTime(10);
+        assertFalse(testMovieCurrent.equals(testMovieCurrentCopy));
+    }
+
+    @Test
+    public void testEqualsDifferentGenre() {
+        Movie testMovieCurrentCopy = new Movie("c", "testTwo", "genreThree");
+        assertFalse(testMovieCurrent.equals(testMovieCurrentCopy));
+    }
+
+    @Test
+    public void testEqualsDifferentNotes() {
+        Movie testMovieCurrentCopy = new Movie("c", "testTwo", "genreTwo");
+        testMovieCurrentCopy.addNote("different note");
+        assertFalse(testMovieCurrent.equals(testMovieCurrentCopy));
+    }
+
+    @Test
+    public void testEqualsDifferentStatus() {
+        Movie testMovieCurrentCopy = new Movie("w", "testTwo", "genreTwo");
+        assertFalse(testMovieCurrent.equals(testMovieCurrentCopy));
+    }
+
+    @Test
+    public void testEqualsDifferentName() {
+        Movie testMovieCurrentCopy = new Movie("c", "testThree", "genreTwo");
+        assertFalse(testMovieCurrent.equals(testMovieCurrentCopy));
+    }
 }

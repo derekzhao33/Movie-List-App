@@ -111,4 +111,29 @@ public class Movie {
     public void setRating(int rating) {
         this.rating = rating;
     }
+    
+    // EFFECTS: returns true if this is equal compared
+    @Override
+    public boolean equals(Object compared) {
+        if (this == compared) {
+            return true;
+        }
+
+        if (!(compared instanceof Movie)) {
+            return false;
+        }
+
+        Movie comparedMovie = (Movie) compared;
+
+        if (this.status.equals(comparedMovie.status)
+                && this.name.equals(comparedMovie.name)
+                && this.genre.equals(comparedMovie.genre)
+                && this.notes.equals(comparedMovie.notes)
+                && this.rating == comparedMovie.rating
+                && this.watchTime == comparedMovie.watchTime) {
+            return true;
+        }
+
+        return false;
+    }
 }
