@@ -148,4 +148,8 @@ public class MovieList implements Writable {
     public int getSize() {
         return this.movieList.size();
     }
+
+    public LinkedHashMap<Integer, Movie> getMovies() {
+        return new LinkedHashMap<>(); // stub
+    }
 }
