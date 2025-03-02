@@ -150,6 +150,6 @@ public class MovieList implements Writable {
     }
 
     public LinkedHashMap<Integer, Movie> getMovies() {
-        return new LinkedHashMap<>(); // stub
+        return movieList;
     }
 }
