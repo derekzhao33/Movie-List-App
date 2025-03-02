@@ -1,9 +1,12 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.*;
 
 // Represents a list of movies
-public class MovieList {
+public class MovieList implements Writable {
     
     private LinkedHashMap<Integer, Movie> movieList;
 
@@ -124,5 +127,16 @@ public class MovieList {
         }
 
         return true;
+    }
+
+    @Override
+    // EFFECTS: returns the movie list as a JSON object
+    public JSONObject toJson() {
+        return new JSONObject();
+    }
+
+    // EFFECTS: returns movies in this movie list as a JSON object
+    public JSONObject moviesToJson() {
+        return new JSONObject();
     }
 }
