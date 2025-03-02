@@ -144,12 +144,14 @@ public class Movie implements Writable{
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
+
         json.put("status", this.status);
         json.put("name", this.name);
         json.put("genre", this.genre);
         json.put("notes", this.getNotes());
         json.put("rating", this.rating);
         json.put("watchTime", this.watchTime);
+
         return json;
     }
 }
