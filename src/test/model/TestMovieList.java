@@ -140,15 +140,19 @@ public class TestMovieList {
         testList.addMovie(testMovieTwo);
         testList.addMovie(testMovieThree);
         JSONObject testJson = new JSONObject();
-        testJson.put("1", testMovieOne.toJson());
-        testJson.put("2", testMovieTwo.toJson());
-        testJson.put("3", testMovieThree.toJson());
+        JSONObject movieJson = new JSONObject();
+        movieJson.put("1", testMovieOne.toJson());
+        movieJson.put("2", testMovieTwo.toJson());
+        movieJson.put("3", testMovieThree.toJson());
+        testJson.put("movieList", movieJson);
         assertEquals(testJson.toString(), testList.toJson().toString());
     }
 
     @Test
     public void testToJsonEmpty() {
         JSONObject testJson = new JSONObject();
+        JSONObject movieJson = new JSONObject();
+        testJson.put("movieList", movieJson);
         assertEquals(testJson.toString(), testList.toJson().toString());
     }
 

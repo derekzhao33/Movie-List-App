@@ -176,14 +176,16 @@ public class TestMovie {
 
     @Test
     public void testToJson() {
-        testMovieCurrent.addNote("1");
+        testMovieCurrent.addNote("one");
         testMovieCurrent.setRating(1);
         testMovieCurrent.addWatchTime(5);
         JSONObject testJson = new JSONObject();
         testJson.put("status", "c");
         testJson.put("name", "testTwo");
         testJson.put("genre", "genreTwo");
-        testJson.put("notes", "1: 1\n");
+        JSONObject notesJson = new JSONObject();
+        notesJson.put("1", "one");
+        testJson.put("notes", notesJson);
         testJson.put("rating", 1);
         testJson.put("watchTime", 5);
         assertEquals(testJson.toString(), testMovieCurrent.toJson().toString());
