@@ -69,18 +69,22 @@ public class JsonReader {
         String genre = jsonObject.getString("genre");
         JSONObject notesObj = jsonObject.getJSONObject("notes");
         Map<String, String> notes = new HashMap<>();
+
         for (String noteKey : notesObj.keySet()) {
             notes.put(noteKey, notesObj.getString(noteKey));
         }
+
         int rating = jsonObject.getInt("rating");
         int watchTime = jsonObject.getInt("watchTime");
 
         Movie movie = new Movie(status, name, genre);
         movie.setRating(rating);
         movie.addWatchTime(watchTime);
+
         for (Map.Entry<String, String> entry : notes.entrySet()) {
             movie.addNote(entry.getValue());
         }
+        
         ml.addMovie(movie);
     }
 }
