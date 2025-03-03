@@ -80,6 +80,7 @@ public class MovieListApp {
         }
     }
 
+    @SuppressWarnings("methodlength")
     // EFFECTS: processes the inputs from the app
     public void processCommand(String input) {
         switch (input) {
