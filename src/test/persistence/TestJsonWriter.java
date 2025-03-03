@@ -64,7 +64,7 @@ public class TestJsonWriter {
     
             JsonReader reader = new JsonReader("./data/testWriterGeneralMovieList.json");
             
-            LinkedHashMap<Integer, Movie> movies = ml.getMovies();
+            LinkedHashMap<Integer, Movie> movies = ml.getMovieList();
             assertEquals(3, movies.size());
             assertEquals(testMovieOne, movies.get(1));
             assertEquals(testMovieTwo, movies.get(2));

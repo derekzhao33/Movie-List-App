@@ -35,7 +35,7 @@ public class TestJsonReader {
 
             JsonReader reader = new JsonReader("./data/testWriterEmptyMovieList.json");
             ml = reader.read();
-            assertEquals(0, ml.getMovies().size());
+            assertEquals(0, ml.getMovieList().size());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }
@@ -66,7 +66,7 @@ public class TestJsonReader {
 
             JsonReader reader = new JsonReader("./data/testWriterGeneralMovieList.json");
             ml = reader.read();
-            LinkedHashMap<Integer, Movie> movies = ml.getMovies();
+            LinkedHashMap<Integer, Movie> movies = ml.getMovieList();
             assertEquals(3, movies.size());
             assertEquals(testMovieOne, movies.get(1));
             assertEquals(testMovieTwo, movies.get(2));

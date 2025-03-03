@@ -178,6 +178,6 @@ public class TestMovieList {
         testList.addMovie(testMovieOne);
         testList.addMovie(testMovieThree);
         testList.addMovie(testMovieTwo);
-        assertEquals(testMap, testList.getMovies());
+        assertEquals(testMap, testList.getMovieList());
     }
 }
