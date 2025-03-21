@@ -125,7 +125,7 @@ public class TestMovie {
     }
 
     @Test
-    public void testEqualsDifferenType() {
+    public void testEqualsDifferentType() {
         assertFalse(testMovieCurrent.equals("test"));
     }
 
