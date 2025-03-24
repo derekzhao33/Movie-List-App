@@ -14,9 +14,9 @@ import ui.graphics.panels.CardPanel;
 // TODO: combo boxes and menus
 public class MovieFrame extends JFrame implements ActionListener {
     private static final String JSON_STORE = "./data/movieList.json";
+    private static final String LOGO_PATH = "data/logo.png";
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
-    private ImageIcon image;
     private MenuHandler menuHandler;
     private CardPanel cardPanel;
     private MovieList movieList;
@@ -26,8 +26,6 @@ public class MovieFrame extends JFrame implements ActionListener {
         this.jsonWriter = new JsonWriter(JSON_STORE);
         this.jsonReader = new JsonReader(JSON_STORE);
         this.movieList = new MovieList();
-        this.image = new ImageIcon("data/logo.png");
-        this.image = new ImageIcon(image.getImage().getScaledInstance(500, 500, Image.SCALE_DEFAULT));
         this.menuHandler = new MenuHandler(this);
         this.cardPanel = new CardPanel(this.movieList);
 
@@ -43,10 +41,12 @@ public class MovieFrame extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setSize(250, 250); 
+        ImageIcon image = new ImageIcon(LOGO_PATH);
+        image = new ImageIcon(image.getImage().getScaledInstance(500, 500, Image.SCALE_DEFAULT));
         setIconImage(image.getImage());
         setLayout(new BorderLayout());
         setJMenuBar(menuHandler.getMenuBar());
-        add(cardPanel, BorderLayout.CENTER);
+        add(cardPanel);
     }
 
     // MODIFIES: this
