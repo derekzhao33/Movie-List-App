@@ -10,8 +10,8 @@ import model.*;
 // Represents switchable panels for the movie list application
 public class CardPanel extends JPanel {
     private CardLayout cardLayout;
-    private JPanel contPanel;
-    private JPanel startPanel;
+    private JPanel mainPanel;
+    private StartPanel startPanel;
     private AddPanel addPanel;
     private JPanel removePanel;
     private JPanel displayPanel;
@@ -19,36 +19,37 @@ public class CardPanel extends JPanel {
     // EFFECTS: creates a new CardPanel
     public CardPanel(MovieList movieList) {
         this.cardLayout = new CardLayout();
-        this.contPanel = new JPanel(cardLayout);
-        this.startPanel = new JPanel();
+        this.mainPanel = new JPanel(cardLayout);
+        this.startPanel = new StartPanel();
         this.addPanel = new AddPanel(movieList);
         this.removePanel = new JPanel();
         this.displayPanel = new JPanel(); 
 
         addPanels();
-        this.setLayout(new BorderLayout());
-        this.add(contPanel, BorderLayout.CENTER);
+        cardLayout.show(mainPanel, "start");
+        this.add(mainPanel, BorderLayout.CENTER);
     }
 
     // MODIFIES: this
     // EFFECTS: adds panels to the card layout
     public void addPanels() {
-        contPanel.add(startPanel, "start");
-        contPanel.add(addPanel, "add");
-        contPanel.add(removePanel, "remove");
-        contPanel.add(displayPanel, "display");
-        cardLayout.show(contPanel, "start");
+        mainPanel.add(startPanel, "start");
+        mainPanel.add(addPanel, "add");
+        mainPanel.add(removePanel, "remove");
+        mainPanel.add(displayPanel, "display");
     }
 
     // MODIFIES: this
     // EFFECTS: switches panels
     public void switchPanels(String panel, MovieList movieList) {
         if (panel.equals("add")) {
-            cardLayout.show(contPanel, "add");
+            cardLayout.show(mainPanel, "add");
         } else if (panel.equals("remove")) {
-            cardLayout.show(contPanel, "remove");
+            cardLayout.show(mainPanel, "remove");
         } else if (panel.equals("display")) {
-            cardLayout.show(contPanel, "display");
+            cardLayout.show(mainPanel, "display");
+        } else {
+            cardLayout.show(mainPanel, "start");
         }
     }
 }
