@@ -20,6 +20,7 @@ public class MovieFrame extends JFrame implements ActionListener {
     private MovieList movieList;
     private JTextArea textArea;
     private MenuHandler menuHandler;
+    private JLabel label;
 
     // EFFECTS: creates a new frame
     public MovieFrame() {
@@ -31,6 +32,7 @@ public class MovieFrame extends JFrame implements ActionListener {
         this.textArea = new JTextArea();
         this.textArea.setBounds(50, 50, 400, 300);
         this.menuHandler = new MenuHandler(this);
+        this.label = new JLabel(image);
 
         initializeFrame();
 
