@@ -1,94 +1,131 @@
 package ui.graphics;
 
+import model.Movie;
+import model.MovieList;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.io.IOException;
 
-import model.*;
-import persistence.*;
-import ui.graphics.panels.CardPanel;
-
-// Represents a frame for the movie list application
-// TODO: combo boxes and menus
+// Represents a frame for the movie list app
 public class MovieFrame extends JFrame implements ActionListener {
     private static final String JSON_STORE = "./data/movieList.json";
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
     private ImageIcon image;
-    private MenuHandler menuHandler;
-    private CardPanel cardPanel;
     private MovieList movieList;
+    private JTextArea textArea;
+    private MenuHandler menuHandler;
 
-    //EFFECTS: creates a new frame
+    // EFFECTS: creates a new frame
     public MovieFrame() {
+        this.image = new ImageIcon("data/logo.png");
+        this.image = new ImageIcon(image.getImage().getScaledInstance(500, 500, 1));
+        this.movieList = new MovieList();
         this.jsonWriter = new JsonWriter(JSON_STORE);
         this.jsonReader = new JsonReader(JSON_STORE);
-        this.movieList = new MovieList();
-        this.image = new ImageIcon("data/logo.png");
-        this.image = new ImageIcon(image.getImage().getScaledInstance(500, 500, Image.SCALE_DEFAULT));
+        this.textArea = new JTextArea();
+        this.textArea.setBounds(50, 50, 400, 300);
         this.menuHandler = new MenuHandler(this);
-        this.cardPanel = new CardPanel(this.movieList);
 
         initializeFrame();
 
-        setVisible(true);
+        this.setVisible(true);
     }
 
     // MODIFIES: this
-    // EFFECTS: initializes the frame
+    // EFFECTS: initialized the frame
     public void initializeFrame() {
-        setTitle("Movie List Application");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
-        setSize(250, 250); 
-        setIconImage(image.getImage());
-        setLayout(new BorderLayout());
-        setJMenuBar(menuHandler.getMenuBar());
-        add(cardPanel, BorderLayout.CENTER);
+        this.setTitle("Movie List Application");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
+        this.setSize(500, 500);
+        this.setIconImage(image.getImage());
+        this.setLayout(null);
+        this.setJMenuBar(menuHandler.getMenuBar());
+        this.add(textArea);
     }
 
-    // MODIFIES: this
-    // EFFECTS: handles actions
+    // EFFECTS: handles the actions
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == menuHandler.getLoadMenuItem()) {
-            loadMovies();
-        } else if (e.getSource() == menuHandler.getSaveMenuItem()) {
-            saveMovies();
-        } else if (e.getSource() == menuHandler.getAddMenuItem()) {
-            cardPanel.switchPanels("add", movieList);
-        } else if (e.getSource() == menuHandler.getRemoveMenuItem()) {
-            cardPanel.switchPanels("remove", movieList);
-        } else if (e.getSource() == menuHandler.getDisplayMenuItem()) {
-            cardPanel.switchPanels("display", movieList);
+        if (e.getSource() == menuHandler.getLoadMenuItem()) { // Load
+            loadMovieList();
+        }
+
+        if (e.getSource() == menuHandler.getSaveMenuItem()) { // Save
+            saveMovieList();
+        }
+
+        if (e.getSource() == menuHandler.getAddMenuItem()) { // Add
+            addMovie();
+        }
+
+        if (e.getSource() == menuHandler.getRemoveMenuItem()) { // Remove
+            removeMovie();
+        }
+
+        if (e.getSource() == menuHandler.getDisplayMenuItem()) { // Display
+            displayMovies();
         }
     }
 
-    // MODIFIES: this
-    // EFFECTS: loads movies
-    public void loadMovies() {
+    // EFFECTS: loads the movie list from file
+    private void loadMovieList() {
         try {
             movieList = jsonReader.read();
-            JOptionPane.showMessageDialog(this, "Loaded movie list from: " + JSON_STORE, 
-                                        "Load", JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Unable to load movies", "Error", JOptionPane.ERROR_MESSAGE);
+            textArea.setText("Loaded movie list from " + JSON_STORE);
+        } catch (IOException e) {
+            textArea.setText("Unable to read from file: " + JSON_STORE);
         }
     }
 
-    // MODIFIES: this
-    // EFFECTS: saves movies
-    public void saveMovies() {
+    // EFFECTS: saves the movie list to file
+    private void saveMovieList() {
         try {
             jsonWriter.open();
             jsonWriter.write(movieList);
             jsonWriter.close();
-            JOptionPane.showMessageDialog(this, "Saved movie list to: " + JSON_STORE, 
-                                        "Save", JOptionPane.INFORMATION_MESSAGE);
+            textArea.setText("Saved movie list to " + JSON_STORE);
         } catch (FileNotFoundException e) {
-            JOptionPane.showMessageDialog(this, "Unable to save movies", "Error", JOptionPane.ERROR_MESSAGE);
+            textArea.setText("Unable to write to file: " + JSON_STORE);
         }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds a new movie to the list
+    private void addMovie() {
+        String status = JOptionPane.showInputDialog("Enter the status of the new movie (w, c, t):");
+        String name = JOptionPane.showInputDialog("Enter the name of the new movie:");
+        String genre = JOptionPane.showInputDialog("Enter the genre of the new movie:");
+
+        if (status != null && name != null && genre != null) {
+            movieList.addMovie(new Movie(status, name, genre));
+            textArea.setText("Added movie: " + name);
+        } else {
+            textArea.setText("Movie addition cancelled.");
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: removes a movie from the list
+    private void removeMovie() {
+        String input = JOptionPane.showInputDialog("Enter the number of the movie to be removed:");
+        if (input != null) {
+            int movieNum = Integer.parseInt(input);
+            movieList.removeMovie(movieNum);
+            textArea.setText("Removed movie number: " + movieNum);
+        } else {
+            textArea.setText("Movie removal cancelled.");
+        }
+    }
+
+    // EFFECTS: displays all movies in the list
+    private void displayMovies() {
+        textArea.setText(movieList.getAllNames());
     }
 }
