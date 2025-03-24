@@ -3,7 +3,7 @@ package ui.graphics;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-// Represents a menu handler
+// Represents a menu handler for the movie list application
 public class MenuHandler {
     private JMenuBar menuBar;
     private JMenu movieMenu;

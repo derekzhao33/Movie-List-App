@@ -8,8 +8,9 @@ import java.util.*;
 
 import model.*;
 import persistence.*;
+import ui.graphics.panels.CardPanel;
 
-// Represents a frame
+// Represents a frame for the movie list application
 // TODO: combo boxes and menus
 public class MovieFrame extends JFrame implements ActionListener {
     private static final String JSON_STORE = "./data/movieList.json";
@@ -17,6 +18,7 @@ public class MovieFrame extends JFrame implements ActionListener {
     private JsonReader jsonReader;
     private ImageIcon image;
     private MenuHandler menuHandler;
+    private CardPanel cardPanel;
     private MovieList movieList;
 
     //EFFECTS: creates a new frame
@@ -27,22 +29,24 @@ public class MovieFrame extends JFrame implements ActionListener {
         this.image = new ImageIcon("data/logo.png");
         this.image = new ImageIcon(image.getImage().getScaledInstance(500, 500, Image.SCALE_DEFAULT));
         this.menuHandler = new MenuHandler(this);
+        this.cardPanel = new CardPanel(this.movieList);
 
         initializeFrame();
 
-        this.setVisible(true);
+        setVisible(true);
     }
 
     // MODIFIES: this
     // EFFECTS: initializes the frame
     public void initializeFrame() {
-        this.setTitle("Movie List Application");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
-        this.setSize(500, 500); 
-        this.setIconImage(image.getImage());
-        this.setLayout(null);
-        this.setJMenuBar(menuHandler.getMenuBar());
+        setTitle("Movie List Application");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
+        setSize(250, 250); 
+        setIconImage(image.getImage());
+        setLayout(new BorderLayout());
+        setJMenuBar(menuHandler.getMenuBar());
+        add(cardPanel, BorderLayout.CENTER);
     }
 
     // MODIFIES: this
@@ -51,22 +55,14 @@ public class MovieFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == menuHandler.getLoadMenuItem()) {
             loadMovies();
-        } 
-
-        if (e.getSource() == menuHandler.getSaveMenuItem()) {
+        } else if (e.getSource() == menuHandler.getSaveMenuItem()) {
             saveMovies();
-        } 
-        
-        if (e.getSource() == menuHandler.getAddMenuItem()) {
-            // TODO: add a method to add movies in the frame
-        } 
-        
-        if (e.getSource() == menuHandler.getRemoveMenuItem()) {
-            // TODO: add a method to remove movies in the frame
-        } 
-        
-        if (e.getSource() == menuHandler.getDisplayMenuItem()) {
-            // TODO: add a method to display movies in the frame
+        } else if (e.getSource() == menuHandler.getAddMenuItem()) {
+            cardPanel.switchPanels("add", movieList);
+        } else if (e.getSource() == menuHandler.getRemoveMenuItem()) {
+            cardPanel.switchPanels("remove", movieList);
+        } else if (e.getSource() == menuHandler.getDisplayMenuItem()) {
+            cardPanel.switchPanels("display", movieList);
         }
     }
 
@@ -75,7 +71,8 @@ public class MovieFrame extends JFrame implements ActionListener {
     public void loadMovies() {
         try {
             movieList = jsonReader.read();
-            JOptionPane.showMessageDialog(this, "Loaded movie list from: " + JSON_STORE, "Load", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Loaded movie list from: " + JSON_STORE, 
+                                        "Load", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Unable to load movies", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -88,7 +85,8 @@ public class MovieFrame extends JFrame implements ActionListener {
             jsonWriter.open();
             jsonWriter.write(movieList);
             jsonWriter.close();
-            JOptionPane.showMessageDialog(this, "Saved movie list to: " + JSON_STORE, "Save", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Saved movie list to: " + JSON_STORE, 
+                                        "Save", JOptionPane.INFORMATION_MESSAGE);
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(this, "Unable to save movies", "Error", JOptionPane.ERROR_MESSAGE);
         }

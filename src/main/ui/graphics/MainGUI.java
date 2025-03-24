@@ -6,7 +6,7 @@ import java.awt.*;
 
 import model.*;
 
-// Runs the GUI
+// Runs the GUI for the movie list application
 public class MainGUI {
 
     // EFFECTS: runs the GUI
