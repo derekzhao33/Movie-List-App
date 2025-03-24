@@ -31,6 +31,7 @@ public class AddPanel extends JPanel implements ActionListener {
     // MODIFIES: this
     // EFFECTS: sets up the add panel
     public void setupAddPanel() {
+        this.addMovieButton.addActionListener(this);
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
@@ -71,6 +72,7 @@ public class AddPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addMovieButton) {
             Movie newMovie = new Movie(comboBox.getSelectedItem().toString(), nameField.getText(), genreField.getText());
+            this.movieList.addMovie(newMovie);
             JOptionPane.showMessageDialog(this, "Movie added", "Add", JOptionPane.INFORMATION_MESSAGE);
         }
     }
