@@ -9,6 +9,7 @@ public class MenuHandler {
     private JMenu movieMenu;
     private JMenu fileMenu;
     private JMenu changeMenu;
+    private JMenu filterMenu;
     private JMenuItem load;
     private JMenuItem save;
     private JMenuItem add;
@@ -20,8 +21,8 @@ public class MenuHandler {
     public MenuHandler(ActionListener listener) {
         this.menuBar = new JMenuBar();
         this.movieMenu = new JMenu("Movie");
-        fileMenu = new JMenu("File");
-        changeMenu = new JMenu("Change");
+        this.fileMenu = new JMenu("File");
+        this.changeMenu = new JMenu("Change");
 
         this.load = new JMenuItem("Load");
         this.save = new JMenuItem("Save");

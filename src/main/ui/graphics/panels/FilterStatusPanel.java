@@ -36,10 +36,11 @@ public class FilterStatusPanel extends DisplayInfoPanel {
                                             "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 Object comboBoxItem = super.getComboBox().getSelectedItem();
-                String itemName = comboBoxItem.toString();
+                String longStatus = comboBoxItem.toString();
 
-                String status = super.getMovieStatusShortenedString(itemName);
-                String filterText = this.getMovieList().getAllNamesByGenre(status);
+                String status = super.getMovieStatusShortenedString(longStatus);
+                String filterText = super.getMovieList().getAllNamesByStatus(status);
+                System.out.println(filterText);
                 super.getInfoArea().setText(filterText);
             }
         }
