@@ -32,9 +32,9 @@ public class MovieList implements Writable {
         int i = 1;
 
         for (Map.Entry<Integer, Movie> mapEntry : this.movieList.entrySet()) {
-            Movie v = mapEntry.getValue();
+            Movie m = mapEntry.getValue();
 
-            lhmNew.put(i, v);
+            lhmNew.put(i, m);
 
             i++;
         }
@@ -47,10 +47,10 @@ public class MovieList implements Writable {
         String result = "";
 
         for (Map.Entry<Integer, Movie> mapEntry : this.movieList.entrySet()) {
-            Integer k = mapEntry.getKey();
-            Movie v = mapEntry.getValue();
+            int n = mapEntry.getKey();
+            Movie m = mapEntry.getValue();
 
-            result = result + k + ": " + v.getName() + "\n"; 
+            result = result + n + ": " + m.getName() + "\n"; 
         }
 
         return result;
@@ -63,10 +63,10 @@ public class MovieList implements Writable {
         int i = 1;
 
         for (Map.Entry<Integer, Movie> mapEntry : this.movieList.entrySet()) {
-            Movie v = mapEntry.getValue();
+            Movie m = mapEntry.getValue();
 
-            if (v.getStatus().equals(status)) {
-                result = result + i + ": " + v.getName() + "\n"; 
+            if (m.getStatus().equals(status)) {
+                result = result + i + ": " + m.getName() + "\n"; 
                 i++;
             }
         }
@@ -80,10 +80,10 @@ public class MovieList implements Writable {
         int i = 1;
 
         for (Map.Entry<Integer, Movie> mapEntry : this.movieList.entrySet()) {
-            Movie v = mapEntry.getValue();
+            Movie m = mapEntry.getValue();
 
-            if (v.getGenre().equals(genre)) {
-                result = result + i + ": " + v.getName() + "\n"; 
+            if (m.getGenre().equals(genre)) {
+                result = result + i + ": " + m.getName() + "\n"; 
                 i++;
             }
         }
@@ -118,10 +118,10 @@ public class MovieList implements Writable {
         }
 
         for (Map.Entry<Integer, Movie> mapElement : this.movieList.entrySet()) {
-            Integer k = mapElement.getKey();
-            Movie v = mapElement.getValue();
+            Integer n = mapElement.getKey();
+            Movie m = mapElement.getValue();
 
-            if (!v.equals(comparedMovieList.searchName(k))) {
+            if (!m.equals(comparedMovieList.searchName(n))) {
                 return false;
             }
         }

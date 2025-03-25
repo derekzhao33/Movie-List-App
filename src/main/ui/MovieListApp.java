@@ -7,8 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
-import Exceptions.NoRatingException;
-
 // Represents a movie list application
 public class MovieListApp {
     private static final String JSON_STORE = "./data/movieList.json";
