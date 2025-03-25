@@ -30,6 +30,7 @@ public class MovieFrame extends JFrame implements ActionListener {
         this.jsonWriter = new JsonWriter(JSON_STORE);
         this.jsonReader = new JsonReader(JSON_STORE);
         this.movieList = new MovieList();
+        this.cardPanel = new CardPanel(this.movieList);
         this.menuHandler = new MenuHandler(this);
 
         initializeFrame();
