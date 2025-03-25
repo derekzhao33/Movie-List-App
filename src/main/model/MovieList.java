@@ -91,7 +91,7 @@ public class MovieList implements Writable {
         return result;
     }
     
-    // EFFECTS: gets the movie with the given name, if none is found, then null
+    // EFFECTS: gets the movie with the given number, if none is found, then null
     public Movie searchName(int num) {
         return movieList.get(num);
     }
