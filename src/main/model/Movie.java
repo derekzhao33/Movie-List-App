@@ -1,6 +1,8 @@
 package model;
 
 import org.json.JSONObject;
+
+import Exceptions.NoRatingException;
 import persistence.Writable;
 
 import java.util.*;
@@ -13,7 +15,7 @@ public class Movie implements Writable {
     private String name;
     private String genre;
     private LinkedHashMap<Integer, String> notes;
-    private int rating;
+    private Integer rating;
     private int watchTime;
 
     // REQUIRES: length of name and genre > 0 AND status must be one of: "w", "c", or "t"
@@ -23,7 +25,7 @@ public class Movie implements Writable {
         this.name = name;
         this.genre = genre;
         this.notes = new LinkedHashMap<>();
-        this.rating = 0;
+        this.rating = null;
         this.watchTime = 0;
     }
 
@@ -87,7 +89,11 @@ public class Movie implements Writable {
         return result;
     }
 
-    public int getRating() {
+    public int getRating() throws NoRatingException {
+        if (this.rating == null) {
+            throw new NoRatingException();
+        }
+        
         return this.rating; // stub
     }
 
