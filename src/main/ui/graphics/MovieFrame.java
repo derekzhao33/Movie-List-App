@@ -38,7 +38,7 @@ public class MovieFrame extends JFrame implements ActionListener {
         setTitle("Movie List Application");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
-        setSize(250, 250); 
+        setSize(250, 240); 
         ImageIcon image = new ImageIcon(LOGO_PATH);
         image = new ImageIcon(image.getImage().getScaledInstance(500, 500, Image.SCALE_DEFAULT));
         setIconImage(image.getImage());
@@ -51,18 +51,16 @@ public class MovieFrame extends JFrame implements ActionListener {
     // EFFECTS: handles actions
     @Override
     public void actionPerformed(ActionEvent e) {
-        
         if (e.getSource() == menuHandler.getLoadMenuItem()) {
             loadMovies();
-            this.cardPanel.updatePanels(movieList);
         } else if (e.getSource() == menuHandler.getSaveMenuItem()) {
             saveMovies();
         } else if (e.getSource() == menuHandler.getAddMenuItem()) {
-            cardPanel.switchPanels("add", movieList);
+            cardPanel.switchPanels("add", this.movieList);
         } else if (e.getSource() == menuHandler.getRemoveMenuItem()) {
-            cardPanel.switchPanels("remove", movieList);
+            cardPanel.switchPanels("remove", this.movieList);
         } else if (e.getSource() == menuHandler.getDisplayMenuItem()) {
-            cardPanel.switchPanels("display", movieList);
+            cardPanel.switchPanels("display", this.movieList);
         }
     }
 
@@ -73,6 +71,7 @@ public class MovieFrame extends JFrame implements ActionListener {
             movieList = jsonReader.read();
             JOptionPane.showMessageDialog(this, "Loaded movie list from: " + JSON_STORE, 
                                         "Load", JOptionPane.INFORMATION_MESSAGE);
+            this.cardPanel.updatePanels(this.movieList);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Unable to load movies", "Error", JOptionPane.ERROR_MESSAGE);
         }
