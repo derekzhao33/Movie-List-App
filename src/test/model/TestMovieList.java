@@ -180,4 +180,15 @@ public class TestMovieList {
         testList.addMovie(testMovieTwo);
         assertEquals(testMap, testList.getMovieList());
     }
+
+    @Test
+    public void testIsEmptyTrue() {
+        assertTrue(testList.isEmpty());
+    }
+
+    @Test
+    public void testIsEmptyFalse() {
+        testList.addMovie(testMovieOne);
+        assertFalse(testList.isEmpty());
+    }
 }
