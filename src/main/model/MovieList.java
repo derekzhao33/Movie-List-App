@@ -147,4 +147,9 @@ public class MovieList implements Writable {
     public int getSize() {
         return this.movieList.size();
     }
+
+    // EFFECTS: returns if the movie list is empty
+    public boolean isEmpty() {
+        return this.movieList.isEmpty();
+    }
 }
