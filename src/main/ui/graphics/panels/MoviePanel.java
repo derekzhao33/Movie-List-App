@@ -18,6 +18,21 @@ public abstract class MoviePanel extends JPanel implements ActionListener {
         this.actionButton = new JButton();
     }
 
+    // REQUIRES: status is one of: "Watched", "Currently Watching", "To-watch"
+    // MODIFIES: this
+    // EFFECTS: returns the shortened status    
+    public String getMovieStatusShortenedString(String status) {
+        if (status.equals("Watched")) {
+            return "w";
+        } else if (status.equals("Currently Watching")) {
+            return "c";
+        } else if (status.equals("To-watch")) {
+            return "t";
+        } 
+
+        return "";
+    }
+
     public JComboBox<String> getComboBox() {
         return this.comboBox;
     }

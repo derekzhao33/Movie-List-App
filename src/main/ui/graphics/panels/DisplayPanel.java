@@ -1,5 +1,6 @@
 package ui.graphics.panels;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import model.Movie;
@@ -29,11 +30,17 @@ public abstract class DisplayPanel extends MoviePanel {
     public int getMovieNumber() {
         int selectedNum = -1;
 
-        for (Map.Entry<Integer, Movie> entry : super.getMovieList().getMovieList().entrySet()) {
+        LinkedHashMap<Integer, Movie> movies = super.getMovieList().getMovieList();
+
+        for (Map.Entry<Integer, Movie> entry : movies.entrySet()) {
             int n = entry.getKey();
             Movie m = entry.getValue();
+            String movieName = m.getName();
 
-            if (m.getName().equals(super.getComboBox().getSelectedItem().toString())) {
+            Object comboBoxItem = super.getComboBox().getSelectedItem();
+            String itemName = comboBoxItem.toString();
+
+            if (movieName.equals(itemName)) {
                 selectedNum = n;
             }
         }

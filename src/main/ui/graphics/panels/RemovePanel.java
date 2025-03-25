@@ -3,6 +3,7 @@ package ui.graphics.panels;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.LinkedHashMap;
 
 import model.*;
 
@@ -42,13 +43,18 @@ public class RemovePanel extends DisplayPanel {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == super.getButton()) {
-            if (super.getMovieList().getMovieList().isEmpty()) {
+            LinkedHashMap<Integer, Movie> movies = super.getMovieList().getMovieList();
+
+            if (movies.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Empty movie list, cannot remove movie", 
                                             "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 int selectedNum = getMovieNumber();
+                Object comboBoxItem = super.getComboBox().getSelectedItem();
+                String movieName = comboBoxItem.toString();
+
                 super.getMovieList().removeMovie(selectedNum);
-                JOptionPane.showMessageDialog(this, super.getComboBox().getSelectedItem().toString() + " was removed", 
+                JOptionPane.showMessageDialog(this, movieName + " was removed", 
                                             "Remove", JOptionPane.INFORMATION_MESSAGE);
                 updateComboBox(super.getMovieList());
             }

@@ -45,9 +45,12 @@ public class MovieFrame extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setSize(250, 240); 
-        ImageIcon image = new ImageIcon(LOGO_PATH);
-        image = new ImageIcon(image.getImage().getScaledInstance(500, 500, Image.SCALE_DEFAULT));
-        setIconImage(image.getImage());
+
+        ImageIcon imageIcon = new ImageIcon(LOGO_PATH);
+        Image image = imageIcon.getImage();
+        Image scaledImage = image.getScaledInstance(500, 500, Image.SCALE_DEFAULT);
+        setIconImage(scaledImage);
+        
         setLayout(new BorderLayout());
         setJMenuBar(menuHandler.getMenuBar());
         add(cardPanel);
