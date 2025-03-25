@@ -71,8 +71,8 @@ public class AddPanel extends JPanel implements ActionListener {
     // MODIFIES: this
     // EFFECTS: updates the removePanel when movies are added
     public void updatePanels(Movie movie) {
-        this.removePanel.getMovieList().addMovie(movie);
-        this.removePanel.getComboBox().addItem(movie.getName());
+        this.movieList.addMovie(movie);
+        this.removePanel.updateComboBox();
     }
 
     // MODIFIES: this
@@ -80,12 +80,15 @@ public class AddPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.addMovieButton) {
-            Movie newMovie = new Movie(this.comboBox.getSelectedItem().toString(), this.nameField.getText(), this.genreField.getText());
-            this.movieList.addMovie(newMovie);
-            updatePanels(newMovie);
-            JOptionPane.showMessageDialog(this, "Movie added", "Add", JOptionPane.INFORMATION_MESSAGE);
-            this.nameField.setText("");
-            this.genreField.setText("");
+            if (this.nameField.getText().equals("") || this.genreField.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Invalid name or genre entered", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Movie newMovie = new Movie(this.comboBox.getSelectedItem().toString(), this.nameField.getText(), this.genreField.getText());
+                updatePanels(newMovie);
+                JOptionPane.showMessageDialog(this, "Movie added", "Add", JOptionPane.INFORMATION_MESSAGE);
+                this.nameField.setText("");
+                this.genreField.setText("");
+            }
         }
     }
 }

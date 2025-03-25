@@ -10,7 +10,6 @@ import persistence.*;
 import ui.graphics.panels.CardPanel;
 
 // Represents a frame for the movie list application
-// TODO: combo boxes and menus
 public class MovieFrame extends JFrame implements ActionListener {
     private static final String JSON_STORE = "./data/movieList.json";
     private static final String LOGO_PATH = "data/logo.png";
