@@ -71,7 +71,7 @@ public class JsonReader {
         for (String noteKey : notesObj.keySet()) {
             notes.put(noteKey, notesObj.getString(noteKey));
         }
-
+        
         int rating = jsonObject.getInt("rating");
         int watchTime = jsonObject.getInt("watchTime");
 

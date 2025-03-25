@@ -102,24 +102,10 @@ public class TestMovie {
 
     @Test
     public void testSetRating() {
-        try {
-            testMovieCurrent.setRating(1);
-            assertEquals(1, testMovieCurrent.getRating());
-            testMovieCurrent.setRating(5);
-            assertEquals(5, testMovieCurrent.getRating());
-        } catch (Exception e) {
-            fail();
-        }
-    }
-
-    @Test
-    public void testGetRatingNoRating() {
-        try {
-            testMovieCurrent.getRating();
-            fail();
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
+        testMovieCurrent.setRating(1);
+        assertEquals(1, testMovieCurrent.getRating());
+        testMovieCurrent.setRating(5);
+        assertEquals(5, testMovieCurrent.getRating());
     }
 
     @Test
