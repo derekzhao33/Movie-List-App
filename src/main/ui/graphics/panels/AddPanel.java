@@ -9,21 +9,23 @@ import model.*;
 
 // Represents a panel for adding movies
 public class AddPanel extends JPanel implements ActionListener {
-    private JComboBox comboBox;
+    private JComboBox<String> comboBox;
     private JTextField nameField;
     private JTextField genreField;
     private JButton addMovieButton;
     private MovieList movieList;
+    private RemovePanel removePanel;
 
     // EFFECTS: creates a new AddPanel
-    public AddPanel(MovieList movieList) {
+    public AddPanel(MovieList movieList, RemovePanel removePanel) {
         String[] options = {"Watched", "Currently Watching", "To-watch"};
 
-        this.comboBox = new JComboBox(options);
+        this.comboBox = new JComboBox<>(options);
         this.nameField = new JTextField();
         this.genreField = new JTextField();
         this.addMovieButton = new JButton("Add Movie");
         this.movieList = movieList;
+        this.removePanel = removePanel;
         setupAddPanel();
     }
 
@@ -43,7 +45,7 @@ public class AddPanel extends JPanel implements ActionListener {
 
         gbc.gridx = 1;
         gbc.gridy = 0;
-        add(comboBox, gbc);
+        add(this.comboBox, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -51,7 +53,7 @@ public class AddPanel extends JPanel implements ActionListener {
 
         gbc.gridx = 1;
         gbc.gridy = 1;
-        add(nameField, gbc);
+        add(this.nameField, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -59,21 +61,31 @@ public class AddPanel extends JPanel implements ActionListener {
 
         gbc.gridx = 1;
         gbc.gridy = 2;
-        add(genreField, gbc);
+        add(this.genreField, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 3;
-        add(addMovieButton, gbc);
+        add(this.addMovieButton, gbc);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: updates the removePanel when movies are added
+    public void updatePanels(Movie movie) {
+        this.removePanel.getMovieList().addMovie(movie);
+        this.removePanel.getComboBox().addItem(movie.getName());
     }
 
     // MODIFIES: this
     // EFFECTS: handles actions
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == addMovieButton) {
-            Movie newMovie = new Movie(comboBox.getSelectedItem().toString(), nameField.getText(), genreField.getText());
+        if (e.getSource() == this.addMovieButton) {
+            Movie newMovie = new Movie(this.comboBox.getSelectedItem().toString(), this.nameField.getText(), this.genreField.getText());
             this.movieList.addMovie(newMovie);
+            updatePanels(newMovie);
             JOptionPane.showMessageDialog(this, "Movie added", "Add", JOptionPane.INFORMATION_MESSAGE);
+            this.nameField.setText("");
+            this.genreField.setText("");
         }
     }
 }
