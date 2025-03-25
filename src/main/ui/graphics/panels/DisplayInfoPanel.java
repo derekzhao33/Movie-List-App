@@ -28,9 +28,14 @@ public class DisplayInfoPanel extends DisplayPanel {
     // MODIFIES: this
     // EFFECTS: sets up the panel
     @SuppressWarnings("methodlength")
+    @Override
     public void setupPanel() {
+        setupPanel("Display Info", "Movies:"); 
+    }
+
+    public void setupPanel(String buttonName, String labelName) {
         super.getButton().addActionListener(this);
-        super.getButton().setText("Display info");
+        super.getButton().setText(buttonName);
 
         this.scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         this.scrollPane.setViewportView(infoArea);
@@ -47,7 +52,7 @@ public class DisplayInfoPanel extends DisplayPanel {
 
         gbc.gridx = 0;
         gbc.gridy = 0;
-        add(new JLabel("Movies:"), gbc);
+        add(new JLabel(labelName), gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 0;
@@ -83,5 +88,9 @@ public class DisplayInfoPanel extends DisplayPanel {
                 updateComboBox(super.getMovieList());
             }
         } 
+    }
+
+    public JTextArea getInfoArea() {
+        return this.infoArea;
     }
 }

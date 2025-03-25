@@ -17,6 +17,6 @@ public class StartPanel extends JPanel {
         this.logoLabel.setIcon(image);
         this.logoLabel.setHorizontalTextPosition(JLabel.CENTER);
         this.logoLabel.setVerticalTextPosition(JLabel.BOTTOM);
-        add(logoLabel);
+        add(this.logoLabel);
     }
 }

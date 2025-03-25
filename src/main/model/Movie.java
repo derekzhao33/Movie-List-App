@@ -88,11 +88,11 @@ public class Movie implements Writable {
     }
 
     public int getRating() {
-        return this.rating; // stub
+        return this.rating; 
     }
 
     public int getWatchTime() {
-        return this.watchTime; // stub
+        return this.watchTime;
     }
 
     // REQUIRES: status must be one of: "w", "c", or "t"

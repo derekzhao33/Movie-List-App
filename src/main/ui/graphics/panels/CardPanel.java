@@ -13,6 +13,7 @@ public class CardPanel extends JPanel {
     private AddPanel addPanel;
     private RemovePanel removePanel;
     private DisplayInfoPanel displayInfoPanel;
+    private FilterStatusPanel filterStatusPanel;
 
     // EFFECTS: creates a new CardPanel
     public CardPanel(MovieList movieList) {
@@ -20,8 +21,9 @@ public class CardPanel extends JPanel {
         this.mainPanel = new JPanel(cardLayout);
         this.startPanel = new StartPanel();
         this.removePanel = new RemovePanel(movieList);
-        this.displayInfoPanel = new DisplayInfoPanel(movieList); 
-        this.addPanel = new AddPanel(movieList, this.removePanel, displayInfoPanel);
+        this.displayInfoPanel = new DisplayInfoPanel(movieList);
+        this.filterStatusPanel = new FilterStatusPanel(movieList);
+        this.addPanel = new AddPanel(movieList, this.removePanel, this.displayInfoPanel);
 
         addPanels();
         cardLayout.show(mainPanel, "start");
@@ -31,25 +33,18 @@ public class CardPanel extends JPanel {
     // MODIFIES: this
     // EFFECTS: adds panels to the card layout
     public void addPanels() {
-        mainPanel.add(startPanel, "start");
-        mainPanel.add(addPanel, "add");
-        mainPanel.add(removePanel, "remove");
-        mainPanel.add(displayInfoPanel, "display");
+        this.mainPanel.add(this.startPanel, "start");
+        this.mainPanel.add(this.addPanel, "add");
+        this.mainPanel.add(this.removePanel, "remove");
+        this.mainPanel.add(this.displayInfoPanel, "display");
+        this.mainPanel.add(this.filterStatusPanel, "filter status");
     }
 
     // MODIFIES: this
     // EFFECTS: switches panels
     public void switchPanels(String panel, MovieList movieList) {
-        if (panel.equals("add")) {
-            cardLayout.show(mainPanel, "add");
-        } else if (panel.equals("remove")) {
-            cardLayout.show(mainPanel, "remove");
-        } else if (panel.equals("display")) {
-            this.displayInfoPanel.resetInfoArea();
-            cardLayout.show(mainPanel, "display");
-        } else {
-            cardLayout.show(mainPanel, "start");
-        }
+        this.displayInfoPanel.resetInfoArea();
+        this.cardLayout.show(mainPanel, panel);
     }
 
     public void updatePanels(MovieList movieList) {
@@ -58,5 +53,6 @@ public class CardPanel extends JPanel {
         this.displayInfoPanel.setMovieList(movieList);
         this.displayInfoPanel.updateComboBox(movieList);
         this.addPanel.setMovieList(movieList);
+        this.filterStatusPanel.setMovieList(movieList);
     }
 }

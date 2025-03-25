@@ -73,6 +73,21 @@ public class AddPanel extends MoviePanel {
         this.removePanel.updateComboBox(super.getMovieList());
         this.displayInfoPanel.updateComboBox(super.getMovieList());
     }
+    
+    // REQUIRES: status is one of: "Watched", "Currently Watching", "To-watch"
+    // MODIFIES: this
+    // EFFECTS: returns the shortened status    
+    public String getMovieStatusShortenedString(String status) {
+        if (status.equals("Watched")) {
+            return "w";
+        } else if (status.equals("Currently Watching")) {
+            return "c";
+        } else if (status.equals("To-watch")) {
+            return "t";
+        } 
+
+        return "";
+    }
 
     // MODIFIES: this
     // EFFECTS: handles actions
@@ -83,10 +98,13 @@ public class AddPanel extends MoviePanel {
                 JOptionPane.showMessageDialog(this, "Invalid name or genre entered", 
                                             "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                Movie newMovie = new Movie(super.getComboBox().getSelectedItem().toString(), 
-                                                this.nameField.getText(), this.genreField.getText());
+                String status = getMovieStatusShortenedString(super.getComboBox().getSelectedItem().toString());
+                String name = this.nameField.getText();
+                String genre = this.genreField.getText();
+                Movie newMovie = new Movie(status, name, genre);
+
                 updatePanels(newMovie);
-                JOptionPane.showMessageDialog(this, "Movie added", "Add", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, name + " was added", "Add", JOptionPane.INFORMATION_MESSAGE);
                 this.nameField.setText("");
                 this.genreField.setText("");
             }

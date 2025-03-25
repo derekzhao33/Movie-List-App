@@ -56,11 +56,13 @@ public class MovieFrame extends JFrame implements ActionListener {
         } else if (e.getSource() == menuHandler.getSaveMenuItem()) {
             saveMovies();
         } else if (e.getSource() == menuHandler.getAddMenuItem()) {
-            cardPanel.switchPanels("add", this.movieList);
+            this.cardPanel.switchPanels("add", this.movieList);
         } else if (e.getSource() == menuHandler.getRemoveMenuItem()) {
-            cardPanel.switchPanels("remove", this.movieList);
+            this.cardPanel.switchPanels("remove", this.movieList);
         } else if (e.getSource() == menuHandler.getDisplayMenuItem()) {
-            cardPanel.switchPanels("display", this.movieList);
+            this.cardPanel.switchPanels("display", this.movieList);
+        } else if (e.getSource() == menuHandler.getFilterStatusMenuItem()) {
+            this.cardPanel.switchPanels("filter status", this.movieList);
         }
     }
 
@@ -68,7 +70,7 @@ public class MovieFrame extends JFrame implements ActionListener {
     // EFFECTS: loads movies
     public void loadMovies() {
         try {
-            movieList = jsonReader.read();
+            this.movieList = jsonReader.read();
             JOptionPane.showMessageDialog(this, "Loaded movie list from: " + JSON_STORE, 
                                         "Load", JOptionPane.INFORMATION_MESSAGE);
             this.cardPanel.updatePanels(this.movieList);
@@ -81,9 +83,9 @@ public class MovieFrame extends JFrame implements ActionListener {
     // EFFECTS: saves movies
     public void saveMovies() {
         try {
-            jsonWriter.open();
-            jsonWriter.write(movieList);
-            jsonWriter.close();
+            this.jsonWriter.open();
+            this.jsonWriter.write(movieList);
+            this.jsonWriter.close();
             JOptionPane.showMessageDialog(this, "Saved movie list to: " + JSON_STORE, 
                                         "Save", JOptionPane.INFORMATION_MESSAGE);
         } catch (FileNotFoundException e) {

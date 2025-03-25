@@ -25,6 +25,7 @@ public abstract class DisplayPanel extends MoviePanel {
         }
     }
 
+    // EFFECTS: returns the number of the selected movie
     public int getMovieNumber() {
         int selectedNum = -1;
 
