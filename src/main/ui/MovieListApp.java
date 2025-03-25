@@ -510,13 +510,7 @@ public class MovieListApp {
 
     // EFFECTS: prints all info for given movie
     public void printMovieInfoMovie(Movie movie) {
-        System.out.println("Status: " + movie.getStatus());
-        System.out.println("Name: " + movie.getName());
-        System.out.println("Genre: " + movie.getGenre());
-        System.out.println("Rating: " + movie.getRating() + "/5");
-        System.out.println("Watch time: " + movie.getWatchTime());
-        System.out.println("Notes:");
-        System.out.println(movie.getNotes());
+        System.out.println(movie.toString());
     }
 
     // EFFECTS: prints the status choices
