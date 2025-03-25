@@ -16,6 +16,7 @@ public class MenuHandler {
     private JMenuItem remove;
     private JMenuItem display;
     private JMenuItem filterStatus;
+    private JMenuItem filterGenre;
 
     // EFFECTS: creates a new MenuHandler
     public MenuHandler(ActionListener listener) {
@@ -23,13 +24,15 @@ public class MenuHandler {
         this.movieMenu = new JMenu("Movie");
         this.fileMenu = new JMenu("File");
         this.changeMenu = new JMenu("Change");
+        this.filterMenu = new JMenu("Filter");
 
         this.load = new JMenuItem("Load");
         this.save = new JMenuItem("Save");
         this.add = new JMenuItem("Add");
         this.remove = new JMenuItem("Remove");
         this.display = new JMenuItem("Display");
-        this.filterStatus = new JMenuItem("Filter Status");
+        this.filterStatus = new JMenuItem("Status");
+        this.filterGenre = new JMenuItem("Genre");
 
         initializeMenus(listener);
     }
@@ -43,13 +46,18 @@ public class MenuHandler {
         this.remove.addActionListener(listener);
         this.display.addActionListener(listener);
         this.filterStatus.addActionListener(listener);
+        this.filterGenre.addActionListener(listener);
 
         this.fileMenu.add(this.load);
         this.fileMenu.add(this.save);
+
+        this.filterMenu.add(this.filterStatus);
+        this.filterMenu.add(this.filterGenre);
+        
         this.movieMenu.add(this.add);
         this.movieMenu.add(this.remove);
         this.movieMenu.add(this.display);
-        this.movieMenu.add(this.filterStatus);
+        this.movieMenu.add(this.filterMenu);
 
         this.menuBar.add(this.movieMenu);
         this.menuBar.add(this.fileMenu);
@@ -82,5 +90,9 @@ public class MenuHandler {
 
     public JMenuItem getFilterStatusMenuItem() {
         return this.filterStatus;
+    }
+
+    public JMenuItem getFilterGenreMenuItem() {
+        return this.filterGenre;
     }
 }

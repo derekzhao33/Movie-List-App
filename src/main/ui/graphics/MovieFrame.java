@@ -71,6 +71,8 @@ public class MovieFrame extends JFrame implements ActionListener {
             this.cardPanel.switchPanels("display", this.movieList);
         } else if (e.getSource() == menuHandler.getFilterStatusMenuItem()) {
             this.cardPanel.switchPanels("filter status", this.movieList);
+        } else if (e.getSource() == menuHandler.getFilterGenreMenuItem()) {
+            this.cardPanel.switchPanels("filter genre", this.movieList);
         }
     }
 
