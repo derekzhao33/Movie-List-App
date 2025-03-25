@@ -34,7 +34,7 @@ public class CardPanel extends JPanel {
         mainPanel.add(startPanel, "start");
         mainPanel.add(addPanel, "add");
         mainPanel.add(removePanel, "remove");
-        mainPanel.add(displayPanel, "display");
+        mainPanel.add(displayInfoPanel, "display");
     }
 
     // MODIFIES: this
