@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import model.*;
 
 // Represents a panel for adding movies
-// TODO: fix save and load
 public class AddPanel extends MoviePanel {
     private JTextField nameField;
     private JTextField genreField;
@@ -81,9 +80,11 @@ public class AddPanel extends MoviePanel {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == super.getButton()) {
             if (this.nameField.getText().equals("") || this.genreField.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Invalid name or genre entered", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Invalid name or genre entered", 
+                                            "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                Movie newMovie = new Movie(super.getComboBox().getSelectedItem().toString(), this.nameField.getText(), this.genreField.getText());
+                Movie newMovie = new Movie(super.getComboBox().getSelectedItem().toString(), 
+                                                this.nameField.getText(), this.genreField.getText());
                 updatePanels(newMovie);
                 JOptionPane.showMessageDialog(this, "Movie added", "Add", JOptionPane.INFORMATION_MESSAGE);
                 this.nameField.setText("");

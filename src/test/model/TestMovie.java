@@ -206,4 +206,9 @@ public class TestMovie {
         testMovieCurrent.addNote("other note");
         assertEquals("Status: Currently Watching\nName: testTwo\nGenre: genreTwo\nNotes: \n1: note\n2: other note\nRating: 2\nWatch Time: 3", testMovieCurrent.toString());
     }
+
+    @Test
+    public void testToStringT() {
+        assertEquals("Status: To-watch\nName: testThree\nGenre: genreThree\nNotes:\nRating: 0\nWatch Time: 0", testMovieToWatch.toString());
+    }
 }

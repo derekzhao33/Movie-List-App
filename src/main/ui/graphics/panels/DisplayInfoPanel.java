@@ -27,6 +27,7 @@ public class DisplayInfoPanel extends DisplayPanel {
 
     // MODIFIES: this
     // EFFECTS: sets up the panel
+    @SuppressWarnings("methodlength")
     public void setupPanel() {
         super.getButton().addActionListener(this);
         super.getButton().setText("Display info");
@@ -73,7 +74,8 @@ public class DisplayInfoPanel extends DisplayPanel {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == super.getButton()) {
             if (super.getMovieList().getMovieList().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Empty movie list, cannot display info", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Empty movie list, cannot display info", 
+                                            "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 int selectedNum = getMovieNumber();
                 Movie selectedMovie = super.getMovieList().searchName(selectedNum);

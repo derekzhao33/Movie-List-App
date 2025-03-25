@@ -163,11 +163,16 @@ public class Movie implements Writable {
     @Override
     public String toString() {
         if (this.status.equals("w")) {
-            return "Status: Watched\nName: " + this.name + "\nGenre: " + this.genre + "\nNotes: " + getNotes() + "\nRating: " + this.rating + "\nWatch Time: " + this.watchTime; 
+            return "Status: Watched\nName: " + this.name + "\nGenre: " + this.genre 
+                        + "\nNotes: " + getNotes() + "\nRating: " + this.rating + "\nWatch Time: " + this.watchTime; 
         } else if (this.status.equals("c")) {
-            return "Status: Currently Watching\nName: " + this.name + "\nGenre: " + this.genre + "\nNotes: " + getNotes() + "\nRating: " + this.rating + "\nWatch Time: " + this.watchTime; 
+            return "Status: Currently Watching\nName: " + this.name + "\nGenre: " 
+                        + this.genre + "\nNotes: " + getNotes() + "\nRating: " 
+                        + this.rating + "\nWatch Time: " + this.watchTime; 
         } else {
-            return "Status: To-watch\nName: " + this.name + "\nGenre: " + this.genre + "\nNotes:\r\n" + getNotes() + "Rating: " + this.rating + "\nWatch Time: " + this.watchTime; 
+            return "Status: To-watch\nName: " + this.name + "\nGenre: " 
+                        + this.genre + "\nNotes:\n" + getNotes() + "Rating: " 
+                        + this.rating + "\nWatch Time: " + this.watchTime; 
         }
     }
 }
