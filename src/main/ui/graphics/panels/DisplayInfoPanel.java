@@ -3,7 +3,6 @@ package ui.graphics.panels;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.LinkedHashMap;
 
 import model.*;
 
@@ -79,18 +78,16 @@ public class DisplayInfoPanel extends DisplayPanel {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == super.getButton()) {
-            LinkedHashMap<Integer, Movie> movies = super.getMovieList().getMovieList();
+            MovieList movies = super.getMovieList();
 
             if (movies.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Empty movie list, cannot display info", 
                                             "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 int selectedNum = getMovieNumber();
-                Movie selectedMovie = super.getMovieList().searchName(selectedNum);
+                Movie selectedMovie = movies.searchName(selectedNum);
                 String infoText = selectedMovie.toString();
                 this.infoArea.setText(infoText);
-                
-                updateComboBox(super.getMovieList());
             }
         } 
     }

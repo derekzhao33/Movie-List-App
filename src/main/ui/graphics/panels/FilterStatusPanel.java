@@ -2,7 +2,6 @@ package ui.graphics.panels;
 
 import javax.swing.*;
 import java.awt.event.*;
-import java.util.LinkedHashMap;
 
 import model.*;
 
@@ -10,7 +9,7 @@ import model.*;
 // TODO: add one for genre
 public class FilterStatusPanel extends DisplayInfoPanel {
 
-    // EFFECTS: creates a new FilterPanel
+    // EFFECTS: creates a new FilterStatusPanel
     public FilterStatusPanel(MovieList movieList) {
         super(movieList);
     }
@@ -22,14 +21,14 @@ public class FilterStatusPanel extends DisplayInfoPanel {
         super.getComboBox().addItem("Watched");
         super.getComboBox().addItem("Currently Watching");
         super.getComboBox().addItem("To-watch");
-        setupPanel("Filter Movies", "Filter by:");
+        setupPanel("Filter Movies", "Status:");
     }
 
     //EFFECTS: handles the actions
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == super.getButton()) {
-            LinkedHashMap<Integer, Movie> movies = super.getMovieList().getMovieList();
+            MovieList movies = super.getMovieList();
 
             if (movies.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Empty movie list, cannot display info", 
@@ -39,8 +38,7 @@ public class FilterStatusPanel extends DisplayInfoPanel {
                 String longStatus = comboBoxItem.toString();
 
                 String status = super.getMovieStatusShortenedString(longStatus);
-                String filterText = super.getMovieList().getAllNamesByStatus(status);
-                System.out.println(filterText);
+                String filterText = movies.getAllNamesByStatus(status);
                 super.getInfoArea().setText(filterText);
             }
         }
