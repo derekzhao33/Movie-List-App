@@ -45,6 +45,8 @@ public class RemovePanel extends DisplayPanel {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.removeMovieButton) {
+            System.out.println(super.getMovieList().getAllNames());
+
             if (super.getMovieList().getMovieList().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Empty movie list, cannot remove movie", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
@@ -61,7 +63,7 @@ public class RemovePanel extends DisplayPanel {
 
                 super.getMovieList().removeMovie(selectedNum);
                 JOptionPane.showMessageDialog(this, super.getComboBox().getSelectedItem().toString() + " was removed", "Remove", JOptionPane.INFORMATION_MESSAGE);
-                updateComboBox();
+                updateComboBox(super.getMovieList());
             }
         }
     }

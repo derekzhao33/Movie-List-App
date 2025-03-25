@@ -12,7 +12,7 @@ public class CardPanel extends JPanel {
     private StartPanel startPanel;
     private AddPanel addPanel;
     private RemovePanel removePanel;
-    private JPanel displayPanel;
+    private JPanel displayInfoPanel;
 
     // EFFECTS: creates a new CardPanel
     public CardPanel(MovieList movieList) {
@@ -21,7 +21,7 @@ public class CardPanel extends JPanel {
         this.startPanel = new StartPanel();
         this.removePanel = new RemovePanel(movieList);
         this.addPanel = new AddPanel(movieList, removePanel);
-        this.displayPanel = new JPanel(); 
+        this.displayInfoPanel = new JPanel(); 
 
         addPanels();
         cardLayout.show(mainPanel, "start");
@@ -49,5 +49,9 @@ public class CardPanel extends JPanel {
         } else {
             cardLayout.show(mainPanel, "start");
         }
+    }
+
+    public void updatePanels(MovieList movieList) {
+        this.removePanel.updateComboBox(movieList);
     }
 }

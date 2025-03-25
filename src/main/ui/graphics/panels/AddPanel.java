@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import model.*;
 
 // Represents a panel for adding movies
+// TODO: fix save and load
 public class AddPanel extends MoviePanel {
     private JTextField nameField;
     private JTextField genreField;
@@ -69,7 +70,7 @@ public class AddPanel extends MoviePanel {
     // EFFECTS: updates the removePanel when movies are added
     public void updatePanels(Movie movie) {
         super.getMovieList().addMovie(movie);
-        this.removePanel.updateComboBox();
+        this.removePanel.updateComboBox(super.getMovieList());
     }
 
     // MODIFIES: this

@@ -13,10 +13,10 @@ public abstract class DisplayPanel extends MoviePanel {
 
     // MODIFIES: this
     // EFFECTS: updates the combobox to match the current movie list
-    public void updateComboBox() {
+    public void updateComboBox(MovieList movieList) {
         super.getComboBox().removeAllItems();
 
-        for (Map.Entry<Integer, Movie> entry : super.getMovieList().getMovieList().entrySet()) {
+        for (Map.Entry<Integer, Movie> entry : movieList.getMovieList().entrySet()) {
             String m = entry.getValue().getName();
 
             super.getComboBox().addItem(m);

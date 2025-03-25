@@ -54,6 +54,7 @@ public class MovieFrame extends JFrame implements ActionListener {
         
         if (e.getSource() == menuHandler.getLoadMenuItem()) {
             loadMovies();
+            this.cardPanel.updatePanels(movieList);
         } else if (e.getSource() == menuHandler.getSaveMenuItem()) {
             saveMovies();
         } else if (e.getSource() == menuHandler.getAddMenuItem()) {
