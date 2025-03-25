@@ -2,8 +2,6 @@ package ui.graphics.panels;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 // Represents a panel for the start screen
 public class StartPanel extends JPanel {

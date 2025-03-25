@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
-import java.util.*;
 
 import model.*;
 import persistence.*;
@@ -53,6 +52,7 @@ public class MovieFrame extends JFrame implements ActionListener {
     // EFFECTS: handles actions
     @Override
     public void actionPerformed(ActionEvent e) {
+        
         if (e.getSource() == menuHandler.getLoadMenuItem()) {
             loadMovies();
         } else if (e.getSource() == menuHandler.getSaveMenuItem()) {

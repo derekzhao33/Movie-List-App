@@ -14,7 +14,6 @@ public class TestJsonWriter {
     @Test
     public void testWriterInvalidFile() {
         try {
-            MovieList ml = new MovieList();
             JsonWriter writer = new JsonWriter("./data/my\0illegal:fileName.json");
             writer.open();
             fail("IOException expected");
@@ -61,8 +60,6 @@ public class TestJsonWriter {
             writer.open();
             writer.write(ml);
             writer.close();
-    
-            JsonReader reader = new JsonReader("./data/testWriterGeneralMovieList.json");
             
             LinkedHashMap<Integer, Movie> movies = ml.getMovieList();
             assertEquals(3, movies.size());

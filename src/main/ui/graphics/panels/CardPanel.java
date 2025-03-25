@@ -2,8 +2,6 @@ package ui.graphics.panels;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import model.*;
 
@@ -13,7 +11,7 @@ public class CardPanel extends JPanel {
     private JPanel mainPanel;
     private StartPanel startPanel;
     private AddPanel addPanel;
-    private JPanel removePanel;
+    private RemovePanel removePanel;
     private JPanel displayPanel;
 
     // EFFECTS: creates a new CardPanel
@@ -21,8 +19,8 @@ public class CardPanel extends JPanel {
         this.cardLayout = new CardLayout();
         this.mainPanel = new JPanel(cardLayout);
         this.startPanel = new StartPanel();
-        this.addPanel = new AddPanel(movieList);
-        this.removePanel = new JPanel();
+        this.removePanel = new RemovePanel(movieList);
+        this.addPanel = new AddPanel(movieList, removePanel);
         this.displayPanel = new JPanel(); 
 
         addPanels();

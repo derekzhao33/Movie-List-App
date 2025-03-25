@@ -15,7 +15,6 @@ public class TestJsonReader {
     @Test
     public void testWriterInvalidFile() {
         try {
-            MovieList ml = new MovieList();
             JsonWriter writer = new JsonWriter("./data/my\0illegal:fileName.json");
             writer.open();
             fail("IOException was expected");
