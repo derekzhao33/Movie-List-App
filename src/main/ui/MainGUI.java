@@ -1,4 +1,6 @@
-package ui.graphics;
+package ui;
+
+import ui.graphics.MovieFrame;
 
 // Runs the GUI for the movie list application
 public class MainGUI {
