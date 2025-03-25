@@ -81,18 +81,18 @@ public class Movie implements Writable {
 
             String v = mapElement.getValue();
 
-            result = result + k + ": " + v + "\n";
+            result = result + "\n" + k + ": " + v;
         }
 
         return result;
     }
 
     public int getRating() {
-        return this.rating; // stub
+        return this.rating; 
     }
 
     public int getWatchTime() {
-        return this.watchTime; // stub
+        return this.watchTime;
     }
 
     // REQUIRES: status must be one of: "w", "c", or "t"
@@ -158,5 +158,21 @@ public class Movie implements Writable {
         json.put("watchTime", this.watchTime);
     
         return json;
+    }
+
+    @Override
+    public String toString() {
+        if (this.status.equals("w")) {
+            return "Status: Watched\nName: " + this.name + "\nGenre: " + this.genre 
+                        + "\nNotes: " + getNotes() + "\nRating: " + this.rating + "\nWatch Time: " + this.watchTime; 
+        } else if (this.status.equals("c")) {
+            return "Status: Currently Watching\nName: " + this.name + "\nGenre: " 
+                        + this.genre + "\nNotes: " + getNotes() + "\nRating: " 
+                        + this.rating + "\nWatch Time: " + this.watchTime; 
+        } else {
+            return "Status: To-watch\nName: " + this.name + "\nGenre: " 
+                        + this.genre + "\nNotes:\n" + getNotes() + "Rating: " 
+                        + this.rating + "\nWatch Time: " + this.watchTime; 
+        }
     }
 }

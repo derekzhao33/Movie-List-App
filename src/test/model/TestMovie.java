@@ -37,11 +37,11 @@ public class TestMovie {
     @Test
     public void testAddNoteMultipleTimes() {
         testMovieCurrent.addNote("1");
-        assertEquals("1: 1\n", testMovieCurrent.getNotes());
+        assertEquals("\n1: 1", testMovieCurrent.getNotes());
         testMovieCurrent.addNote("2");
-        assertEquals("1: 1\n2: 2\n", testMovieCurrent.getNotes());
+        assertEquals("\n1: 1\n2: 2", testMovieCurrent.getNotes());
         testMovieCurrent.addNote("3");
-        assertEquals("1: 1\n2: 2\n3: 3\n", testMovieCurrent.getNotes());
+        assertEquals("\n1: 1\n2: 2\n3: 3", testMovieCurrent.getNotes());
     }
 
     @Test
@@ -50,9 +50,9 @@ public class TestMovie {
         testMovieCurrent.addNote("2");
         testMovieCurrent.addNote("3");
         testMovieCurrent.removeNote(1);
-        assertEquals("1: 2\n2: 3\n", testMovieCurrent.getNotes());
+        assertEquals("\n1: 2\n2: 3", testMovieCurrent.getNotes());
         testMovieCurrent.removeNote(1);
-        assertEquals("1: 3\n", testMovieCurrent.getNotes());
+        assertEquals("\n1: 3", testMovieCurrent.getNotes());
         testMovieCurrent.removeNote(1);
         assertEquals("", testMovieCurrent.getNotes());
     }
@@ -189,5 +189,26 @@ public class TestMovie {
         testJson.put("rating", 1);
         testJson.put("watchTime", 5);
         assertEquals(testJson.toString(), testMovieCurrent.toJson().toString());
+    }
+
+    @Test
+    public void testToStringW() {
+        testMovieWatched.setRating(1);
+        testMovieWatched.addWatchTime(5);
+        assertEquals("Status: Watched\nName: testOne\nGenre: genreOne\nNotes: \nRating: 1\nWatch Time: 5", testMovieWatched.toString());
+    }
+
+    @Test
+    public void testToStringC() {
+        testMovieCurrent.setRating(2);
+        testMovieCurrent.addWatchTime(3);
+        testMovieCurrent.addNote("note");
+        testMovieCurrent.addNote("other note");
+        assertEquals("Status: Currently Watching\nName: testTwo\nGenre: genreTwo\nNotes: \n1: note\n2: other note\nRating: 2\nWatch Time: 3", testMovieCurrent.toString());
+    }
+
+    @Test
+    public void testToStringT() {
+        assertEquals("Status: To-watch\nName: testThree\nGenre: genreThree\nNotes:\nRating: 0\nWatch Time: 0", testMovieToWatch.toString());
     }
 }

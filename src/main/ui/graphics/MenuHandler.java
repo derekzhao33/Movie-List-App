@@ -14,19 +14,21 @@ public class MenuHandler {
     private JMenuItem add;
     private JMenuItem remove;
     private JMenuItem display;
+    private JMenuItem filterStatus;
 
     // EFFECTS: creates a new MenuHandler
     public MenuHandler(ActionListener listener) {
-        menuBar = new JMenuBar();
-        movieMenu = new JMenu("Movie");
+        this.menuBar = new JMenuBar();
+        this.movieMenu = new JMenu("Movie");
         fileMenu = new JMenu("File");
         changeMenu = new JMenu("Change");
 
-        load = new JMenuItem("Load");
-        save = new JMenuItem("Save");
-        add = new JMenuItem("Add");
-        remove = new JMenuItem("Remove");
-        display = new JMenuItem("Display");
+        this.load = new JMenuItem("Load");
+        this.save = new JMenuItem("Save");
+        this.add = new JMenuItem("Add");
+        this.remove = new JMenuItem("Remove");
+        this.display = new JMenuItem("Display");
+        this.filterStatus = new JMenuItem("Filter Status");
 
         initializeMenus(listener);
     }
@@ -34,44 +36,50 @@ public class MenuHandler {
     // MODIFIES: this
     // EFFECTS: initializes the menus
     private void initializeMenus(ActionListener listener) {
-        load.addActionListener(listener);
-        save.addActionListener(listener);
-        add.addActionListener(listener);
-        remove.addActionListener(listener);
-        display.addActionListener(listener);
+        this.load.addActionListener(listener);
+        this.save.addActionListener(listener);
+        this.add.addActionListener(listener);
+        this.remove.addActionListener(listener);
+        this.display.addActionListener(listener);
+        this.filterStatus.addActionListener(listener);
 
-        fileMenu.add(load);
-        fileMenu.add(save);
-        movieMenu.add(add);
-        movieMenu.add(remove);
-        movieMenu.add(display);
+        this.fileMenu.add(this.load);
+        this.fileMenu.add(this.save);
+        this.movieMenu.add(this.add);
+        this.movieMenu.add(this.remove);
+        this.movieMenu.add(this.display);
+        this.movieMenu.add(this.filterStatus);
 
-        menuBar.add(movieMenu);
-        menuBar.add(fileMenu);
-        menuBar.add(changeMenu);
+        this.menuBar.add(this.movieMenu);
+        this.menuBar.add(this.fileMenu);
+        this.menuBar.add(this.changeMenu);
     }
 
     public JMenuBar getMenuBar() {
-        return menuBar;
+        return this.menuBar;
     }
 
     public JMenuItem getLoadMenuItem() {
-        return load;
+        return this.load;
     }
 
     public JMenuItem getSaveMenuItem() {
-        return save;
+        return this.save;
     }
 
     public JMenuItem getAddMenuItem() {
-        return add;
+        return this.add;
     }
 
     public JMenuItem getRemoveMenuItem() {
-        return remove;
+        return this.remove;
     }
 
     public JMenuItem getDisplayMenuItem() {
-        return display;
+        return this.display;
+    }
+
+    public JMenuItem getFilterStatusMenuItem() {
+        return this.filterStatus;
     }
 }
