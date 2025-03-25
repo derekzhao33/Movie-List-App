@@ -11,27 +11,28 @@ import model.*;
 public class AddPanel extends MoviePanel {
     private JTextField nameField;
     private JTextField genreField;
-    private JButton addMovieButton;
     private RemovePanel removePanel;
+    private DisplayInfoPanel displayInfoPanel;
 
     // EFFECTS: creates a new AddPanel
-    public AddPanel(MovieList movieList, RemovePanel removePanel) {
+    public AddPanel(MovieList movieList, RemovePanel removePanel, DisplayInfoPanel displayInfoPanel) {
         super(movieList);   
         super.getComboBox().addItem("Watched");
         super.getComboBox().addItem("Currently Watching");
         super.getComboBox().addItem("To-watch");
         this.nameField = new JTextField();
         this.genreField = new JTextField();
-        this.addMovieButton = new JButton("Add Movie");
         this.removePanel = removePanel;
+        this.displayInfoPanel = displayInfoPanel;
         setupPanel();
     }
 
     @SuppressWarnings("methodlength")
     // MODIFIES: this
-    // EFFECTS: sets up the add panel
+    // EFFECTS: sets up the panel
     public void setupPanel() {
-        this.addMovieButton.addActionListener(this);
+        super.getButton().addActionListener(this);
+        super.getButton().setText("Add movie");
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
@@ -63,7 +64,7 @@ public class AddPanel extends MoviePanel {
 
         gbc.gridx = 1;
         gbc.gridy = 3;
-        add(this.addMovieButton, gbc);
+        add(super.getButton(), gbc);
     }
 
     // MODIFIES: this
@@ -71,13 +72,14 @@ public class AddPanel extends MoviePanel {
     public void updatePanels(Movie movie) {
         super.getMovieList().addMovie(movie);
         this.removePanel.updateComboBox(super.getMovieList());
+        this.displayInfoPanel.updateComboBox(super.getMovieList());
     }
 
     // MODIFIES: this
     // EFFECTS: handles actions
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.addMovieButton) {
+        if (e.getSource() == super.getButton()) {
             if (this.nameField.getText().equals("") || this.genreField.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Invalid name or genre entered", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
