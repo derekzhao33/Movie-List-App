@@ -11,12 +11,10 @@ import model.Movie;
 import model.MovieList;
 
 public class FilterGenrePanel extends DisplayInfoPanel {
-    private LinkedHashSet<String> genres;
 
     // EFFECTS: creates a new FilterGenrePanel
     public FilterGenrePanel(MovieList movieList) {
         super(movieList);
-        this.genres = new LinkedHashSet<>();
     }
 
     // MODIFIES: this
@@ -28,24 +26,29 @@ public class FilterGenrePanel extends DisplayInfoPanel {
 
     // MODIFIES: this
     // EFFECTS: updates the genres from given movie list
-    public void updateGenres(MovieList movieList) {
+    public LinkedHashSet<String> updateGenres(MovieList movieList) {
         LinkedHashMap<Integer, Movie> movies = movieList.getMovieList();
+        LinkedHashSet<String> genres = new LinkedHashSet<>();
 
         for (Map.Entry<Integer, Movie> entry : movies.entrySet()) {
             Movie m = entry.getValue();
             String genre = m.getGenre();
 
-            this.genres.add(genre);
+            genres.add(genre);
         }
+
+        return genres;
     }
 
     // MODIFIES: this
     // EFFECTS: updates the combo box with correct genres
     @Override
     public void updateComboBox(MovieList movieList) {
-        updateGenres(movieList);
+        LinkedHashSet<String> updatedGenres = updateGenres(movieList);
 
-        for (String g : genres) {
+        super.getComboBox().removeAllItems();
+
+        for (String g : updatedGenres) {
             super.getComboBox().addItem(g);
         }
     }

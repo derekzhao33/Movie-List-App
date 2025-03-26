@@ -12,11 +12,12 @@ public class AddPanel extends MoviePanel {
     private JTextField genreField;
     private RemovePanel removePanel;
     private DisplayInfoPanel displayInfoPanel;
+    private FilterStatusPanel filterStatusPanel;
     private FilterGenrePanel filterGenrePanel;
 
     // EFFECTS: creates a new AddPanel
     public AddPanel(MovieList movieList, RemovePanel removePanel, DisplayInfoPanel displayInfoPanel, 
-                        FilterGenrePanel filterGenrePanel) {
+                        FilterStatusPanel filterStatusPanel, FilterGenrePanel filterGenrePanel) {
         super(movieList);   
         super.getComboBox().addItem("Watched");
         super.getComboBox().addItem("Currently Watching");
@@ -25,6 +26,7 @@ public class AddPanel extends MoviePanel {
         this.genreField = new JTextField();
         this.removePanel = removePanel;
         this.displayInfoPanel = displayInfoPanel;
+        this.filterStatusPanel = filterStatusPanel;
         this.filterGenrePanel = filterGenrePanel;
         setupPanel();
     }
@@ -70,11 +72,12 @@ public class AddPanel extends MoviePanel {
     }
 
     // MODIFIES: this
-    // EFFECTS: updates the removePanel when movies are added
+    // EFFECTS: updates panels when movies are added
     public void updatePanels(Movie movie) {
         super.getMovieList().addMovie(movie);
         this.removePanel.updateComboBox(super.getMovieList());
         this.displayInfoPanel.updateComboBox(super.getMovieList());
+        this.filterStatusPanel.updateComboBox(super.getMovieList());
         this.filterGenrePanel.updateComboBox(super.getMovieList());
     }
 

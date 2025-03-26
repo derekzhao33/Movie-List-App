@@ -27,7 +27,6 @@ public class DisplayInfoPanel extends DisplayPanel {
 
     // MODIFIES: this
     // EFFECTS: sets up the panel
-    @SuppressWarnings("methodlength")
     @Override
     public void setupPanel() {
         setupPanel("Display Info", "Movies:"); 

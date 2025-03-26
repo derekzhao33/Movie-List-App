@@ -8,9 +8,17 @@ import model.*;
 
 // Represents a panel to remove movies
 public class RemovePanel extends DisplayPanel {
+    private DisplayInfoPanel displayInfoPanel;
+    private FilterStatusPanel filterStatusPanel;
+    private FilterGenrePanel filterGenrePanel;
+
     // EFFECTS: creates a new RemovePanel
-    public RemovePanel(MovieList movieList) {
+    public RemovePanel(MovieList movieList, DisplayInfoPanel displayInfoPanel, 
+                        FilterStatusPanel filterStatusPanel, FilterGenrePanel filterGenrePanel) {
         super(movieList);
+        this.displayInfoPanel = displayInfoPanel;
+        this.filterStatusPanel = filterStatusPanel;
+        this.filterGenrePanel = filterGenrePanel;
         setupPanel();
     }
 
@@ -37,6 +45,15 @@ public class RemovePanel extends DisplayPanel {
         add(super.getButton(), gbc);
     }
     
+
+    // MODIFIES: this
+    // EFFECTS: updates panels when movies are removed
+    public void updatePanels() {
+        updateComboBox(super.getMovieList());
+        this.displayInfoPanel.updateComboBox(super.getMovieList());
+        this.filterGenrePanel.updateComboBox(super.getMovieList());
+    }
+
     // MODIFIES: this
     // EFFECTS: handles actions
     @Override
@@ -56,7 +73,7 @@ public class RemovePanel extends DisplayPanel {
                 JOptionPane.showMessageDialog(this, movieName + " was removed", 
                                             "Remove", JOptionPane.INFORMATION_MESSAGE);
 
-                updateComboBox(super.getMovieList());
+                updatePanels();
             }
         }
     }

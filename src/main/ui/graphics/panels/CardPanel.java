@@ -19,14 +19,16 @@ public class CardPanel extends JPanel {
     // EFFECTS: creates a new CardPanel
     public CardPanel(MovieList movieList) {
         this.cardLayout = new CardLayout();
-        this.mainPanel = new JPanel(cardLayout);
+        this.mainPanel = new JPanel(this.cardLayout);
         this.startPanel = new StartPanel();
-        this.removePanel = new RemovePanel(movieList);
         this.displayInfoPanel = new DisplayInfoPanel(movieList);
         this.filterStatusPanel = new FilterStatusPanel(movieList);
         this.filterGenrePanel = new FilterGenrePanel(movieList);
+        this.removePanel = new RemovePanel(movieList, this.displayInfoPanel, 
+                                            this.filterStatusPanel, this.filterGenrePanel);
         this.addPanel = new AddPanel(movieList, this.removePanel, this.displayInfoPanel,
-                                        this.filterGenrePanel);
+                                        this.filterStatusPanel, this.filterGenrePanel);
+
 
         addPanels();
         cardLayout.show(mainPanel, "start");
