@@ -7,8 +7,8 @@ import model.MovieList;
 public class ChangePanel extends DisplayPanel {
  
     // EFFECTS: creates a new ChangePanel
-    // TODO: send changes to remove, filter, 
-    public ChangePanel(MovieList movieList) {
+    // TODO
+    public ChangePanel(MovieList movieList, UpdateHandler updateHandler) {
         super(movieList);
     }
 

@@ -10,24 +10,16 @@ import model.*;
 public class AddPanel extends MoviePanel {
     private JTextField nameField;
     private JTextField genreField;
-    private RemovePanel removePanel;
-    private DisplayInfoPanel displayInfoPanel;
-    private FilterStatusPanel filterStatusPanel;
-    private FilterGenrePanel filterGenrePanel;
+    private UpdateHandler updateHandler;
 
     // EFFECTS: creates a new AddPanel
-    public AddPanel(MovieList movieList, RemovePanel removePanel, DisplayInfoPanel displayInfoPanel, 
-                        FilterStatusPanel filterStatusPanel, FilterGenrePanel filterGenrePanel) {
+    public AddPanel(MovieList movieList) {
         super(movieList);   
         super.getComboBox().addItem("Watched");
         super.getComboBox().addItem("Currently Watching");
         super.getComboBox().addItem("To-watch");
         this.nameField = new JTextField();
         this.genreField = new JTextField();
-        this.removePanel = removePanel;
-        this.displayInfoPanel = displayInfoPanel;
-        this.filterStatusPanel = filterStatusPanel;
-        this.filterGenrePanel = filterGenrePanel;
         setupPanel();
     }
 
@@ -75,10 +67,7 @@ public class AddPanel extends MoviePanel {
     // EFFECTS: updates panels when movies are added
     public void updatePanels(Movie movie) {
         super.getMovieList().addMovie(movie);
-        this.removePanel.updateComboBox(super.getMovieList());
-        this.displayInfoPanel.updateComboBox(super.getMovieList());
-        this.filterStatusPanel.updateComboBox(super.getMovieList());
-        this.filterGenrePanel.updateComboBox(super.getMovieList());
+        this.updateHandler.updatePanelsForAdding(movie, super.getMovieList());
     }
 
     // MODIFIES: this
@@ -104,5 +93,9 @@ public class AddPanel extends MoviePanel {
                 this.genreField.setText("");
             }
         }
+    }
+
+    public void setUpdateHandler(UpdateHandler updateHandler) {
+        this.updateHandler = updateHandler;
     }
 }

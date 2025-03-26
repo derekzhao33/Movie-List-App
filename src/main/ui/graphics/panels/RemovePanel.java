@@ -8,17 +8,11 @@ import model.*;
 
 // Represents a panel to remove movies
 public class RemovePanel extends DisplayPanel {
-    private DisplayInfoPanel displayInfoPanel;
-    private FilterStatusPanel filterStatusPanel;
-    private FilterGenrePanel filterGenrePanel;
+    private UpdateHandler updateHandler;
 
     // EFFECTS: creates a new RemovePanel
-    public RemovePanel(MovieList movieList, DisplayInfoPanel displayInfoPanel, 
-                        FilterStatusPanel filterStatusPanel, FilterGenrePanel filterGenrePanel) {
+    public RemovePanel(MovieList movieList) {
         super(movieList);
-        this.displayInfoPanel = displayInfoPanel;
-        this.filterStatusPanel = filterStatusPanel;
-        this.filterGenrePanel = filterGenrePanel;
         setupPanel();
     }
 
@@ -50,8 +44,7 @@ public class RemovePanel extends DisplayPanel {
     // EFFECTS: updates panels when movies are removed
     public void updatePanels() {
         updateComboBox(super.getMovieList());
-        this.displayInfoPanel.updateComboBox(super.getMovieList());
-        this.filterGenrePanel.updateComboBox(super.getMovieList());
+        updateHandler.updatePanelsForRemoving(super.getMovieList());
     }
 
     // MODIFIES: this
@@ -76,5 +69,9 @@ public class RemovePanel extends DisplayPanel {
                 updatePanels();
             }
         }
+    }
+
+    public void setUpdateHandler(UpdateHandler updateHandler) {
+        this.updateHandler = updateHandler;
     }
 }

@@ -6,7 +6,6 @@ import java.awt.event.*;
 import model.*;
 
 // Represents a panel that filters by status
-// TODO: add one for genre
 public class FilterStatusPanel extends DisplayInfoPanel {
 
     // EFFECTS: creates a new FilterStatusPanel

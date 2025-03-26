@@ -15,6 +15,7 @@ public class CardPanel extends JPanel {
     private DisplayInfoPanel displayInfoPanel;
     private FilterStatusPanel filterStatusPanel;
     private FilterGenrePanel filterGenrePanel;
+    private UpdateHandler updateHandler;
 
     // EFFECTS: creates a new CardPanel
     public CardPanel(MovieList movieList) {
@@ -24,11 +25,14 @@ public class CardPanel extends JPanel {
         this.displayInfoPanel = new DisplayInfoPanel(movieList);
         this.filterStatusPanel = new FilterStatusPanel(movieList);
         this.filterGenrePanel = new FilterGenrePanel(movieList);
-        this.removePanel = new RemovePanel(movieList, this.displayInfoPanel, 
-                                            this.filterStatusPanel, this.filterGenrePanel);
-        this.addPanel = new AddPanel(movieList, this.removePanel, this.displayInfoPanel,
-                                        this.filterStatusPanel, this.filterGenrePanel);
+        this.removePanel = new RemovePanel(movieList);
+        this.addPanel = new AddPanel(movieList);
 
+        this.updateHandler = new UpdateHandler();
+        initializeUpdateHandler();
+
+        this.removePanel.setUpdateHandler(this.updateHandler);
+        this.addPanel.setUpdateHandler(this.updateHandler);
 
         addPanels();
         cardLayout.show(mainPanel, "start");
@@ -52,17 +56,26 @@ public class CardPanel extends JPanel {
         this.displayInfoPanel.resetInfoArea();
         this.filterGenrePanel.resetInfoArea();
         this.filterStatusPanel.resetInfoArea();
+
         this.cardLayout.show(mainPanel, panel);
     }
 
-    public void updatePanels(MovieList movieList) {
-        this.removePanel.setMovieList(movieList);
-        this.removePanel.updateComboBox(movieList);
-        this.displayInfoPanel.setMovieList(movieList);
-        this.displayInfoPanel.updateComboBox(movieList);
+    // EFFECTS: sets up combo boxes and movieLists
+    public void initializePanels(MovieList movieList) {
         this.addPanel.setMovieList(movieList);
+        this.removePanel.setMovieList(movieList);
+        this.displayInfoPanel.setMovieList(movieList);
         this.filterStatusPanel.setMovieList(movieList);
         this.filterGenrePanel.setMovieList(movieList);
+
+        this.removePanel.updateComboBox(movieList);
+        this.displayInfoPanel.updateComboBox(movieList);
         this.filterGenrePanel.updateComboBox(movieList);
+    }
+
+    public void initializeUpdateHandler() {
+        this.updateHandler.setRemovePanel(removePanel);
+        this.updateHandler.setDisplayInfoPanel(this.displayInfoPanel);
+        this.updateHandler.setFilterGenrePanel(filterGenrePanel);
     }
 }

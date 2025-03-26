@@ -82,7 +82,7 @@ public class MovieFrame extends JFrame implements ActionListener {
             this.movieList = jsonReader.read();
             JOptionPane.showMessageDialog(this, "Loaded movie list from: " + JSON_STORE, 
                                         "Load", JOptionPane.INFORMATION_MESSAGE);
-            this.cardPanel.updatePanels(this.movieList);
+            this.cardPanel.initializePanels(this.movieList);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Unable to load movies", "Error", JOptionPane.ERROR_MESSAGE);
         }

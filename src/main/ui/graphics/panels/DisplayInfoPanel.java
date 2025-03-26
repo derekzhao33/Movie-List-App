@@ -32,6 +32,9 @@ public class DisplayInfoPanel extends DisplayPanel {
         setupPanel("Display Info", "Movies:"); 
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up the panel
+    @SuppressWarnings("methodlength")
     public void setupPanel(String buttonName, String labelName) {
         super.getButton().addActionListener(this);
         super.getButton().setText(buttonName);
