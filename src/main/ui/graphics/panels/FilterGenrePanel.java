@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import model.Movie;
 import model.MovieList;
 
+// Represents a panel that filters by genre
 public class FilterGenrePanel extends DisplayInfoPanel {
 
     // EFFECTS: creates a new FilterGenrePanel

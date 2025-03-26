@@ -6,8 +6,8 @@ import java.util.Map;
 import model.Movie;
 import model.MovieList;
 
-// Represents a panel for a display
-public abstract class DisplayPanel extends MoviePanel {
+// Represents a panel that has a combo box for all movies
+public abstract class DisplayPanel extends MovieListPanel {
 
     // EFFECTS: creates a new DisplayPanel
     public DisplayPanel(MovieList movieList) {

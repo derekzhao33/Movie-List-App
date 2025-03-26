@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import model.*;
 
 // Represents a panel for adding movies
-public class AddPanel extends MoviePanel {
+public class AddPanel extends MovieListPanel {
     private JTextField nameField;
     private JTextField genreField;
     private UpdateHandler updateHandler;

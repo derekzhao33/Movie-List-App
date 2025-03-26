@@ -60,6 +60,7 @@ public class CardPanel extends JPanel {
         this.cardLayout.show(mainPanel, panel);
     }
 
+    // MODIFIES: this   
     // EFFECTS: sets up combo boxes and movieLists
     public void initializePanels(MovieList movieList) {
         this.addPanel.setMovieList(movieList);
@@ -73,6 +74,8 @@ public class CardPanel extends JPanel {
         this.filterGenrePanel.updateComboBox(movieList);
     }
 
+    // MODIFIES: this   
+    // EFFECTS: sets up the update handler
     public void initializeUpdateHandler() {
         this.updateHandler.setRemovePanel(removePanel);
         this.updateHandler.setDisplayInfoPanel(this.displayInfoPanel);

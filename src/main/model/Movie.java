@@ -73,6 +73,7 @@ public class Movie implements Writable {
         return this.genre;
     }
 
+    // EFFECTS: gets the all notes in string form 
     public String getNotes() {
         String result = "";
 
@@ -160,6 +161,7 @@ public class Movie implements Writable {
         return json;
     }
 
+    // EFFECTS: returns the movie represented as a string
     @Override
     public String toString() {
         if (this.status.equals("w")) {
