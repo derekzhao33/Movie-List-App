@@ -54,7 +54,9 @@ public class DisplayInfoPanel extends DisplayPanel {
 
         gbc.gridx = 0;
         gbc.gridy = 0;
-        add(new JLabel(labelName), gbc);
+        JLabel label = new JLabel(labelName);
+        label.setFont(FONT_BOLD);
+        add(label, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 0;
