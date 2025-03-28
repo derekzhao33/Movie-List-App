@@ -29,35 +29,49 @@ public class AddPanel extends MovieListPanel {
     public void setupPanel() {
         super.getButton().addActionListener(this);
         super.getButton().setText("Add movie");
+
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        
+    
         gbc.gridx = 0;
         gbc.gridy = 0;
-        add(new JLabel("Status:"), gbc);
-
+        JLabel statusLabel = new JLabel("Status:");
+        statusLabel.setFont(FONT_BOLD);
+        add(statusLabel, gbc);
+    
         gbc.gridx = 1;
         gbc.gridy = 0;
         add(super.getComboBox(), gbc);
-
+    
         gbc.gridx = 0;
         gbc.gridy = 1;
-        add(new JLabel("Name:"), gbc);
-
+        JLabel nameLabel = new JLabel("Name:");
+        nameLabel.setFont(FONT_BOLD);
+        add(nameLabel, gbc);
+    
         gbc.gridx = 1;
         gbc.gridy = 1;
+        this.nameField.setPreferredSize(DIMENSION);
+        this.nameField.setFont(FONT);
         add(this.nameField, gbc);
-
+    
         gbc.gridx = 0;
         gbc.gridy = 2;
-        add(new JLabel("Genre:"), gbc);
-
+        JLabel genreLabel = new JLabel("Genre:");
+        genreLabel.setFont(FONT_BOLD);
+        add(genreLabel, gbc);
+    
         gbc.gridx = 1;
         gbc.gridy = 2;
+        this.genreField.setPreferredSize(DIMENSION);
+        this.genreField.setFont(FONT);
         add(this.genreField, gbc);
-
+    
         gbc.gridx = 1;
         gbc.gridy = 3;
         add(super.getButton(), gbc);

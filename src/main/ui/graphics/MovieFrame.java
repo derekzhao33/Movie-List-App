@@ -41,10 +41,10 @@ public class MovieFrame extends JFrame implements ActionListener {
     // MODIFIES: this
     // EFFECTS: initialized the frame
     public void initializeFrame() {
+        setLocationRelativeTo(null);
         setTitle("Movie List Application");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
-        setSize(250, 240); 
 
         ImageIcon imageIcon = new ImageIcon(LOGO_PATH);
         Image image = imageIcon.getImage();
@@ -54,6 +54,7 @@ public class MovieFrame extends JFrame implements ActionListener {
         setLayout(new BorderLayout());
         setJMenuBar(menuHandler.getMenuBar());
         add(cardPanel);
+        pack();
     }
 
     // EFFECTS: handles the actions

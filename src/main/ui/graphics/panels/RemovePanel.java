@@ -28,7 +28,9 @@ public class RemovePanel extends DisplayPanel {
 
         gbc.gridx = 0;
         gbc.gridy = 0;
-        add(new JLabel("Movies:"), gbc);
+        JLabel label = new JLabel("Movies:");
+        label.setFont(FONT_BOLD);
+        add(label, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 0;
