@@ -1,5 +1,6 @@
 package ui.graphics;
 
+import model.EventLog;
 import model.MovieList;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -12,6 +13,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
+
+import model.Event;
 
 import ui.graphics.panels.CardPanel;
 
@@ -57,6 +60,7 @@ public class MovieFrame extends JFrame implements ActionListener, WindowListener
         setJMenuBar(menuHandler.getMenuBar());
         add(cardPanel);
         pack();
+        addWindowListener(this);
     }
 
     // EFFECTS: handles the actions
@@ -104,45 +108,52 @@ public class MovieFrame extends JFrame implements ActionListener, WindowListener
         }
     }
 
+    // EFFECTS: does nothing
     @Override
     public void windowOpened(WindowEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'windowOpened'");
+
     }
 
+    // EFFECTS: prints out all events to the console
     @Override
     public void windowClosing(WindowEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'windowClosing'");
+        printLog(EventLog.getInstance());
     }
 
+    // EFFECTS: does nothing
     @Override
     public void windowClosed(WindowEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'windowClosed'");
+
     }
 
+    // EFFECTS: does nothing
     @Override
     public void windowIconified(WindowEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'windowIconified'");
+
     }
 
+    // EFFECTS: does nothing
     @Override
     public void windowDeiconified(WindowEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'windowDeiconified'");
+
     }
 
+    // EFFECTS: does nothing
     @Override
     public void windowActivated(WindowEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'windowActivated'");
+
     }
 
+    // EFFECTS: does nothing
     @Override
     public void windowDeactivated(WindowEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'windowDeactivated'");
+
     }
+
+    // EFFECTS: prints out all events
+	public void printLog(EventLog eventLog) {
+        for (Event e : eventLog) {
+            System.out.println(e.toString());
+        }
+	}
 }

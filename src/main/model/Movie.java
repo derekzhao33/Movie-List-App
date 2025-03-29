@@ -164,6 +164,8 @@ public class Movie implements Writable {
     // EFFECTS: returns the movie represented as a string
     @Override
     public String toString() {
+        EventLog.getInstance().logEvent(new Event("Displayed information for " + this.name));
+
         if (this.status.equals("w")) {
             return "Status: Watched\nName: " + this.name + "\nGenre: " + this.genre 
                         + "\nNotes: " + getNotes() + "\nRating: " + this.rating + "\nWatch Time: " + this.watchTime; 

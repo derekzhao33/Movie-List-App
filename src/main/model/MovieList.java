@@ -19,14 +19,19 @@ public class MovieList implements Writable {
     // MODIFIES: this
     // EFFECTS: adds movie to the movie list
     public void addMovie(Movie movie) {
-        this.movieList.put(movieList.size() + 1, movie);
+        this.movieList.put(movieList.size() + 1, movie); 
+
+        EventLog.getInstance().logEvent(new Event("\"" + movie.getName() + "\" was added"));
     }
 
     // REQUIRES: movieNum >= 1 AND movieNum <= movieList.size() AND movieList.size() > 0
     // MODIFIES: this
     // EFFECTS: removes the movie that matches the given number
     public void removeMovie(int movieNum) {
+        Movie toBeRemoved = this.movieList.get(movieNum);
         this.movieList.remove(movieNum);
+        
+        EventLog.getInstance().logEvent(new Event("\" " + toBeRemoved.getName() + "\" was removed"));
         
         LinkedHashMap<Integer, Movie> lhmNew = new LinkedHashMap<>();
         int i = 1;
@@ -71,6 +76,8 @@ public class MovieList implements Writable {
             }
         }
 
+        EventLog.getInstance().logEvent(new Event("Filtered by status " + status));
+
         return result;
     }
 
@@ -87,6 +94,8 @@ public class MovieList implements Writable {
                 i++;
             }
         }
+
+        EventLog.getInstance().logEvent(new Event("Filtered by genre " + genre));
 
         return result;
     }
