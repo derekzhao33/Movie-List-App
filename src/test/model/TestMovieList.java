@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.*;
 
+// Test class for MovieList
 public class TestMovieList {
 
     private MovieList testList;

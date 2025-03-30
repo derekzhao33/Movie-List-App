@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.json.JSONObject;
 
+// Test class for Movie
 public class TestMovie {
 
     private Movie testMovieWatched;
