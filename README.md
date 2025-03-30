@@ -33,3 +33,28 @@ I spend a lot of my time watching Movies. I also like to be organized, so it wou
 - As a user, I want to categorize my movie as watched, currently watching, or to-watch
 - As a user, I want the option to be able to save or not save my current movie list and be able to do so
 - As a user, I want the option to load or not load the previous saved movie list and be able to do so
+
+## Sample of events
+
+Sat Mar 29 21:39:18 PDT 2025
+"movie" was added
+Sat Mar 29 21:39:21 PDT 2025
+" movie" was removed
+Sat Mar 29 21:39:38 PDT 2025
+"spiderman" was added
+Sat Mar 29 21:39:40 PDT 2025
+"name" was added
+Sat Mar 29 21:39:40 PDT 2025
+"batman" was added
+Sat Mar 29 21:39:43 PDT 2025
+Displayed information for name
+Sat Mar 29 21:39:45 PDT 2025
+Displayed information for batman
+Sat Mar 29 21:39:49 PDT 2025
+Filtered by status w
+Sat Mar 29 21:39:50 PDT 2025
+Filtered by status c
+Sat Mar 29 21:39:54 PDT 2025
+Filtered by genre genre
+Sat Mar 29 21:39:55 PDT 2025
+Filtered by genre action
