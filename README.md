@@ -34,7 +34,7 @@ I spend a lot of my time watching Movies. I also like to be organized, so it wou
 - As a user, I want the option to be able to save or not save my current movie list and be able to do so
 - As a user, I want the option to load or not load the previous saved movie list and be able to do so
 
-## Sample of events
+## Phase 4: Task 2
 
 Sat Mar 29 21:39:18 PDT 2025
 "movie" was added
@@ -58,3 +58,9 @@ Sat Mar 29 21:39:54 PDT 2025
 Filtered by genre genre
 Sat Mar 29 21:39:55 PDT 2025
 Filtered by genre action
+
+## Phase 4: Task 3
+
+Currently, `MovieList` manages the addition and removal of `Movie` objects. This makes `MovieList` responsible for too many tasks. To improve this, I would refactor the design to introduce a `MovieManager` class that handles operations like adding, removing, and searching for movies. This would reduce the responsibilities of `MovieList`, and better follow the single responsibility rule.
+
+Another change would be to make a class in the `panels` package that handles everything related to actions. Right now, when I try to add a new panel, I have to first create the panel, then add it to the menu bar, then check if it needs to update other panels, along with a few other things. I encountered many mistakes when doing this, and adding a new package that handles this process would greatly reduce the amount of null pointers, syntax errors, etc. 
