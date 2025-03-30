@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 
 import model.*;
 
-// Represents a panel to display movie info
+// Represents a panel that displays movie info
 public class DisplayInfoPanel extends DisplayPanel {
     private JTextArea infoArea;
     private JScrollPane scrollPane;

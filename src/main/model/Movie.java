@@ -161,7 +161,7 @@ public class Movie implements Writable {
         return json;
     }
 
-    // EFFECTS: returns the movie represented as a string
+    // EFFECTS: returns the movie represented as a string, and adds an event 
     @Override
     public String toString() {
         EventLog.getInstance().logEvent(new Event("Displayed information for " + this.name));

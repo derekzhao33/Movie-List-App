@@ -151,9 +151,9 @@ public class MovieFrame extends JFrame implements ActionListener, WindowListener
     }
 
     // EFFECTS: prints out all events
-	public void printLog(EventLog eventLog) {
+    public void printLog(EventLog eventLog) {
         for (Event e : eventLog) {
             System.out.println(e.toString());
         }
-	}
+    }
 }

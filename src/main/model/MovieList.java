@@ -17,7 +17,7 @@ public class MovieList implements Writable {
 
     // REQUIRES: every movie must have a different name
     // MODIFIES: this
-    // EFFECTS: adds movie to the movie list
+    // EFFECTS: adds movie to the movie list, and adds an event 
     public void addMovie(Movie movie) {
         this.movieList.put(movieList.size() + 1, movie); 
 
@@ -26,7 +26,7 @@ public class MovieList implements Writable {
 
     // REQUIRES: movieNum >= 1 AND movieNum <= movieList.size() AND movieList.size() > 0
     // MODIFIES: this
-    // EFFECTS: removes the movie that matches the given number
+    // EFFECTS: removes the movie that matches the given number, and adds an event 
     public void removeMovie(int movieNum) {
         Movie toBeRemoved = this.movieList.get(movieNum);
         this.movieList.remove(movieNum);
@@ -62,7 +62,7 @@ public class MovieList implements Writable {
     }
 
     // REQUIRES: status is one of: "w", "c", "t"
-    // EFFECTS: gets the names of all movies on the list filered by status
+    // EFFECTS: gets the names of all movies on the list filered by status, and adds an event 
     public String getAllNamesByStatus(String status) {
         String result = "";
         int i = 1;
@@ -81,7 +81,7 @@ public class MovieList implements Writable {
         return result;
     }
 
-    // EFFECTS: gets the names of all movies on the list filtered by genre
+    // EFFECTS: gets the names of all movies on the list filtered by genre, and adds an event 
     public String getAllNamesByGenre(String genre) {
         String result = "";
         int i = 1;
