@@ -36,28 +36,28 @@ I spend a lot of my time watching Movies. I also like to be organized, so it wou
 
 ## Phase 4: Task 2
 
-Sat Mar 29 21:39:18 PDT 2025
-"movie" was added
-Sat Mar 29 21:39:21 PDT 2025
-" movie" was removed
-Sat Mar 29 21:39:38 PDT 2025
-"spiderman" was added
-Sat Mar 29 21:39:40 PDT 2025
-"name" was added
-Sat Mar 29 21:39:40 PDT 2025
-"batman" was added
-Sat Mar 29 21:39:43 PDT 2025
-Displayed information for name
-Sat Mar 29 21:39:45 PDT 2025
-Displayed information for batman
-Sat Mar 29 21:39:49 PDT 2025
-Filtered by status w
-Sat Mar 29 21:39:50 PDT 2025
-Filtered by status c
-Sat Mar 29 21:39:54 PDT 2025
-Filtered by genre genre
-Sat Mar 29 21:39:55 PDT 2025
-Filtered by genre action
+-Sat Mar 29 21:39:18 PDT 2025\
+"movie" was added\
+Sat Mar 29 21:39:21 PDT 2025\
+" movie" was removed\
+Sat Mar 29 21:39:38 PDT 2025\
+"spiderman" was added\
+Sat Mar 29 21:39:40 PDT 2025\
+"name" was added\
+Sat Mar 29 21:39:40 PDT 2025\
+"batman" was added\
+Sat Mar 29 21:39:43 PDT 2025\
+Displayed information for name\
+Sat Mar 29 21:39:45 PDT 2025\
+Displayed information for batman\
+Sat Mar 29 21:39:49 PDT 2025\
+Filtered by status w\
+Sat Mar 29 21:39:50 PDT 2025\
+Filtered by status c\
+Sat Mar 29 21:39:54 PDT 2025\
+Filtered by genre genre\
+Sat Mar 29 21:39:55 PDT 2025\
+Filtered by genre action\
 
 ## Phase 4: Task 3
 
