@@ -31,7 +31,7 @@ public class MovieList implements Writable {
         Movie toBeRemoved = this.movieList.get(movieNum);
         this.movieList.remove(movieNum);
         
-        EventLog.getInstance().logEvent(new Event("\" " + toBeRemoved.getName() + "\" was removed"));
+        EventLog.getInstance().logEvent(new Event("\"" + toBeRemoved.getName() + "\" was removed"));
         
         LinkedHashMap<Integer, Movie> lhmNew = new LinkedHashMap<>();
         int i = 1;
