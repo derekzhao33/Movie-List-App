@@ -25,7 +25,7 @@ public class MovieList implements Writable {
     }
 
     // REQUIRES: movieNum >= 1 AND movieNum <= movieList.size() AND movieList.size() > 0
-    // MODIFIES: this
+    // MODIFIES: this­­­­­
     // EFFECTS: removes the movie that matches the given number, and adds an event 
     public void removeMovie(int movieNum) {
         Movie toBeRemoved = this.movieList.get(movieNum);
