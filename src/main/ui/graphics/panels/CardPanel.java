@@ -6,7 +6,7 @@ import java.awt.*;
 import model.*;
 
 // Represents switchable panels for the movie list application
-public class CardPanel extends JPanel implements {
+public class CardPanel extends JPanel {
     private CardLayout cardLayout;
     private JPanel mainPanel;
     private StartPanel startPanel;
@@ -18,14 +18,14 @@ public class CardPanel extends JPanel implements {
 
     // EFFECTS: creates a new CardPanel
     public CardPanel(MovieList movieList) {
-        this.cardLayout = new CardLayout();
-        this.mainPanel = new JPanel(this.cardLayout);
-        this.startPanel = new StartPanel();
-        this.displayInfoPanel = new DisplayInfoPanel(movieList);
-        this.filterStatusPanel = new FilterStatusPanel(movieList);
-        this.filterGenrePanel = new FilterGenrePanel(movieList);
-        this.removePanel = new RemovePanel(movieList);
-        this.addPanel = new AddPanel(movieList);
+        cardLayout = new CardLayout();
+        mainPanel = new JPanel(this.cardLayout);
+        startPanel = new StartPanel();
+        displayInfoPanel = new DisplayInfoPanel(movieList);
+        filterStatusPanel = new FilterStatusPanel(movieList);
+        filterGenrePanel = new FilterGenrePanel(movieList);
+        removePanel = new RemovePanel(movieList);
+        addPanel = new AddPanel(movieList);
 
         UpdateHandler.getInstance().setRemovePanel(removePanel);
         UpdateHandler.getInstance().setDisplayInfoPanel(displayInfoPanel);
@@ -33,41 +33,41 @@ public class CardPanel extends JPanel implements {
 
         addPanels();
         cardLayout.show(mainPanel, "start");
-        this.add(mainPanel, BorderLayout.CENTER);
+        add(mainPanel, BorderLayout.CENTER);
     }
 
     // MODIFIES: this
     // EFFECTS: adds panels to the card layout
     public void addPanels() {
-        this.mainPanel.add(this.startPanel, "start");
-        this.mainPanel.add(this.addPanel, "add");
-        this.mainPanel.add(this.removePanel, "remove");
-        this.mainPanel.add(this.displayInfoPanel, "display");
-        this.mainPanel.add(this.filterStatusPanel, "filter status");
-        this.mainPanel.add(this.filterGenrePanel, "filter genre");
+        mainPanel.add(startPanel, "start");
+        mainPanel.add(addPanel, "add");
+        mainPanel.add(removePanel, "remove");
+        mainPanel.add(displayInfoPanel, "display");
+        mainPanel.add(filterStatusPanel, "filter status");
+        mainPanel.add(filterGenrePanel, "filter genre");
     }
 
     // MODIFIES: this
     // EFFECTS: switches panels
     public void switchPanels(String panel, MovieList movieList) {
-        this.displayInfoPanel.resetInfoArea();
-        this.filterGenrePanel.resetInfoArea();
-        this.filterStatusPanel.resetInfoArea();
+        displayInfoPanel.resetInfoArea();
+        filterGenrePanel.resetInfoArea();
+        filterStatusPanel.resetInfoArea();
 
-        this.cardLayout.show(mainPanel, panel);
+        cardLayout.show(mainPanel, panel);
     }
 
     // MODIFIES: this   
     // EFFECTS: sets up combo boxes and movieLists
     public void initializePanels(MovieList movieList) {
-        this.addPanel.setMovieList(movieList);
-        this.removePanel.setMovieList(movieList);
-        this.displayInfoPanel.setMovieList(movieList);
-        this.filterStatusPanel.setMovieList(movieList);
-        this.filterGenrePanel.setMovieList(movieList);
+        addPanel.setMovieList(movieList);
+        removePanel.setMovieList(movieList);
+        displayInfoPanel.setMovieList(movieList);
+        filterStatusPanel.setMovieList(movieList);
+        filterGenrePanel.setMovieList(movieList);
 
-        this.removePanel.updateComboBox(movieList);
-        this.displayInfoPanel.updateComboBox(movieList);
-        this.filterGenrePanel.updateComboBox(movieList);
+        removePanel.update(movieList);
+        displayInfoPanel.update(movieList);
+        filterGenrePanel.update(movieList);
     }
 }

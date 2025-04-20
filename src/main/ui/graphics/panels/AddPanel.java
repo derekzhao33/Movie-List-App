@@ -5,21 +5,20 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 import model.*;
-import ui.graphics.panels.observer.Subject;
 
 // Represents a panel for adding movies
-public class AddPanel extends Subject {
+public class AddPanel extends MovieListPanel {
     private JTextField nameField;
     private JTextField genreField;
 
     // EFFECTS: creates a new AddPanel
     public AddPanel(MovieList movieList) {
         super(movieList);   
-        super.getComboBox().addItem("Watched");
-        super.getComboBox().addItem("Currently Watching");
-        super.getComboBox().addItem("To-watch");
-        this.nameField = new JTextField();
-        this.genreField = new JTextField();
+        comboBox.addItem("Watched");
+        comboBox.addItem("Currently Watching");
+        comboBox.addItem("To-watch");
+        nameField = new JTextField();
+        genreField = new JTextField();
         setupPanel();
     }
 
@@ -27,8 +26,8 @@ public class AddPanel extends Subject {
     // MODIFIES: this
     // EFFECTS: sets up the panel
     public void setupPanel() {
-        super.getButton().addActionListener(this);
-        super.getButton().setText("Add movie");
+        actionButton.addActionListener(this);
+        actionButton.setText("Add movie");
 
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -46,7 +45,7 @@ public class AddPanel extends Subject {
     
         gbc.gridx = 1;
         gbc.gridy = 0;
-        add(super.getComboBox(), gbc);
+        add(comboBox, gbc);
     
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -58,7 +57,7 @@ public class AddPanel extends Subject {
         gbc.gridy = 1;
         this.nameField.setPreferredSize(DIMENSION);
         this.nameField.setFont(FONT);
-        add(this.nameField, gbc);
+        add(nameField, gbc);
     
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -68,32 +67,32 @@ public class AddPanel extends Subject {
     
         gbc.gridx = 1;
         gbc.gridy = 2;
-        this.genreField.setPreferredSize(DIMENSION);
-        this.genreField.setFont(FONT);
-        add(this.genreField, gbc);
+        genreField.setPreferredSize(DIMENSION);
+        genreField.setFont(FONT);
+        add(genreField, gbc);
     
         gbc.gridx = 1;
         gbc.gridy = 3;
-        add(super.getButton(), gbc);
+        add(comboBox, gbc);
     }
 
     // MODIFIES: this
     // EFFECTS: updates panels when movies are added
     public void updatePanels(Movie movie) {
-        super.getMovieList().addMovie(movie);
-        UpdateHandler.getInstance().updatePanelsForAdding(movie, super.getMovieList());
+        movieList.addMovie(movie);
+        UpdateHandler.getInstance().updatePanelsForAdding(movieList);
     }
 
     // MODIFIES: this
     // EFFECTS: handles actions
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == super.getButton()) {
-            Object comboBoxItem = super.getComboBox().getSelectedItem();
+        if (e.getSource() == actionButton) {
+            Object comboBoxItem = comboBox.getSelectedItem();
             String longStatus = comboBoxItem.toString();
-            String status = super.getMovieStatusShortenedString(longStatus);
-            String name = this.nameField.getText();
-            String genre = this.genreField.getText();
+            String status = getMovieStatusShortenedString(longStatus);
+            String name = nameField.getText();
+            String genre = genreField.getText();
 
             if (name.equals("") || genre.equals("")) {
                 JOptionPane.showMessageDialog(this, "Invalid name or genre entered", 
@@ -103,8 +102,8 @@ public class AddPanel extends Subject {
 
                 updatePanels(newMovie);
                 JOptionPane.showMessageDialog(this, name + " was added", "Add", JOptionPane.INFORMATION_MESSAGE);
-                this.nameField.setText("");
-                this.genreField.setText("");
+                nameField.setText("");
+                genreField.setText("");
             }
         }
     }

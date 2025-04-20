@@ -44,10 +44,10 @@ public class FilterGenrePanel extends DisplayInfoPanel {
     // MODIFIES: this
     // EFFECTS: updates the combo box with correct genres
     @Override
-    public void updateComboBox(MovieList movieList) {
+    public void update(MovieList movieList) {
         LinkedHashSet<String> updatedGenres = updateGenres(movieList);
 
-        super.getComboBox().removeAllItems();
+        comboBox.removeAllItems();
 
         for (String g : updatedGenres) {
             super.getComboBox().addItem(g);
@@ -57,18 +57,18 @@ public class FilterGenrePanel extends DisplayInfoPanel {
     //EFFECTS: handles the actions
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == super.getButton()) {
-            MovieList movies = super.getMovieList();
+        if (e.getSource() == actionButton) {
+            MovieList movies = movieList;
 
             if (movies.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Empty movie list, cannot display info", 
                                             "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                Object comboBoxItem = super.getComboBox().getSelectedItem();
+                Object comboBoxItem = comboBox.getSelectedItem();
                 String genre = comboBoxItem.toString();
 
                 String filterText = movies.getAllNamesByGenre(genre);
-                super.getInfoArea().setText(filterText);
+                infoArea.setText(filterText);
             }
         }
     }

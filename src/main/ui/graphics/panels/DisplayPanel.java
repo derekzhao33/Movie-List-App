@@ -5,11 +5,10 @@ import java.util.Map;
 
 import model.Movie;
 import model.MovieList;
-import ui.graphics.panels.observer.Subject;
 import ui.graphics.panels.observer.Observer;
 
 // Represents a panel that has a combo box for all movies
-public abstract class DisplayPanel extends Subject implements Observer {
+public abstract class DisplayPanel extends MovieListPanel implements Observer {
 
     // EFFECTS: creates a new DisplayPanel
     public DisplayPanel(MovieList movieList) {
@@ -19,12 +18,12 @@ public abstract class DisplayPanel extends Subject implements Observer {
     // MODIFIES: this
     // EFFECTS: updates the combobox to match the current movie list
     public void updateComboBox(MovieList movieList) {
-        super.getComboBox().removeAllItems();
+        comboBox.removeAllItems();
 
         for (Map.Entry<Integer, Movie> entry : movieList.getMovieList().entrySet()) {
             String m = entry.getValue().getName();
 
-            super.getComboBox().addItem(m);
+            comboBox.addItem(m);
         }
     }
 
@@ -32,14 +31,14 @@ public abstract class DisplayPanel extends Subject implements Observer {
     public int getMovieNumber() {
         int selectedNum = -1;
 
-        LinkedHashMap<Integer, Movie> movies = super.getMovieList().getMovieList();
+        LinkedHashMap<Integer, Movie> movies = movieList.getMovieList();
 
         for (Map.Entry<Integer, Movie> entry : movies.entrySet()) {
             int n = entry.getKey();
             Movie m = entry.getValue();
             String movieName = m.getName();
 
-            Object comboBoxItem = super.getComboBox().getSelectedItem();
+            Object comboBoxItem = comboBox.getSelectedItem();
             String itemName = comboBoxItem.toString();
 
             if (movieName.equals(itemName)) {

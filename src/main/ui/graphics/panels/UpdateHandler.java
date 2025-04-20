@@ -24,19 +24,20 @@ public class UpdateHandler implements Observer {
         return singleton;
     }
 
+
     // MODIFIES: this
     // EFFECTS: updates panels when adding movies
-    public void updatePanelsForAdding(Movie movie, MovieList movieList) {
-        this.removePanel.updateComboBox(movieList);
-        this.displayInfoPanel.updateComboBox(movieList);
-        this.filterGenrePanel.updateComboBox(movieList);
+    public void updatePanelsForAdding(MovieList movieList) {
+        removePanel.update(movieList);
+        displayInfoPanel.update(movieList);
+        filterGenrePanel.update(movieList);
     }
 
     // MODIFIES: this
     // EFFECTS: updates panels when remove movies
     public void updatePanelsForRemoving(MovieList movieList) {
-        this.displayInfoPanel.updateComboBox(movieList);
-        this.filterGenrePanel.updateComboBox(movieList);
+        displayInfoPanel.update(movieList);
+        filterGenrePanel.update(movieList);
     }
 
     public void setRemovePanel(RemovePanel removePanel) {

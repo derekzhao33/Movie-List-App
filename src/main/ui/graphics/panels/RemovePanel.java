@@ -18,8 +18,8 @@ public class RemovePanel extends DisplayPanel {
     // MODIFIES: this
     // EFFECTS: sets up the panel
     public void setupPanel() {
-        super.getButton().addActionListener(this);
-        super.getButton().setText("Remove movie");
+        actionButton.addActionListener(this);
+        actionButton.setText("Remove movie");
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
@@ -33,19 +33,19 @@ public class RemovePanel extends DisplayPanel {
 
         gbc.gridx = 1;
         gbc.gridy = 0;
-        add(super.getComboBox(), gbc);
+        add(comboBox, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 1;
-        add(super.getButton(), gbc);
+        add(actionButton, gbc);
     }
     
 
     // MODIFIES: this
     // EFFECTS: updates panels when movies are removed
     public void updatePanels() {
-        updateComboBox(super.getMovieList());
-        UpdateHandler.getInstance().updatePanelsForRemoving(super.getMovieList());
+        update(movieList);
+        UpdateHandler.getInstance().updatePanelsForRemoving(movieList);
     }
 
     // MODIFIES: this
@@ -60,7 +60,7 @@ public class RemovePanel extends DisplayPanel {
                                             "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 int selectedNum = getMovieNumber();
-                Object comboBoxItem = super.getComboBox().getSelectedItem();
+                Object comboBoxItem = comboBox.getSelectedItem();
                 String movieName = comboBoxItem.toString();
 
                 movies.removeMovie(selectedNum);
