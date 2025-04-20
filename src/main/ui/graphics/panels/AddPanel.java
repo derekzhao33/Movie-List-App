@@ -97,7 +97,7 @@ public class AddPanel extends MovieListPanel {
             String name = nameField.getText();
             String genre = genreField.getText();
 
-            if (name.equals("") || genre.equals("")) {
+            if (name.isEmpty() || genre.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Invalid name or genre entered", 
                                             "Error", JOptionPane.ERROR_MESSAGE);
             } else {

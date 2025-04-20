@@ -210,6 +210,6 @@ public class TestMovie {
 
     @Test
     public void testToStringT() {
-        assertEquals("Status: To-watch\nName: testThree\nGenre: genreThree\nNotes:\nRating: 0\nWatch Time: 0", testMovieToWatch.toString());
+        assertEquals("Status: To-watch\nName: testThree\nGenre: genreThree\nNotes:\n\nRating: 0\nWatch Time: 0", testMovieToWatch.toString());
     }
 }

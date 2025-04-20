@@ -76,6 +76,7 @@ public class CardPanel extends JPanel {
         removePanel.update(movieList);
         displayInfoPanel.update(movieList);
         filterGenrePanel.update(movieList);
+        changePanel.update(movieList);
     }
 
     public void addObserverstoPanels() {

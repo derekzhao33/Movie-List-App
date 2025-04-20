@@ -62,17 +62,17 @@ public class DisplayInfoPanel extends DisplayPanel {
         label.setFont(FONT_BOLD);
         add(label, gbc);
 
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weightx = 0;
+        add(comboBox, gbc);
+
         actionButton.addActionListener(this);
         actionButton.setText(buttonName);
         gbc.gridx = 1;
-        gbc.gridy = 0;
+        gbc.gridy = 1;
         gbc.weightx = 0.5;
         add(actionButton, gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        gbc.weightx = 0;
-        add(comboBox, gbc);
 
         gbc.gridwidth = 0;
         gbc.gridx = 0;

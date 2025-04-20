@@ -1,16 +1,16 @@
 {"movieList": {
     "1": {
         "notes": {},
-        "name": "asdf",
-        "genre": "asdf",
+        "name": "batman",
+        "genre": "action",
         "rating": 0,
         "watchTime": 0,
         "status": "w"
     },
     "2": {
         "notes": {},
-        "name": "batman",
-        "genre": "action",
+        "name": "scream",
+        "genre": "horror",
         "rating": 0,
         "watchTime": 0,
         "status": "w"

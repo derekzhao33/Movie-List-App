@@ -175,7 +175,7 @@ public class Movie implements Writable {
                         + rating + "\nWatch Time: " + watchTime; 
         } else {
             return "Status: To-watch\nName: " + name + "\nGenre: " 
-                        + genre + "\nNotes:\n" + getNotes() + "Rating: " 
+                        + genre + "\nNotes:\n" + getNotes() + "\nRating: " 
                         + rating + "\nWatch Time: " + watchTime; 
         }
     }

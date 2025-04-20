@@ -14,7 +14,6 @@ public abstract class MovieListPanel extends Subject implements ActionListener {
     protected static final Font FONT_BOLD = new Font(null, Font.BOLD, 15);
     protected static final Font FONT = new Font(null, Font.PLAIN, 15);
     protected static final Dimension DIMENSION = new Dimension(250, 32);
-    protected static final Dimension COMBO_BOX_DIMENSION = new Dimension(250, 40);
     protected JComboBox<String> comboBox;
     protected static MovieList movieList;
     protected JButton actionButton;
@@ -24,11 +23,9 @@ public abstract class MovieListPanel extends Subject implements ActionListener {
         MovieListPanel.movieList = movieList;
         comboBox = new JComboBox<>();
         actionButton = new JButton();
-        comboBox.setPreferredSize(COMBO_BOX_DIMENSION);
         actionButton.setPreferredSize(DIMENSION);
         comboBox.setFont(FONT);
         actionButton.setFont(FONT_BOLD);
-        comboBox.setBorder(BorderFactory.createEmptyBorder(8, 0, 0, 0));
     }
 
     // REQUIRES: status is one of: "Watched", "Currently Watching", "To-watch"

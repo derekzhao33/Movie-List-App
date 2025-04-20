@@ -38,12 +38,14 @@ public class RemovePanel extends DisplayPanel {
 
         gbc.gridx = 1;
         gbc.gridy = 0;
+        comboBox.setPreferredSize(DIMENSION);
         add(comboBox, gbc);
 
         actionButton.addActionListener(this);
         actionButton.setText("Remove movie");
         gbc.gridx = 1;
         gbc.gridy = 1;
+        actionButton.setPreferredSize(DIMENSION);
         add(actionButton, gbc);
     }
 
