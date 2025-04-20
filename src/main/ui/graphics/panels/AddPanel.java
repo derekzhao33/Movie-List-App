@@ -1,10 +1,17 @@
 package ui.graphics.panels;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 
-import model.*;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+import model.Movie;
+import model.MovieList;
+
 
 // Represents a panel for adding movies
 public class AddPanel extends MovieListPanel {
@@ -32,6 +39,7 @@ public class AddPanel extends MovieListPanel {
 
     // MODIFIES: this
     // EFFECTS: sets up the panel
+    @Override
     public void setupPanel() {
         actionButton.addActionListener(this);
         actionButton.setText("Add movie");

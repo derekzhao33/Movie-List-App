@@ -1,9 +1,11 @@
 package ui.graphics.panels;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
 
-import model.*;
+import javax.swing.JPanel;
+
+import model.MovieList;
 
 // Represents switchable panels for the movie list application
 public class CardPanel extends JPanel {
@@ -15,6 +17,7 @@ public class CardPanel extends JPanel {
     private DisplayInfoPanel displayInfoPanel;
     private FilterStatusPanel filterStatusPanel;
     private FilterGenrePanel filterGenrePanel;
+    private ChangePanel changePanel;
 
     // EFFECTS: creates a new CardPanel
     public CardPanel(MovieList movieList) {
@@ -25,7 +28,8 @@ public class CardPanel extends JPanel {
         filterStatusPanel = new FilterStatusPanel(movieList);
         filterGenrePanel = new FilterGenrePanel(movieList);
         removePanel = new RemovePanel(movieList, displayInfoPanel, filterGenrePanel);
-        addPanel = new AddPanel(movieList, removePanel, displayInfoPanel, filterGenrePanel); 
+        addPanel = new AddPanel(movieList, removePanel, displayInfoPanel, filterGenrePanel);
+        changePanel = new ChangePanel(movieList);
 
         addPanels();
         cardLayout.show(mainPanel, "start");
@@ -41,6 +45,7 @@ public class CardPanel extends JPanel {
         mainPanel.add(displayInfoPanel, "display");
         mainPanel.add(filterStatusPanel, "filter status");
         mainPanel.add(filterGenrePanel, "filter genre");
+        mainPanel.add(changePanel, "change");
     }
 
     // MODIFIES: this
@@ -61,7 +66,7 @@ public class CardPanel extends JPanel {
         displayInfoPanel.setMovieList(movieList);
         filterStatusPanel.setMovieList(movieList);
         filterGenrePanel.setMovieList(movieList);
-
+        
         removePanel.update(movieList);
         displayInfoPanel.update(movieList);
         filterGenrePanel.update(movieList);

@@ -17,6 +17,7 @@ public class MenuHandler {
     private JMenuItem display;
     private JMenuItem filterStatus;
     private JMenuItem filterGenre;
+    private JMenuItem change;
 
     // EFFECTS: creates a new MenuHandler
     private MenuHandler(ActionListener listener) {
@@ -32,6 +33,7 @@ public class MenuHandler {
         display = new JMenuItem("Display");
         filterStatus = new JMenuItem("Status");
         filterGenre = new JMenuItem("Genre");
+        change = new JMenuItem("Change");
 
         initializeMenus(listener);
     }
@@ -54,6 +56,7 @@ public class MenuHandler {
         display.addActionListener(listener);
         filterStatus.addActionListener(listener);
         filterGenre.addActionListener(listener);
+        change.addActionListener(listener);
 
         fileMenu.add(load);
         fileMenu.add(save);
@@ -65,6 +68,7 @@ public class MenuHandler {
         movieMenu.add(remove);
         movieMenu.add(display);
         movieMenu.add(filterMenu);
+        movieMenu.add(change);
 
         menuBar.add(movieMenu);
         menuBar.add(fileMenu);
@@ -100,5 +104,9 @@ public class MenuHandler {
 
     public JMenuItem getFilterGenreMenuItem() {
         return filterGenre;
+    }
+    
+    public JMenuItem getChangMenuItem() {
+        return change; 
     }
 }

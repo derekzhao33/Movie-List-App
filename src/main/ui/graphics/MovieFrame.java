@@ -80,6 +80,8 @@ public class MovieFrame extends JFrame implements ActionListener, WindowListener
             cardPanel.switchPanels("filter status", movieList);
         } else if (e.getSource() == menuHandler.getFilterGenreMenuItem()) {
             cardPanel.switchPanels("filter genre", movieList);
+        } else if (e.getSource() == menuHandler.getChangMenuItem()) {
+            cardPanel.switchPanels("change", movieList);
         }
     }
 

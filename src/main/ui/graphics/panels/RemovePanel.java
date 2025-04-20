@@ -1,9 +1,12 @@
 package ui.graphics.panels;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.nio.file.DirectoryStream.Filter;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import model.*;
 
@@ -24,6 +27,7 @@ public class RemovePanel extends DisplayPanel {
 
     // MODIFIES: this
     // EFFECTS: sets up the panel
+    @Override
     public void setupPanel() {
         actionButton.addActionListener(this);
         actionButton.setText("Remove movie");
