@@ -6,7 +6,7 @@ import persistence.Writable;
 import java.util.*;
 
 // Represents a list of movies
-public class MovieList implements Writable {
+public class MovieList implements Writable, Iterable<Movie> {
     
     private LinkedHashMap<Integer, Movie> movieList;
 
@@ -160,5 +160,28 @@ public class MovieList implements Writable {
     // EFFECTS: returns if the movie list is empty
     public boolean isEmpty() {
         return this.movieList.isEmpty();
+    }
+
+    @Override
+    public Iterator<Movie> iterator() {
+        return new MovieListIterator();
+    }
+
+    private class MovieListIterator implements Iterator<Movie> { 
+        private Iterator<Integer> movieIterator = movieList.keySet().iterator();
+
+        @Override
+        public boolean hasNext() {
+            return this.movieIterator.hasNext();
+        }
+
+        @Override
+        public Movie next() throws NoSuchElementException {
+            if (hasNext()) {
+                return movieList.get(this.movieIterator.next());
+            }
+
+            throw new NoSuchElementException();
+        }
     }
 }

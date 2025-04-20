@@ -6,7 +6,7 @@ import java.awt.*;
 import model.*;
 
 // Represents switchable panels for the movie list application
-public class CardPanel extends JPanel {
+public class CardPanel extends JPanel implements {
     private CardLayout cardLayout;
     private JPanel mainPanel;
     private StartPanel startPanel;
@@ -15,7 +15,6 @@ public class CardPanel extends JPanel {
     private DisplayInfoPanel displayInfoPanel;
     private FilterStatusPanel filterStatusPanel;
     private FilterGenrePanel filterGenrePanel;
-    private UpdateHandler updateHandler;
 
     // EFFECTS: creates a new CardPanel
     public CardPanel(MovieList movieList) {
@@ -28,11 +27,9 @@ public class CardPanel extends JPanel {
         this.removePanel = new RemovePanel(movieList);
         this.addPanel = new AddPanel(movieList);
 
-        this.updateHandler = new UpdateHandler();
-        initializeUpdateHandler();
-
-        this.removePanel.setUpdateHandler(this.updateHandler);
-        this.addPanel.setUpdateHandler(this.updateHandler);
+        UpdateHandler.getInstance().setRemovePanel(removePanel);
+        UpdateHandler.getInstance().setDisplayInfoPanel(displayInfoPanel);
+        UpdateHandler.getInstance().setFilterGenrePanel(filterGenrePanel);
 
         addPanels();
         cardLayout.show(mainPanel, "start");
@@ -72,13 +69,5 @@ public class CardPanel extends JPanel {
         this.removePanel.updateComboBox(movieList);
         this.displayInfoPanel.updateComboBox(movieList);
         this.filterGenrePanel.updateComboBox(movieList);
-    }
-
-    // MODIFIES: this   
-    // EFFECTS: sets up the update handler
-    public void initializeUpdateHandler() {
-        this.updateHandler.setRemovePanel(removePanel);
-        this.updateHandler.setDisplayInfoPanel(this.displayInfoPanel);
-        this.updateHandler.setFilterGenrePanel(filterGenrePanel);
     }
 }

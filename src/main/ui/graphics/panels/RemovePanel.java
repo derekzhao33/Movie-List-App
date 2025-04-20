@@ -8,7 +8,6 @@ import model.*;
 
 // Represents a panel to remove movies
 public class RemovePanel extends DisplayPanel {
-    private UpdateHandler updateHandler;
 
     // EFFECTS: creates a new RemovePanel
     public RemovePanel(MovieList movieList) {
@@ -46,7 +45,7 @@ public class RemovePanel extends DisplayPanel {
     // EFFECTS: updates panels when movies are removed
     public void updatePanels() {
         updateComboBox(super.getMovieList());
-        updateHandler.updatePanelsForRemoving(super.getMovieList());
+        UpdateHandler.getInstance().updatePanelsForRemoving(super.getMovieList());
     }
 
     // MODIFIES: this
@@ -72,8 +71,10 @@ public class RemovePanel extends DisplayPanel {
             }
         }
     }
-
-    public void setUpdateHandler(UpdateHandler updateHandler) {
-        this.updateHandler = updateHandler;
+    
+    @Override
+    public void update(MovieList movieList) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 }

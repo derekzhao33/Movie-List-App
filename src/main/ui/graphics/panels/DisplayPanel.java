@@ -5,9 +5,11 @@ import java.util.Map;
 
 import model.Movie;
 import model.MovieList;
+import ui.graphics.panels.observer.Subject;
+import ui.graphics.panels.observer.Observer;
 
 // Represents a panel that has a combo box for all movies
-public abstract class DisplayPanel extends MovieListPanel {
+public abstract class DisplayPanel extends Subject implements Observer {
 
     // EFFECTS: creates a new DisplayPanel
     public DisplayPanel(MovieList movieList) {

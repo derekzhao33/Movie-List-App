@@ -2,16 +2,26 @@ package ui.graphics.panels;
 
 import model.Movie;
 import model.MovieList;
+import ui.graphics.panels.observer.Observer;
 
 // Represents a class that handles panel updates
-public class UpdateHandler {
+public class UpdateHandler implements Observer {
+    private static UpdateHandler singleton;
     private RemovePanel removePanel;
     private DisplayInfoPanel displayInfoPanel;
     private FilterGenrePanel filterGenrePanel;
 
     // EFFECTS: creates a new UpdateHandler
-    public UpdateHandler() {
+    private UpdateHandler() {
 
+    }
+
+    public static UpdateHandler getInstance() {
+        if (singleton == null) {
+            singleton = new UpdateHandler();
+        }
+
+        return singleton;
     }
 
     // MODIFIES: this
@@ -39,5 +49,10 @@ public class UpdateHandler {
 
     public void setFilterGenrePanel(FilterGenrePanel filterGenrePanel) {
         this.filterGenrePanel = filterGenrePanel;
+    }
+
+    @Override
+    public void update(MovieList movieList) {
+        
     }
 }

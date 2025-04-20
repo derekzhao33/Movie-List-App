@@ -5,12 +5,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 import model.*;
+import ui.graphics.panels.observer.Subject;
 
 // Represents a panel for adding movies
-public class AddPanel extends MovieListPanel {
+public class AddPanel extends Subject {
     private JTextField nameField;
     private JTextField genreField;
-    private UpdateHandler updateHandler;
 
     // EFFECTS: creates a new AddPanel
     public AddPanel(MovieList movieList) {
@@ -81,7 +81,7 @@ public class AddPanel extends MovieListPanel {
     // EFFECTS: updates panels when movies are added
     public void updatePanels(Movie movie) {
         super.getMovieList().addMovie(movie);
-        this.updateHandler.updatePanelsForAdding(movie, super.getMovieList());
+        UpdateHandler.getInstance().updatePanelsForAdding(movie, super.getMovieList());
     }
 
     // MODIFIES: this
@@ -107,9 +107,5 @@ public class AddPanel extends MovieListPanel {
                 this.genreField.setText("");
             }
         }
-    }
-
-    public void setUpdateHandler(UpdateHandler updateHandler) {
-        this.updateHandler = updateHandler;
     }
 }
