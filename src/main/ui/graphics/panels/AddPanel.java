@@ -20,19 +20,16 @@ public class AddPanel extends MovieListPanel {
     private RemovePanel removePanel;
     private DisplayInfoPanel displayInfoPanel;
     private FilterGenrePanel filterGenrePanel;
+    private ChangePanel changePanel;
 
     // EFFECTS: creates a new AddPanel
-    public AddPanel(MovieList movieList, RemovePanel removePanel, DisplayInfoPanel displayInfoPanel, FilterGenrePanel filterGenrePanel) {
+    public AddPanel(MovieList movieList) {
         super(movieList);   
         comboBox.addItem("Watched");
         comboBox.addItem("Currently Watching");
         comboBox.addItem("To-watch");
         nameField = new JTextField();
         genreField = new JTextField();
-        
-        addObserver(removePanel);
-        addObserver(displayInfoPanel);
-        addObserver(filterGenrePanel);
         
         setupPanel();
     }
@@ -41,16 +38,12 @@ public class AddPanel extends MovieListPanel {
     // EFFECTS: sets up the panel
     @Override
     public void setupPanel() {
-        actionButton.addActionListener(this);
-        actionButton.setText("Add movie");
-
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weightx = 1;
         gbc.weighty = 1;
-        
     
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -86,6 +79,8 @@ public class AddPanel extends MovieListPanel {
         genreField.setFont(FONT);
         add(genreField, gbc);
     
+        actionButton.addActionListener(this);
+        actionButton.setText("Add movie");
         gbc.gridx = 1;
         gbc.gridy = 3;
         add(actionButton, gbc);

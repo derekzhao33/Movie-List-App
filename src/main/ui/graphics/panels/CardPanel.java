@@ -2,8 +2,10 @@ package ui.graphics.panels;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Dimension;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import model.MovieList;
 
@@ -18,6 +20,7 @@ public class CardPanel extends JPanel {
     private FilterStatusPanel filterStatusPanel;
     private FilterGenrePanel filterGenrePanel;
     private ChangePanel changePanel;
+    private JScrollPane changeScrollPane;
 
     // EFFECTS: creates a new CardPanel
     public CardPanel(MovieList movieList) {
@@ -27,12 +30,15 @@ public class CardPanel extends JPanel {
         displayInfoPanel = new DisplayInfoPanel(movieList);
         filterStatusPanel = new FilterStatusPanel(movieList);
         filterGenrePanel = new FilterGenrePanel(movieList);
-        removePanel = new RemovePanel(movieList, displayInfoPanel, filterGenrePanel);
-        addPanel = new AddPanel(movieList, removePanel, displayInfoPanel, filterGenrePanel);
+        removePanel = new RemovePanel(movieList);
+        addPanel = new AddPanel(movieList);
         changePanel = new ChangePanel(movieList);
+        changeScrollPane = new JScrollPane(changePanel);
 
+        addObserverstoPanels();
         addPanels();
         cardLayout.show(mainPanel, "start");
+        mainPanel.setPreferredSize(new Dimension(380, 200));
         add(mainPanel, BorderLayout.CENTER);
     }
 
@@ -45,7 +51,7 @@ public class CardPanel extends JPanel {
         mainPanel.add(displayInfoPanel, "display");
         mainPanel.add(filterStatusPanel, "filter status");
         mainPanel.add(filterGenrePanel, "filter genre");
-        mainPanel.add(changePanel, "change");
+        mainPanel.add(changeScrollPane, "change");
     }
 
     // MODIFIES: this
@@ -70,5 +76,20 @@ public class CardPanel extends JPanel {
         removePanel.update(movieList);
         displayInfoPanel.update(movieList);
         filterGenrePanel.update(movieList);
+    }
+
+    public void addObserverstoPanels() {
+        removePanel.addObserver(removePanel);
+        removePanel.addObserver(displayInfoPanel);
+        removePanel.addObserver(filterGenrePanel);
+        removePanel.addObserver(changePanel);
+
+        addPanel.addObserver(removePanel);
+        addPanel.addObserver(displayInfoPanel);
+        addPanel.addObserver(filterGenrePanel);
+        addPanel.addObserver(changePanel);
+
+        changePanel.addObserver(displayInfoPanel);
+        changePanel.addObserver(filterGenrePanel);
     }
 }

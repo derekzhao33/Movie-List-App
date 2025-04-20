@@ -43,9 +43,6 @@ public class DisplayInfoPanel extends DisplayPanel {
     // EFFECTS: sets up the panel
     @SuppressWarnings("methodlength")
     public void setupPanel(String buttonName, String labelName) {
-        actionButton.addActionListener(this);
-        actionButton.setText(buttonName);
-
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setViewportView(infoArea);
 
@@ -65,6 +62,8 @@ public class DisplayInfoPanel extends DisplayPanel {
         label.setFont(FONT_BOLD);
         add(label, gbc);
 
+        actionButton.addActionListener(this);
+        actionButton.setText(buttonName);
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.weightx = 0.5;

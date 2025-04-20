@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MainGUI",
+            "request": "launch",
+            "mainClass": "ui.MainGUI",
+            "projectName": "ProjectStarter_e42a6076"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

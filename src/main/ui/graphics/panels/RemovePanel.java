@@ -16,25 +16,19 @@ public class RemovePanel extends DisplayPanel {
     private FilterGenrePanel filterGenrePanel;
 
     // EFFECTS: creates a new RemovePanel
-    public RemovePanel(MovieList movieList, DisplayInfoPanel displayInfoPanel, FilterGenrePanel filterGenrePanel) {
+    public RemovePanel(MovieList movieList) {
         super(movieList);
         setupPanel();
-
-        addObserver(this);
-        addObserver(displayInfoPanel);
-        addObserver(filterGenrePanel);
     }
 
     // MODIFIES: this
     // EFFECTS: sets up the panel
     @Override
     public void setupPanel() {
-        actionButton.addActionListener(this);
-        actionButton.setText("Remove movie");
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.fill = GridBagConstraints.BOTH;
 
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -46,6 +40,8 @@ public class RemovePanel extends DisplayPanel {
         gbc.gridy = 0;
         add(comboBox, gbc);
 
+        actionButton.addActionListener(this);
+        actionButton.setText("Remove movie");
         gbc.gridx = 1;
         gbc.gridy = 1;
         add(actionButton, gbc);

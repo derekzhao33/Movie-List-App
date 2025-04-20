@@ -7,7 +7,6 @@ import java.util.*;
 
 // Represents a list of movies
 public class MovieList implements Writable {
-    
     private LinkedHashMap<Integer, Movie> movieList;
 
     // EFFECTS: creates a a new MovieList with no movies

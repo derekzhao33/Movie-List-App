@@ -12,7 +12,7 @@ public class StartPanel extends JPanel {
     //EFFECTS: creates a new StartPanel
     public StartPanel() {
         image = new ImageIcon(LOGO_PATH);
-        image = new ImageIcon(image.getImage().getScaledInstance(150, 130, Image.SCALE_SMOOTH));
+        image = new ImageIcon(image.getImage().getScaledInstance(175, 150, Image.SCALE_SMOOTH));
         logoLabel = new JLabel("Movie List Application");
         logoLabel.setIcon(image);
         logoLabel.setHorizontalTextPosition(JLabel.CENTER);
