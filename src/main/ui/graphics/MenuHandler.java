@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 // Represents a menu handler for the movie list application
 public class MenuHandler {
+    private static MenuHandler singleton;
     private JMenuBar menuBar;
     private JMenu movieMenu;
     private JMenu fileMenu;
@@ -16,80 +17,96 @@ public class MenuHandler {
     private JMenuItem display;
     private JMenuItem filterStatus;
     private JMenuItem filterGenre;
+    private JMenuItem change;
 
     // EFFECTS: creates a new MenuHandler
-    public MenuHandler(ActionListener listener) {
-        this.menuBar = new JMenuBar();
-        this.movieMenu = new JMenu("Movie");
-        this.fileMenu = new JMenu("File");
-        this.filterMenu = new JMenu("Filter");
+    private MenuHandler(ActionListener listener) {
+        menuBar = new JMenuBar();
+        movieMenu = new JMenu("Movie");
+        fileMenu = new JMenu("File");
+        filterMenu = new JMenu("Filter");
 
-        this.load = new JMenuItem("Load");
-        this.save = new JMenuItem("Save");
-        this.add = new JMenuItem("Add");
-        this.remove = new JMenuItem("Remove");
-        this.display = new JMenuItem("Display");
-        this.filterStatus = new JMenuItem("Status");
-        this.filterGenre = new JMenuItem("Genre");
+        load = new JMenuItem("Load");
+        save = new JMenuItem("Save");
+        add = new JMenuItem("Add");
+        remove = new JMenuItem("Remove");
+        display = new JMenuItem("Display");
+        filterStatus = new JMenuItem("Status");
+        filterGenre = new JMenuItem("Genre");
+        change = new JMenuItem("Change");
 
         initializeMenus(listener);
+    }
+
+    public static MenuHandler getInstance(ActionListener listener) {
+        if (singleton == null) {
+            singleton = new MenuHandler(listener);
+        } 
+
+        return singleton;
     }
 
     // MODIFIES: this
     // EFFECTS: initializes the menus
     private void initializeMenus(ActionListener listener) {
-        this.load.addActionListener(listener);
-        this.save.addActionListener(listener);
-        this.add.addActionListener(listener);
-        this.remove.addActionListener(listener);
-        this.display.addActionListener(listener);
-        this.filterStatus.addActionListener(listener);
-        this.filterGenre.addActionListener(listener);
+        load.addActionListener(listener);
+        save.addActionListener(listener);
+        add.addActionListener(listener);
+        remove.addActionListener(listener);
+        display.addActionListener(listener);
+        filterStatus.addActionListener(listener);
+        filterGenre.addActionListener(listener);
+        change.addActionListener(listener);
 
-        this.fileMenu.add(this.load);
-        this.fileMenu.add(this.save);
+        fileMenu.add(load);
+        fileMenu.add(save);
 
-        this.filterMenu.add(this.filterStatus);
-        this.filterMenu.add(this.filterGenre);
+        filterMenu.add(filterStatus);
+        filterMenu.add(filterGenre);
         
-        this.movieMenu.add(this.add);
-        this.movieMenu.add(this.remove);
-        this.movieMenu.add(this.display);
-        this.movieMenu.add(this.filterMenu);
+        movieMenu.add(add);
+        movieMenu.add(remove);
+        movieMenu.add(display);
+        movieMenu.add(filterMenu);
+        movieMenu.add(change);
 
-        this.menuBar.add(this.movieMenu);
-        this.menuBar.add(this.fileMenu);
+        menuBar.add(movieMenu);
+        menuBar.add(fileMenu);
     }
 
     public JMenuBar getMenuBar() {
-        return this.menuBar;
+        return menuBar;
     }
 
     public JMenuItem getLoadMenuItem() {
-        return this.load;
+        return load;
     }
 
     public JMenuItem getSaveMenuItem() {
-        return this.save;
+        return save;
     }
 
     public JMenuItem getAddMenuItem() {
-        return this.add;
+        return add;
     }
 
     public JMenuItem getRemoveMenuItem() {
-        return this.remove;
+        return remove;
     }
 
     public JMenuItem getDisplayMenuItem() {
-        return this.display;
+        return display;
     }
 
     public JMenuItem getFilterStatusMenuItem() {
-        return this.filterStatus;
+        return filterStatus;
     }
 
     public JMenuItem getFilterGenreMenuItem() {
-        return this.filterGenre;
+        return filterGenre;
+    }
+    
+    public JMenuItem getChangMenuItem() {
+        return change; 
     }
 }

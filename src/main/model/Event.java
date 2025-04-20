@@ -36,6 +36,7 @@ public class Event {
         return description;
     }
 
+    // EFFECTS: compared this to other
     @Override
     public boolean equals(Object other) {
         if (other == null) {
@@ -52,11 +53,13 @@ public class Event {
                     && this.description.equals(otherEvent.description));
     }
 
+    // EFFECTS: generates hashcode for this
     @Override
     public int hashCode() {
         return (HASH_CONSTANT * dateLogged.hashCode() + description.hashCode());
     }
 
+    // EFFECTS: returns string representation of event
     @Override
     public String toString() {
         return dateLogged.toString() + "\n" + description;

@@ -1,26 +1,36 @@
 package ui.graphics.panels;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import model.*;
 
 // Represents a panel to remove movies
 public class RemovePanel extends DisplayPanel {
-    private UpdateHandler updateHandler;
+    private DisplayInfoPanel displayInfoPanel;
+    private FilterGenrePanel filterGenrePanel;
 
     // EFFECTS: creates a new RemovePanel
-    public RemovePanel(MovieList movieList) {
+    public RemovePanel(MovieList movieList, DisplayInfoPanel displayInfoPanel, FilterGenrePanel filterGenrePanel) {
         super(movieList);
         setupPanel();
+
+        addObserver(this);
+        addObserver(displayInfoPanel);
+        addObserver(filterGenrePanel);
     }
 
     // MODIFIES: this
     // EFFECTS: sets up the panel
+    @Override
     public void setupPanel() {
-        super.getButton().addActionListener(this);
-        super.getButton().setText("Remove movie");
+        actionButton.addActionListener(this);
+        actionButton.setText("Remove movie");
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
@@ -34,46 +44,32 @@ public class RemovePanel extends DisplayPanel {
 
         gbc.gridx = 1;
         gbc.gridy = 0;
-        add(super.getComboBox(), gbc);
+        add(comboBox, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 1;
-        add(super.getButton(), gbc);
-    }
-    
-
-    // MODIFIES: this
-    // EFFECTS: updates panels when movies are removed
-    public void updatePanels() {
-        updateComboBox(super.getMovieList());
-        updateHandler.updatePanelsForRemoving(super.getMovieList());
+        add(actionButton, gbc);
     }
 
     // MODIFIES: this
     // EFFECTS: handles actions
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == super.getButton()) {
-            MovieList movies = super.getMovieList();
+        if (e.getSource() == actionButton) {
 
-            if (movies.isEmpty()) {
+            if (movieList.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Empty movie list, cannot remove movie", 
                                             "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 int selectedNum = getMovieNumber();
-                Object comboBoxItem = super.getComboBox().getSelectedItem();
+                Object comboBoxItem = comboBox.getSelectedItem();
                 String movieName = comboBoxItem.toString();
 
-                movies.removeMovie(selectedNum);
+                movieList.removeMovie(selectedNum);
+                notifyObservers(movieList);
                 JOptionPane.showMessageDialog(this, movieName + " was removed", 
                                             "Remove", JOptionPane.INFORMATION_MESSAGE);
-
-                updatePanels();
             }
         }
-    }
-
-    public void setUpdateHandler(UpdateHandler updateHandler) {
-        this.updateHandler = updateHandler;
     }
 }

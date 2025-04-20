@@ -17,8 +17,8 @@ public class MovieListApp {
     
     // EFFECTS: creates a new movie list application
     public MovieListApp() throws FileNotFoundException {
-        this.movieList = new MovieList();
-        this.scanner = new Scanner(System.in);
+        movieList = new MovieList();
+        scanner = new Scanner(System.in);
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
         start();

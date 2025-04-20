@@ -1,8 +1,8 @@
 {"movieList": {
     "1": {
         "notes": {},
-        "name": "name",
-        "genre": "genre",
+        "name": "asdf",
+        "genre": "asdf",
         "rating": 0,
         "watchTime": 0,
         "status": "w"
@@ -13,6 +13,6 @@
         "genre": "action",
         "rating": 0,
         "watchTime": 0,
-        "status": "c"
+        "status": "w"
     }
 }}

@@ -22,28 +22,28 @@ public class Movie implements Writable {
         this.status = status;
         this.name = name;
         this.genre = genre;
-        this.notes = new LinkedHashMap<>();
-        this.rating = 0;
-        this.watchTime = 0;
+        notes = new LinkedHashMap<>();
+        rating = 0;
+        watchTime = 0;
     }
 
     // REQUIRES: length of newNote > 0
     // MODIFIES: this
     // EFFECTS: adds a new note to the list of notes
     public void addNote(String newNote) {
-        this.notes.put(this.notes.size() + 1, newNote);
+        notes.put(notes.size() + 1, newNote);
     }
 
     // REQUIRES: noteNum >= 1 AND noteNum <= notes.size() AND notes.size() > 0
     // MODIFIES: this
     // EFFECTS: removes the note that matches the given number and reasigns the keys to match the new list
     public void removeNote(int noteNum) {
-        this.notes.remove(noteNum);
+        notes.remove(noteNum);
 
         LinkedHashMap<Integer, String> lhmNew = new LinkedHashMap<>();
         int i = 1;
 
-        for (Map.Entry<Integer, String> mapElement : this.notes.entrySet()) {
+        for (Map.Entry<Integer, String> mapElement : notes.entrySet()) {
             String v = mapElement.getValue();
 
             lhmNew.put(i, v);
@@ -51,33 +51,33 @@ public class Movie implements Writable {
             i++;
         }
 
-        this.notes = lhmNew;
+        notes = lhmNew;
     }
 
     // REQUIRES: toAdd > 0
     // MODIFIES: this
     // EFFECTS: adds more watch time to the current watch time
     public void addWatchTime(int toAdd) {
-        this.watchTime += toAdd;
+        watchTime += toAdd;
     }
 
     public String getStatus() {
-        return this.status;
+        return status;
     }
     
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public String getGenre() {
-        return this.genre;
+        return genre;
     }
 
     // EFFECTS: gets the all notes in string form 
     public String getNotes() {
         String result = "";
 
-        for (Map.Entry<Integer, String> mapElement : this.notes.entrySet()) {
+        for (Map.Entry<Integer, String> mapElement : notes.entrySet()) {
             Integer k = mapElement.getKey();
 
             String v = mapElement.getValue();
@@ -89,11 +89,11 @@ public class Movie implements Writable {
     }
 
     public int getRating() {
-        return this.rating; 
+        return rating; 
     }
 
     public int getWatchTime() {
-        return this.watchTime;
+        return watchTime;
     }
 
     // REQUIRES: status must be one of: "w", "c", or "t"
@@ -129,12 +129,12 @@ public class Movie implements Writable {
 
         Movie comparedMovie = (Movie) compared;
 
-        if (this.status.equals(comparedMovie.status)
-                && this.name.equals(comparedMovie.name)
-                && this.genre.equals(comparedMovie.genre)
-                && this.notes.equals(comparedMovie.notes)
-                && this.rating == comparedMovie.rating
-                && this.watchTime == comparedMovie.watchTime) {
+        if (status.equals(comparedMovie.status)
+                && name.equals(comparedMovie.name)
+                && genre.equals(comparedMovie.genre)
+                && notes.equals(comparedMovie.notes)
+                && rating == comparedMovie.rating
+                && watchTime == comparedMovie.watchTime) {
             return true;
         }
 
@@ -151,12 +151,12 @@ public class Movie implements Writable {
             notesJson.put(entry.getKey().toString(), entry.getValue());
         }
     
-        json.put("status", this.status);
-        json.put("name", this.name);
-        json.put("genre", this.genre);
+        json.put("status", status);
+        json.put("name", name);
+        json.put("genre", genre);
         json.put("notes", notesJson);
-        json.put("rating", this.rating);
-        json.put("watchTime", this.watchTime);
+        json.put("rating", rating);
+        json.put("watchTime", watchTime);
     
         return json;
     }
@@ -164,19 +164,19 @@ public class Movie implements Writable {
     // EFFECTS: returns the movie represented as a string, and adds an event 
     @Override
     public String toString() {
-        EventLog.getInstance().logEvent(new Event("Displayed information for " + this.name));
+        EventLog.getInstance().logEvent(new Event("Displayed information for " + name));
 
-        if (this.status.equals("w")) {
-            return "Status: Watched\nName: " + this.name + "\nGenre: " + this.genre 
-                        + "\nNotes: " + getNotes() + "\nRating: " + this.rating + "\nWatch Time: " + this.watchTime; 
-        } else if (this.status.equals("c")) {
-            return "Status: Currently Watching\nName: " + this.name + "\nGenre: " 
-                        + this.genre + "\nNotes: " + getNotes() + "\nRating: " 
-                        + this.rating + "\nWatch Time: " + this.watchTime; 
+        if (status.equals("w")) {
+            return "Status: Watched\nName: " + name + "\nGenre: " + genre 
+                        + "\nNotes: " + getNotes() + "\nRating: " + rating + "\nWatch Time: " + watchTime; 
+        } else if (status.equals("c")) {
+            return "Status: Currently Watching\nName: " + name + "\nGenre: " 
+                        + genre + "\nNotes: " + getNotes() + "\nRating: " 
+                        + rating + "\nWatch Time: " + watchTime; 
         } else {
-            return "Status: To-watch\nName: " + this.name + "\nGenre: " 
-                        + this.genre + "\nNotes:\n" + getNotes() + "Rating: " 
-                        + this.rating + "\nWatch Time: " + this.watchTime; 
+            return "Status: To-watch\nName: " + name + "\nGenre: " 
+                        + genre + "\nNotes:\n" + getNotes() + "Rating: " 
+                        + rating + "\nWatch Time: " + watchTime; 
         }
     }
 }
