@@ -8,21 +8,21 @@ import model.*;
 
 // Represents a panel that displays movie info
 public class DisplayInfoPanel extends DisplayPanel {
-    private JTextArea infoArea;
+    protected JTextArea infoArea;
     private JScrollPane scrollPane;
 
     // EFFECTS: creates a new DisplayInfoPanel
-    public DisplayInfoPanel(MovieList movieList) {
+    public  DisplayInfoPanel(MovieList movieList) {
         super(movieList);
-        this.infoArea = new JTextArea(3, 7);
-        this.scrollPane = new JScrollPane(this.infoArea);
+        infoArea = new JTextArea(3, 7);
+        scrollPane = new JScrollPane(infoArea);
         setupPanel();
     }
 
     // MODIFIES: this
     // EFFECTS: resets the info area
     public void resetInfoArea() {
-        this.infoArea.setText("");
+        infoArea.setText("");
     }
 
     // MODIFIES: this
@@ -36,15 +36,15 @@ public class DisplayInfoPanel extends DisplayPanel {
     // EFFECTS: sets up the panel
     @SuppressWarnings("methodlength")
     public void setupPanel(String buttonName, String labelName) {
-        super.getButton().addActionListener(this);
-        super.getButton().setText(buttonName);
+        actionButton.addActionListener(this);
+        actionButton.setText(buttonName);
 
-        this.scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        this.scrollPane.setViewportView(infoArea);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setViewportView(infoArea);
 
-        this.infoArea.setEditable(false);
+        infoArea.setEditable(false);
 
-        super.getComboBox().setBorder(BorderFactory.createEmptyBorder(8, 0, 0, 0));
+        comboBox.setBorder(BorderFactory.createEmptyBorder(8, 0, 0, 0));
         
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -61,12 +61,12 @@ public class DisplayInfoPanel extends DisplayPanel {
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.weightx = 0.5;
-        add(super.getComboBox(), gbc);
+        add(actionButton, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.weightx = 0;
-        add(super.getButton(), gbc);
+        add(comboBox, gbc);
 
         gbc.gridwidth = 0;
         gbc.gridx = 0;
@@ -74,15 +74,15 @@ public class DisplayInfoPanel extends DisplayPanel {
         gbc.weighty = 1;
         gbc.weightx = 1;
         gbc.fill = GridBagConstraints.BOTH;
-        add(this.scrollPane, gbc);
+        add(scrollPane, gbc);
     }
 
     // MODIFIES: this
     // EFFECTS: handles actions
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == super.getButton()) {
-            MovieList movies = super.getMovieList();
+        if (e.getSource() == actionButton) {
+            MovieList movies = movieList;
 
             if (movies.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Empty movie list, cannot display info", 
@@ -91,12 +91,8 @@ public class DisplayInfoPanel extends DisplayPanel {
                 int selectedNum = getMovieNumber();
                 Movie selectedMovie = movies.searchName(selectedNum);
                 String infoText = selectedMovie.toString();
-                this.infoArea.setText(infoText);
+                infoArea.setText(infoText);
             }
         } 
-    }
-
-    public JTextArea getInfoArea() {
-        return this.infoArea;
     }
 }

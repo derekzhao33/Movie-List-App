@@ -3,6 +3,7 @@
         "notes": {},
         "name": "Star Wars",
         "genre": "sci-fi",
+        "rating": 0,
         "watchTime": 0,
         "status": "t"
     },
@@ -23,6 +24,6 @@
         "genre": "horror",
         "rating": 4,
         "watchTime": 2,
-        "status": "t"
+        "status": "w"
     }
 }}

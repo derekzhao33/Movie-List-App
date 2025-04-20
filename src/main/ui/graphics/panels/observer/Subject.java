@@ -1,24 +1,24 @@
 package ui.graphics.panels.observer;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.swing.JPanel;
 
 import model.MovieList;
 
 public class Subject extends JPanel {
-    private List<Observer> observers;
+    private Set<Observer> observers;
 
     public Subject() {
-        observers = new ArrayList<>();
+        observers = new HashSet<>();
     }
     
     public void addObserver(Observer observer) {
         observers.add(observer);
     }
-    
-    public void notifyObserver(MovieList movieList) {
+
+    public void notifyObservers(MovieList movieList) {
         for (Observer o : observers) {
             o.update(movieList);
         }

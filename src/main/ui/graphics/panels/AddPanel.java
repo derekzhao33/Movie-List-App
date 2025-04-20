@@ -10,19 +10,26 @@ import model.*;
 public class AddPanel extends MovieListPanel {
     private JTextField nameField;
     private JTextField genreField;
+    private RemovePanel removePanel;
+    private DisplayInfoPanel displayInfoPanel;
+    private FilterGenrePanel filterGenrePanel;
 
     // EFFECTS: creates a new AddPanel
-    public AddPanel(MovieList movieList) {
+    public AddPanel(MovieList movieList, RemovePanel removePanel, DisplayInfoPanel displayInfoPanel, FilterGenrePanel filterGenrePanel) {
         super(movieList);   
         comboBox.addItem("Watched");
         comboBox.addItem("Currently Watching");
         comboBox.addItem("To-watch");
         nameField = new JTextField();
         genreField = new JTextField();
+        
+        addObserver(removePanel);
+        addObserver(displayInfoPanel);
+        addObserver(filterGenrePanel);
+        
         setupPanel();
     }
 
-    @SuppressWarnings("methodlength")
     // MODIFIES: this
     // EFFECTS: sets up the panel
     public void setupPanel() {
@@ -55,8 +62,8 @@ public class AddPanel extends MovieListPanel {
     
         gbc.gridx = 1;
         gbc.gridy = 1;
-        this.nameField.setPreferredSize(DIMENSION);
-        this.nameField.setFont(FONT);
+        nameField.setPreferredSize(DIMENSION);
+        nameField.setFont(FONT);
         add(nameField, gbc);
     
         gbc.gridx = 0;
@@ -73,14 +80,7 @@ public class AddPanel extends MovieListPanel {
     
         gbc.gridx = 1;
         gbc.gridy = 3;
-        add(comboBox, gbc);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: updates panels when movies are added
-    public void updatePanels(Movie movie) {
-        movieList.addMovie(movie);
-        UpdateHandler.getInstance().updatePanelsForAdding(movieList);
+        add(actionButton, gbc);
     }
 
     // MODIFIES: this
@@ -100,11 +100,12 @@ public class AddPanel extends MovieListPanel {
             } else {
                 Movie newMovie = new Movie(status, name, genre);
 
-                updatePanels(newMovie);
+                movieList.addMovie(newMovie);
+                notifyObservers(movieList);
                 JOptionPane.showMessageDialog(this, name + " was added", "Add", JOptionPane.INFORMATION_MESSAGE);
                 nameField.setText("");
                 genreField.setText("");
             }
-        }
+        } 
     }
 }

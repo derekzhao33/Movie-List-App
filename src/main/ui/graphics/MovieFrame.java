@@ -31,16 +31,16 @@ public class MovieFrame extends JFrame implements ActionListener, WindowListener
 
     // EFFECTS: creates a new frame
     public MovieFrame() {
-        this.movieList = new MovieList();
-        this.jsonWriter = new JsonWriter(JSON_STORE);
-        this.jsonReader = new JsonReader(JSON_STORE);
-        this.movieList = new MovieList();
-        this.cardPanel = new CardPanel(this.movieList);
-        this.menuHandler = new MenuHandler(this);
+        movieList = new MovieList();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+        movieList = new MovieList();
+        cardPanel = new CardPanel(movieList);
+        menuHandler = MenuHandler.getInstance(this);
 
         initializeFrame();
 
-        this.setVisible(true);
+        setVisible(true);
     }
 
     // MODIFIES: this
@@ -71,25 +71,25 @@ public class MovieFrame extends JFrame implements ActionListener, WindowListener
         } else if (e.getSource() == menuHandler.getSaveMenuItem()) {
             saveMovieList();
         } else if (e.getSource() == menuHandler.getAddMenuItem()) {
-            this.cardPanel.switchPanels("add", this.movieList);
+            cardPanel.switchPanels("add", movieList);
         } else if (e.getSource() == menuHandler.getRemoveMenuItem()) {
-            this.cardPanel.switchPanels("remove", this.movieList);
+            cardPanel.switchPanels("remove", movieList);
         } else if (e.getSource() == menuHandler.getDisplayMenuItem()) {
-            this.cardPanel.switchPanels("display", this.movieList);
+            cardPanel.switchPanels("display", movieList);
         } else if (e.getSource() == menuHandler.getFilterStatusMenuItem()) {
-            this.cardPanel.switchPanels("filter status", this.movieList);
+            cardPanel.switchPanels("filter status", movieList);
         } else if (e.getSource() == menuHandler.getFilterGenreMenuItem()) {
-            this.cardPanel.switchPanels("filter genre", this.movieList);
+            cardPanel.switchPanels("filter genre", movieList);
         }
     }
 
     // EFFECTS: loads the movie list from file
     private void loadMovieList() {
         try {
-            this.movieList = jsonReader.read();
+            movieList = jsonReader.read();
             JOptionPane.showMessageDialog(this, "Loaded movie list from: " + JSON_STORE, 
                                         "Load", JOptionPane.INFORMATION_MESSAGE);
-            this.cardPanel.initializePanels(this.movieList);
+            cardPanel.initializePanels(movieList);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Unable to load movies", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -98,9 +98,9 @@ public class MovieFrame extends JFrame implements ActionListener, WindowListener
     // EFFECTS: saves the movie list to file
     private void saveMovieList() {
         try {
-            this.jsonWriter.open();
-            this.jsonWriter.write(movieList);
-            this.jsonWriter.close();
+            jsonWriter.open();
+            jsonWriter.write(movieList);
+            jsonWriter.close();
             JOptionPane.showMessageDialog(this, "Saved movie list to: " + JSON_STORE, 
                                         "Save", JOptionPane.INFORMATION_MESSAGE);
         } catch (FileNotFoundException e) {

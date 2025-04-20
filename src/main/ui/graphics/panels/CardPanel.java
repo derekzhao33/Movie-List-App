@@ -24,12 +24,8 @@ public class CardPanel extends JPanel {
         displayInfoPanel = new DisplayInfoPanel(movieList);
         filterStatusPanel = new FilterStatusPanel(movieList);
         filterGenrePanel = new FilterGenrePanel(movieList);
-        removePanel = new RemovePanel(movieList);
-        addPanel = new AddPanel(movieList);
-
-        UpdateHandler.getInstance().setRemovePanel(removePanel);
-        UpdateHandler.getInstance().setDisplayInfoPanel(displayInfoPanel);
-        UpdateHandler.getInstance().setFilterGenrePanel(filterGenrePanel);
+        removePanel = new RemovePanel(movieList, displayInfoPanel, filterGenrePanel);
+        addPanel = new AddPanel(movieList, removePanel, displayInfoPanel, filterGenrePanel); 
 
         addPanels();
         cardLayout.show(mainPanel, "start");

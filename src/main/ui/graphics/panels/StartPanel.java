@@ -11,12 +11,12 @@ public class StartPanel extends JPanel {
     
     //EFFECTS: creates a new StartPanel
     public StartPanel() {
-        this.image = new ImageIcon(LOGO_PATH);
-        this.image = new ImageIcon(image.getImage().getScaledInstance(150, 130, Image.SCALE_SMOOTH));
-        this.logoLabel = new JLabel("Movie List Application");
-        this.logoLabel.setIcon(image);
-        this.logoLabel.setHorizontalTextPosition(JLabel.CENTER);
-        this.logoLabel.setVerticalTextPosition(JLabel.BOTTOM);
-        add(this.logoLabel);
+        image = new ImageIcon(LOGO_PATH);
+        image = new ImageIcon(image.getImage().getScaledInstance(150, 130, Image.SCALE_SMOOTH));
+        logoLabel = new JLabel("Movie List Application");
+        logoLabel.setIcon(image);
+        logoLabel.setHorizontalTextPosition(JLabel.CENTER);
+        logoLabel.setVerticalTextPosition(JLabel.BOTTOM);
+        add(logoLabel);
     }
 }

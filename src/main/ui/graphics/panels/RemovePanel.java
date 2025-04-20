@@ -3,16 +3,23 @@ package ui.graphics.panels;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.nio.file.DirectoryStream.Filter;
 
 import model.*;
 
 // Represents a panel to remove movies
 public class RemovePanel extends DisplayPanel {
+    private DisplayInfoPanel displayInfoPanel;
+    private FilterGenrePanel filterGenrePanel;
 
     // EFFECTS: creates a new RemovePanel
-    public RemovePanel(MovieList movieList) {
+    public RemovePanel(MovieList movieList, DisplayInfoPanel displayInfoPanel, FilterGenrePanel filterGenrePanel) {
         super(movieList);
         setupPanel();
+
+        addObserver(this);
+        addObserver(displayInfoPanel);
+        addObserver(filterGenrePanel);
     }
 
     // MODIFIES: this
@@ -39,23 +46,14 @@ public class RemovePanel extends DisplayPanel {
         gbc.gridy = 1;
         add(actionButton, gbc);
     }
-    
-
-    // MODIFIES: this
-    // EFFECTS: updates panels when movies are removed
-    public void updatePanels() {
-        update(movieList);
-        UpdateHandler.getInstance().updatePanelsForRemoving(movieList);
-    }
 
     // MODIFIES: this
     // EFFECTS: handles actions
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == super.getButton()) {
-            MovieList movies = super.getMovieList();
+        if (e.getSource() == actionButton) {
 
-            if (movies.isEmpty()) {
+            if (movieList.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Empty movie list, cannot remove movie", 
                                             "Error", JOptionPane.ERROR_MESSAGE);
             } else {
@@ -63,18 +61,11 @@ public class RemovePanel extends DisplayPanel {
                 Object comboBoxItem = comboBox.getSelectedItem();
                 String movieName = comboBoxItem.toString();
 
-                movies.removeMovie(selectedNum);
+                movieList.removeMovie(selectedNum);
+                notifyObservers(movieList);
                 JOptionPane.showMessageDialog(this, movieName + " was removed", 
                                             "Remove", JOptionPane.INFORMATION_MESSAGE);
-
-                updatePanels();
             }
         }
-    }
-    
-    @Override
-    public void update(MovieList movieList) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 }

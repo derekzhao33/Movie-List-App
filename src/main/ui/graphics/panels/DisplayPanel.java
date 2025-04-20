@@ -17,7 +17,8 @@ public abstract class DisplayPanel extends MovieListPanel implements Observer {
 
     // MODIFIES: this
     // EFFECTS: updates the combobox to match the current movie list
-    public void updateComboBox(MovieList movieList) {
+    @Override
+    public void update(MovieList movieList) {
         comboBox.removeAllItems();
 
         for (Map.Entry<Integer, Movie> entry : movieList.getMovieList().entrySet()) {

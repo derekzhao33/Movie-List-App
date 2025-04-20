@@ -17,28 +17,28 @@ public class FilterStatusPanel extends DisplayInfoPanel {
     // EFFECTS: sets up the panel
     @Override
     public void setupPanel() {
-        super.getComboBox().addItem("Watched");
-        super.getComboBox().addItem("Currently Watching");
-        super.getComboBox().addItem("To-watch");
+        comboBox.addItem("Watched");
+        comboBox.addItem("Currently Watching");
+        comboBox.addItem("To-watch");
         setupPanel("Filter Movies", "Status:");
     }
 
     //EFFECTS: handles the actions
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == super.getButton()) {
-            MovieList movies = super.getMovieList();
+        if (e.getSource() == actionButton) {
+            MovieList movies = movieList;
 
             if (movies.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Empty movie list, cannot display info", 
                                             "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                Object comboBoxItem = super.getComboBox().getSelectedItem();
+                Object comboBoxItem = comboBox.getSelectedItem();
                 String longStatus = comboBoxItem.toString();
 
-                String status = super.getMovieStatusShortenedString(longStatus);
+                String status = getMovieStatusShortenedString(longStatus);
                 String filterText = movies.getAllNamesByStatus(status);
-                super.getInfoArea().setText(filterText);
+                infoArea.setText(filterText);
             }
         }
     }

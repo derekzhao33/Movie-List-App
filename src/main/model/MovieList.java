@@ -6,7 +6,7 @@ import persistence.Writable;
 import java.util.*;
 
 // Represents a list of movies
-public class MovieList implements Writable, Iterable<Movie> {
+public class MovieList implements Writable {
     
     private LinkedHashMap<Integer, Movie> movieList;
 
@@ -19,7 +19,7 @@ public class MovieList implements Writable, Iterable<Movie> {
     // MODIFIES: this
     // EFFECTS: adds movie to the movie list, and adds an event 
     public void addMovie(Movie movie) {
-        this.movieList.put(movieList.size() + 1, movie); 
+        movieList.put(movieList.size() + 1, movie); 
 
         EventLog.getInstance().logEvent(new Event("\"" + movie.getName() + "\" was added"));
     }
@@ -28,15 +28,15 @@ public class MovieList implements Writable, Iterable<Movie> {
     // MODIFIES: this
     // EFFECTS: removes the movie that matches the given number, and adds an event 
     public void removeMovie(int movieNum) {
-        Movie toBeRemoved = this.movieList.get(movieNum);
-        this.movieList.remove(movieNum);
+        Movie toBeRemoved = movieList.get(movieNum);
+        movieList.remove(movieNum);
         
         EventLog.getInstance().logEvent(new Event("\"" + toBeRemoved.getName() + "\" was removed"));
         
         LinkedHashMap<Integer, Movie> lhmNew = new LinkedHashMap<>();
         int i = 1;
 
-        for (Map.Entry<Integer, Movie> mapEntry : this.movieList.entrySet()) {
+        for (Map.Entry<Integer, Movie> mapEntry : movieList.entrySet()) {
             Movie m = mapEntry.getValue();
 
             lhmNew.put(i, m);
@@ -51,7 +51,7 @@ public class MovieList implements Writable, Iterable<Movie> {
     public String getAllNames() {
         String result = "";
 
-        for (Map.Entry<Integer, Movie> mapEntry : this.movieList.entrySet()) {
+        for (Map.Entry<Integer, Movie> mapEntry : movieList.entrySet()) {
             int n = mapEntry.getKey();
             Movie m = mapEntry.getValue();
 
@@ -67,7 +67,7 @@ public class MovieList implements Writable, Iterable<Movie> {
         String result = "";
         int i = 1;
 
-        for (Map.Entry<Integer, Movie> mapEntry : this.movieList.entrySet()) {
+        for (Map.Entry<Integer, Movie> mapEntry : movieList.entrySet()) {
             Movie m = mapEntry.getValue();
 
             if (m.getStatus().equals(status)) {
@@ -86,7 +86,7 @@ public class MovieList implements Writable, Iterable<Movie> {
         String result = "";
         int i = 1;
 
-        for (Map.Entry<Integer, Movie> mapEntry : this.movieList.entrySet()) {
+        for (Map.Entry<Integer, Movie> mapEntry : movieList.entrySet()) {
             Movie m = mapEntry.getValue();
 
             if (m.getGenre().equals(genre)) {
@@ -122,11 +122,11 @@ public class MovieList implements Writable, Iterable<Movie> {
 
         MovieList comparedMovieList = (MovieList) compared;
 
-        if (this.movieList.size() != comparedMovieList.getMovieList().size()) {
+        if (movieList.size() != comparedMovieList.getMovieList().size()) {
             return false;
         }
 
-        for (Map.Entry<Integer, Movie> mapElement : this.movieList.entrySet()) {
+        for (Map.Entry<Integer, Movie> mapElement : movieList.entrySet()) {
             Integer n = mapElement.getKey();
             Movie m = mapElement.getValue();
 
@@ -154,34 +154,11 @@ public class MovieList implements Writable, Iterable<Movie> {
 
     // EFFECTS: returns the number of movies in the list
     public int getSize() {
-        return this.movieList.size();
+        return movieList.size();
     }
 
     // EFFECTS: returns if the movie list is empty
     public boolean isEmpty() {
-        return this.movieList.isEmpty();
-    }
-
-    @Override
-    public Iterator<Movie> iterator() {
-        return new MovieListIterator();
-    }
-
-    private class MovieListIterator implements Iterator<Movie> { 
-        private Iterator<Integer> movieIterator = movieList.keySet().iterator();
-
-        @Override
-        public boolean hasNext() {
-            return this.movieIterator.hasNext();
-        }
-
-        @Override
-        public Movie next() throws NoSuchElementException {
-            if (hasNext()) {
-                return movieList.get(this.movieIterator.next());
-            }
-
-            throw new NoSuchElementException();
-        }
+        return movieList.isEmpty();
     }
 }

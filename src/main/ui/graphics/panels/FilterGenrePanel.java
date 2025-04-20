@@ -50,7 +50,7 @@ public class FilterGenrePanel extends DisplayInfoPanel {
         comboBox.removeAllItems();
 
         for (String g : updatedGenres) {
-            super.getComboBox().addItem(g);
+            comboBox.addItem(g);
         }
     }
 
