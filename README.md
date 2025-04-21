@@ -1,35 +1,43 @@
-# To-watch application
+# Movie List App
 
-## What will the application do?
+## Overview
+The **Movie List App** is a personal project designed to help users manage their movie-watching habits. It allows users to keep track of movies they have watched, are currently watching, or plan to watch in the future. The application provides features such as adding notes or reviews, filtering movies by status or genre, and editing movie details. 
 
-This project will keep track of movies that I have watched, am watching, and want to watch in the future. 
+This project was inspired by my love for movies and the need for a simple, organized way to track my movie-watching journey. 
 
-There are **3** distinct parts of this project: movies that I have finished watching, ones that I am watching, and ones that I want to watch (to-watch list).
+## Key Features:
+- **Categorization**: Classify movies as "Watched," "Currently Watching," or "To-watch."
+- **Notes and Reviews**: Add personal notes or reviews for each movie.
+- **Filtering**: Search and filter movies by status or genre.
+- **Editing**: Update movie details such as status, name, genre, notes, ratings, and watch time.
+- **Persistence**: Save and load your movie list to/from a JSON file.
 
-General features:
-- Classifying a movie as watched, currently watching, or to-watch
-- Writing down notes/reviews
-- Searching and filtering by genre
-- Stats and insights (total watch time)
-- Displaying lists of movies based on genres or whether the movie is in the to-watch, currently watching, or finished list
-- Removing from each category 
-- Changing movie details
-- Adding movies
+## Known Issues
+- The `ChangePanel` may not correctly update the watch time or rating if invalid input is entered.
+- The `FilterStatusPanel` and `FilterGenrePanel` may not update dynamically when the movie list is modified.
+- The `JScrollPane` in `DisplayInfoPanel` may exceed the application bounds in certain window sizes.
 
-## Who will use it?
+## Steps to run tests
+- Ensure the project is built and the test libraries are included in the build path.
+- Run the test suite using your IDE's test runner (e.g., JUnit 5).
 
-I, and maybe a few friends will be using this application
+## Prerequisites
+- **Java 17** or later installed on your system.
+- A Java IDE like **IntelliJ IDEA**, **Eclipse**, or **Visual Studio Code** (optional but recommended).
+- The following libraries included in the project:
+  - `lib/json-20240303.jar` (for JSON persistence)
+  - `lib/junit-platform-console-standalone-1.10.2.jar` (for running tests)
 
-## Why is this project of interest to you?
+## Steps to Build
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/derekzhao33/Movie-List-App.git
 
-I spend a lot of my time watching Movies. I also like to be organized, so it would be nice to have something that could combine these two aspects together. I like how Netflix does their "list", but I don't just watch movies on Netflix, so it would be helpful if I could keep track of movies on various different platforms
 
-## User Stories
 
-- As a user, I want to create movies with a status, name, and genre, and add it to the list of movies
-- As a user, I want to view all movies on the list, and filter by genre, or their status (watched, currently watching, to-watch)
-- As a user, I want to add notes, ratings, and watch time for the movies
-- As a user, I want to change any details about the movie (status, name, genre, notes, ratings, watch time, episode, season)
-- As a user, I want to categorize my movie as watched, currently watching, or to-watch
-- As a user, I want the option to be able to save or not save my current movie list and be able to do so
-- As a user, I want the option to load or not load the previous saved movie list and be able to do so
+## Author/Contact Information
+This project was developed by Derek. For any questions, feedback, or bug reports, please contact:
+- **Email**: derekzhao33@gmail.com
+- **GitHub**: [https://github.com/derekzhao33](https://github.com/derekzhao33)
+
+---
