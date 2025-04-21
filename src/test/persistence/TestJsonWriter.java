@@ -23,15 +23,15 @@ public class TestJsonWriter {
     }
 
     @Test
-    public void testWriterEmptyWorkroom() {
+    public void testWriterEmptyMovieList() {
         try {
             MovieList ml = new MovieList();
-            JsonWriter writer = new JsonWriter("./data/testWriterEmptyWorkroom.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterEmptyMovieList.json"); // Use the same file path
             writer.open();
             writer.write(ml);
             writer.close();
-
-            JsonReader reader = new JsonReader("./data/testWriterEmptyMovieList.json");
+    
+            JsonReader reader = new JsonReader("./data/testWriterEmptyMovieList.json"); // Use the same file path
             ml = reader.read();
             assertEquals(0, ml.getSize());
         } catch (IOException e) {
