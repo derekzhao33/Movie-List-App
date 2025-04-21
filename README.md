@@ -36,7 +36,7 @@ This project was inspired by my love for movies and the need for a simple, organ
 
 
 ## Author/Contact Information
-This project was developed by Derek. For any questions, feedback, or bug reports, please contact:
+This project was developed by Derek Zhao. For any questions, feedback, or bug reports, please contact:
 - **Email**: derekzhao33@gmail.com
 - **GitHub**: [https://github.com/derekzhao33](https://github.com/derekzhao33)
 
