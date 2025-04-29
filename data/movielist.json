@@ -1,9 +1,9 @@
 {"movieList": {
     "1": {
-        "notes": {},
-        "name": "batman",
-        "genre": "action",
-        "rating": 0,
+        "notes": {"1": "note 1"},
+        "name": "batman 2",
+        "genre": "action 2",
+        "rating": 30,
         "watchTime": 0,
         "status": "w"
     },

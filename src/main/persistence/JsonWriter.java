@@ -6,8 +6,6 @@ import org.json.JSONObject;
 import java.io.*;
 
 // Represents a writer that writes JSON representation of a movie list to file
-// Code was partially based on the JsonSerializationDemo project
-// URL: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
